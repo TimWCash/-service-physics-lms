@@ -17,10 +17,10 @@ export default function Home() {
     }
   }, [router])
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email && name) {
-      AuthService.login(email, name)
+      await AuthService.login(email, name)
       router.push('/dashboard')
     }
   }

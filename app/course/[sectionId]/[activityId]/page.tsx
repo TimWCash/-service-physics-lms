@@ -41,9 +41,9 @@ export default function ActivityPage() {
     setIsCompleted(progress?.completed || false)
   }, [params, router])
 
-  const handleComplete = (score?: number) => {
-    if (activity) {
-      AuthService.updateProgress(activity.id, true, score)
+  const handleComplete = async (score?: number) => {
+    if (activity && section) {
+      await AuthService.updateProgress(activity.id, true, score, section.id)
       setIsCompleted(true)
     }
   }

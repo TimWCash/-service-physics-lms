@@ -1,3 +1,5 @@
+import { supabase } from './supabase'
+
 export interface User {
   id: string;
   email: string;
@@ -27,9 +29,41 @@ export class AuthService {
     }
   }
 
-  static login(email: string, name: string): User {
+  static async login(email: string, name: string): Promise<User> {
+    // Sign in anonymously with Supabase using email as unique identifier
+    const { data: authData, error: authError } = await supabase.auth.signInAnonymously({
+      options: {
+        data: {
+          email,
+          full_name: name
+        }
+      }
+    })
+
+    if (authError || !authData.user) {
+      // Fallback to localStorage if Supabase fails
+      const user: User = {
+        id: Date.now().toString(),
+        email,
+        name,
+        progress: {}
+      };
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+      return user;
+    }
+
+    // Create or update profile in database
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .upsert({
+        id: authData.user.id,
+        email,
+        full_name: name,
+        updated_at: new Date().toISOString()
+      })
+
     const user: User = {
-      id: Date.now().toString(),
+      id: authData.user.id,
       email,
       name,
       progress: {}
@@ -39,21 +73,38 @@ export class AuthService {
     return user;
   }
 
-  static logout(): void {
+  static async logout(): Promise<void> {
+    await supabase.auth.signOut()
     localStorage.removeItem(this.STORAGE_KEY);
   }
 
-  static updateProgress(activityId: string, completed: boolean, score?: number): void {
+  static async updateProgress(activityId: string, completed: boolean, score?: number, sectionId?: string): Promise<void> {
     const user = this.getUser();
     if (!user) return;
 
+    // Update local storage
     user.progress[activityId] = {
       completed,
       score,
       completedAt: new Date().toISOString()
     };
-
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+
+    // Update Supabase database
+    const { error } = await supabase
+      .from('course_progress')
+      .upsert({
+        user_id: user.id,
+        activity_id: activityId,
+        section_id: sectionId || 'unknown',
+        completed,
+        completed_at: completed ? new Date().toISOString() : null,
+        updated_at: new Date().toISOString()
+      })
+
+    if (error) {
+      console.error('Error updating progress in Supabase:', error)
+    }
   }
 
   static getProgress(activityId: string) {
