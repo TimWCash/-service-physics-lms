@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "After creating a GitHub repo, run these commands:"
+echo ""
+echo "git remote add origin https://github.com/YOUR_USERNAME/service-physics-lms.git"
+echo "git branch -M main"
+echo "git push -u origin main"
+echo ""
+echo "Then import the repo in Vercel and add these environment variables:"
+echo "NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co"
+echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key"

@@ -1,0 +1,71 @@
+=================================================================
+DEPLOYMENT INSTRUCTIONS - Service Physics LMS
+=================================================================
+
+STEP 1: CREATE GITHUB REPOSITORY
+---------------------------------
+1. Go to: https://github.com/new
+2. Repository name: service-physics-lms
+3. Choose Public or Private
+4. Don't check any initialization options
+5. Click "Create repository"
+
+STEP 2: PUSH CODE TO GITHUB
+----------------------------
+After creating the repo, copy your repository URL and run:
+
+cd /Users/tim/Desktop/Onboarding/service-physics-lms
+git remote add origin https://github.com/YOUR_USERNAME/service-physics-lms.git
+git branch -M main
+git push -u origin main
+
+STEP 3: DEPLOY TO VERCEL
+-------------------------
+1. Go to: https://vercel.com
+2. Sign up/login (use GitHub account for easy integration)
+3. Click "Add New" → "Project"
+4. Click "Import Git Repository"
+5. Select your "service-physics-lms" repository
+6. Framework will auto-detect as Next.js ✓
+7. DON'T click Deploy yet!
+
+STEP 4: ADD ENVIRONMENT VARIABLES
+----------------------------------
+Before deploying, add these environment variables:
+
+Variable 1:
+  Name: NEXT_PUBLIC_SUPABASE_URL
+  Value: https://your-project.supabase.co
+  
+Variable 2:
+  Name: NEXT_PUBLIC_SUPABASE_ANON_KEY
+  Value: your-anon-key-here
+
+Apply to: Production, Preview, Development (check all boxes)
+
+NOTE: For now, you can skip Supabase and deploy without these.
+      The app will work in demo mode with localStorage.
+
+STEP 5: DEPLOY!
+---------------
+1. Click "Deploy"
+2. Wait 2-3 minutes for build
+3. You'll get a URL like: https://service-physics-lms.vercel.app
+4. That's your shareable link! ✅
+
+TROUBLESHOOTING
+---------------
+If build fails:
+- Check that environment variables are correct
+- Try redeploying from Vercel dashboard
+- Check build logs for errors
+
+NEXT STEPS (OPTIONAL)
+---------------------
+- Custom domain: Add in Vercel settings
+- Supabase: Follow SETUP.md to add real authentication
+- Analytics: Enable Vercel Analytics
+
+=================================================================
+Your LMS is ready to share! 🎉
+=================================================================

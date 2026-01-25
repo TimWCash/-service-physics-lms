@@ -30,40 +30,27 @@ export class AuthService {
   }
 
   static async login(email: string, name: string): Promise<User> {
-    // Sign in anonymously with Supabase using email as unique identifier
-    const { data: authData, error: authError } = await supabase.auth.signInAnonymously({
-      options: {
-        data: {
-          email,
-          full_name: name
-        }
-      }
-    })
+    // Generate a consistent UUID based on email for tracking
+    const userId = `user_${email.replace(/[^a-z0-9]/gi, '_').toLowerCase()}`;
 
-    if (authError || !authData.user) {
-      // Fallback to localStorage if Supabase fails
-      const user: User = {
-        id: Date.now().toString(),
-        email,
-        name,
-        progress: {}
-      };
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
-      return user;
-    }
-
-    // Create or update profile in database
+    // Create or update profile in database (without Supabase Auth)
     const { error: profileError } = await supabase
       .from('profiles')
       .upsert({
-        id: authData.user.id,
+        id: userId,
         email,
         full_name: name,
         updated_at: new Date().toISOString()
+      }, {
+        onConflict: 'id'
       })
 
+    if (profileError) {
+      console.error('Error creating profile:', profileError)
+    }
+
     const user: User = {
-      id: authData.user.id,
+      id: userId,
       email,
       name,
       progress: {}
@@ -74,7 +61,6 @@ export class AuthService {
   }
 
   static async logout(): Promise<void> {
-    await supabase.auth.signOut()
     localStorage.removeItem(this.STORAGE_KEY);
   }
 
