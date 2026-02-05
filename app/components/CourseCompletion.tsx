@@ -316,26 +316,30 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
             </ul>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a
-              href="https://calendly.com/brian-servicephysics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-6 py-4 bg-white text-primary-700 font-semibold rounded-xl hover:bg-primary-50 transition-all shadow-lg"
-            >
-              <span className="text-2xl">👤</span>
-              <span>Schedule with Brian</span>
-            </a>
-
-            <a
-              href="https://calendly.com/steve-servicephysics"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-6 py-4 bg-white text-primary-700 font-semibold rounded-xl hover:bg-primary-50 transition-all shadow-lg"
-            >
-              <span className="text-2xl">👤</span>
-              <span>Schedule with Steve</span>
-            </a>
+          <div className="bg-white rounded-xl p-6 text-center">
+            <p className="text-gray-700 mb-4">
+              Reach out to <span className="font-semibold text-primary-700">Brian</span> or <span className="font-semibold text-primary-700">Steve</span> to schedule your coaching session.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="mailto:brian@servicephysics.com?subject=Course%20Complete%20-%20Ready%20for%20Coaching%20Session"
+                className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all shadow-md"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Email Brian</span>
+              </a>
+              <a
+                href="mailto:steve@servicephysics.com?subject=Course%20Complete%20-%20Ready%20for%20Coaching%20Session"
+                className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all shadow-md"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Email Steve</span>
+              </a>
+            </div>
           </div>
 
           <p className="text-center text-primary-200 text-sm mt-6">
