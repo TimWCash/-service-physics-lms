@@ -2101,11 +2101,11 @@ const module7: CourseModule = {
     },
     {
       id: 'activity-07-02',
-      title: 'Boeing and the Cost of Cutting Corners',
-      type: 'reading',
+      title: 'The Failures Inside Boeing',
+      type: 'audio',
       duration: '30',
-      description: 'Read this Wall Street Journal analysis of what happens when continuous improvement culture breaks down.',
-      externalUrl: 'https://www.wsj.com/articles/boeing-737-max-investigation',
+      description: 'Listen to this Wall Street Journal podcast about what happens when continuous improvement culture breaks down inside Boeing\'s 737 factory.',
+      externalUrl: 'https://www.wsj.com/podcasts/the-journal/the-failures-inside-boeing-737-factory/82e42092-0815-41f6-8543-144daea416df',
       thumbnailUrl: '/images/boeing-wsj.jpg',
       discussionQuestions: [
         {
