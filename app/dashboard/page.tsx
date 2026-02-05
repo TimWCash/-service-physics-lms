@@ -13,13 +13,23 @@ export default function Dashboard() {
   const router = useRouter()
 
   useEffect(() => {
-    const currentUser = AuthService.getUser()
-    if (!currentUser) {
-      router.push('/')
-    } else {
-      setUser(currentUser)
+    const initDashboard = async () => {
+      const currentUser = AuthService.getUser()
+      if (!currentUser) {
+        router.push('/')
+        return
+      }
+
+      // Sync progress from Supabase to ensure localStorage matches database
+      await AuthService.syncFromSupabase()
+
+      // Reload user after sync
+      const syncedUser = AuthService.getUser()
+      setUser(syncedUser)
       setProgress(AuthService.getCourseProgress())
     }
+
+    initDashboard()
   }, [router])
 
   const handleLogout = async () => {

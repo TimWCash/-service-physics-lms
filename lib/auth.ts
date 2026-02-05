@@ -184,4 +184,41 @@ export class AuthService {
     const user = this.getUser();
     return user?.answers || {};
   }
+
+  // Sync progress from Supabase to localStorage
+  static async syncFromSupabase(): Promise<void> {
+    const user = this.getUser();
+    if (!user) return;
+
+    try {
+      const { data: progressData, error: progressError } = await supabase
+        .from('course_progress')
+        .select('activity_id, completed, completed_at')
+        .eq('user_id', user.id)
+        .eq('completed', true)
+
+      if (progressError) {
+        console.error('Error syncing progress:', progressError)
+        return;
+      }
+
+      if (progressData) {
+        // Reset progress and rebuild from Supabase (source of truth)
+        const newProgress: User['progress'] = {};
+        progressData.forEach((item) => {
+          newProgress[item.activity_id] = {
+            completed: item.completed,
+            completedAt: item.completed_at
+          }
+        });
+
+        // Update localStorage with synced data
+        user.progress = newProgress;
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+        console.log('Synced progress from Supabase:', progressData.length, 'completed activities')
+      }
+    } catch (err) {
+      console.error('Exception syncing progress:', err)
+    }
+  }
 }
