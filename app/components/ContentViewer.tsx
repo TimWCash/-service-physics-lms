@@ -50,7 +50,22 @@ export default function ContentViewer({ content, externalUrl, description, onCom
     )
   }
 
-  // Otherwise, render markdown content as usual
+  // Check if content contains HTML tags
+  const isHtmlContent = content && (content.includes('<div') || content.includes('<p>') || content.includes('<h3>') || content.includes('<ul>'))
+
+  // If content is HTML, render it directly
+  if (isHtmlContent) {
+    return (
+      <div className="p-8">
+        <div
+          className="prose prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </div>
+    )
+  }
+
+  // Otherwise, render markdown content
   return (
     <div className="p-8">
       <div className="prose prose-lg max-w-none">
