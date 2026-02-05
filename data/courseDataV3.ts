@@ -940,14 +940,19 @@ const module3: CourseModule = {
       title: 'MOD Pizza Case Study',
       type: 'reading',
       duration: '15',
-      description: 'Read about how MOD Pizza used waste identification to improve their operations.',
-      externalUrl: 'https://example.com/mod-pizza-case-study',
+      description: 'This article outlines a case study done on the problem solving improvement work Service Physics completed at MOD Pizza.',
+      externalUrl: 'https://www.moresteam.com/resources/case-studies/pizza-process-challenges',
       thumbnailUrl: '/images/mod-pizza.jpg',
       discussionQuestions: [
         {
           id: 'dq-03-04-01',
-          question: 'What approach did MOD Pizza take to identify and eliminate waste? What were the results?',
+          question: 'What was the original problem that MOD thought they had? And what type of problem was it?',
           order: 1
+        },
+        {
+          id: 'dq-03-04-02',
+          question: 'How did "going to see" present the actual problem?',
+          order: 2
         }
       ]
     },
