@@ -135,7 +135,7 @@ export class AuthService {
     if (!user) return 0;
 
     const completed = Object.values(user.progress).filter(p => p.completed).length;
-    const total = 24; // Total activities across all 7 modules
+    const total = 25; // Total activities across all 7 modules
 
     const progress = Math.round((completed / total) * 100);
     return Math.min(progress, 100); // Cap at 100%

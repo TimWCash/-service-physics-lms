@@ -1809,6 +1809,27 @@ const module6: CourseModule = {
     },
     {
       id: 'activity-06-02',
+      title: 'How to Talk to Humans',
+      type: 'reading',
+      duration: '20',
+      description: 'Read this excerpt from the book How to Talk to Humans for a deeper dive on asking the right questions before and during experiments to capture the stories that will make the work better.',
+      externalUrl: '/pdfs/Talking-to-Humans-Excerpt.pdf',
+      thumbnailUrl: '/images/talking-to-humans.jpg',
+      discussionQuestions: [
+        {
+          id: 'dq-06-02-01',
+          question: 'Why is it more effective to ask experiment participants to share stories about past behavior rather than speculate on future actions?',
+          order: 1
+        },
+        {
+          id: 'dq-06-02-02',
+          question: 'What role does open-ended questioning play in uncovering unexpected insights, and how can interviewers ensure they are not leading the conversation?',
+          order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-06-03',
       title: 'Gathering Feedback',
       type: 'reading',
       duration: '25',
@@ -1817,12 +1838,12 @@ const module6: CourseModule = {
       thumbnailUrl: '/images/go-and-see.jpg',
       discussionQuestions: [
         {
-          id: 'dq-06-02-01',
+          id: 'dq-06-03-01',
           question: 'What are the key principles for conducting effective observations? How can you avoid bias?',
           order: 1
         },
         {
-          id: 'dq-06-02-02',
+          id: 'dq-06-03-02',
           question: 'How can you balance quantitative metrics with qualitative feedback in your measurement approach?',
           order: 2
         }
