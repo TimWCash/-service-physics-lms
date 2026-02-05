@@ -55,15 +55,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-4xl font-bold mb-2">6</div>
-              <div className="text-primary-100">Comprehensive Sections</div>
+              <div className="text-4xl font-bold mb-2">7</div>
+              <div className="text-primary-100">Comprehensive Modules</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-4xl font-bold mb-2">32</div>
+              <div className="text-4xl font-bold mb-2">25</div>
               <div className="text-primary-100">Learning Activities</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-4xl font-bold mb-2">8-10</div>
+              <div className="text-4xl font-bold mb-2">7-8</div>
               <div className="text-primary-100">Hours of Content</div>
             </div>
           </div>

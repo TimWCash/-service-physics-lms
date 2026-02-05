@@ -339,7 +339,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
             </button>
 
             <a
-              href="/pdfs/ERACS-Practice-Worksheet.html"
+              href="/templates/eracs-practice-worksheet.html"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white border-2 border-teal-600 text-teal-700 font-semibold rounded-xl hover:bg-teal-50 transition-all"
