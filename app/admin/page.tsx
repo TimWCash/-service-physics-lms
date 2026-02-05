@@ -9,6 +9,7 @@ interface UserProgress {
   email: string
   full_name: string
   created_at: string
+  updated_at: string
   progressCount: number
   progressPercentage: number
   completedActivities: string[]
@@ -27,8 +28,8 @@ export default function AdminDashboard() {
       // Fetch all profiles
       const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
-        .select('id, email, full_name, created_at')
-        .order('created_at', { ascending: false })
+        .select('id, email, full_name, created_at, updated_at')
+        .order('updated_at', { ascending: false })
 
       if (profilesError) throw profilesError
 
@@ -54,6 +55,7 @@ export default function AdminDashboard() {
           email: profile.email,
           full_name: profile.full_name,
           created_at: profile.created_at,
+          updated_at: profile.updated_at,
           progressCount: completedCount,
           progressPercentage: Math.round((completedCount / totalActivities) * 100),
           completedActivities
@@ -103,8 +105,49 @@ export default function AdminDashboard() {
         </div>
       </header>
 
+      {/* Admin Tools */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <a
+            href="/admin/content"
+            className="card p-6 hover:shadow-soft-lg transition-all group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-primary-100 rounded-lg group-hover:bg-primary-200 transition-colors">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Content Management</h3>
+                <p className="text-sm text-gray-600">Edit activity content, URLs, and metadata</p>
+              </div>
+            </div>
+          </a>
+
+          <a
+            href="/admin/urls"
+            className="card p-6 hover:shadow-soft-lg transition-all group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-accent-100 rounded-lg group-hover:bg-accent-200 transition-colors">
+                <svg className="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">URL Management</h3>
+                <p className="text-sm text-gray-600">Update external links and media URLs</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">User Progress</h2>
+      </div>
+
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {users.length === 0 ? (
           <div className="card p-12 text-center">
             <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,6 +166,9 @@ export default function AdminDashboard() {
                     <p className="text-sm text-gray-600">{user.email}</p>
                     <p className="text-xs text-gray-500 mt-1">
                       Joined {new Date(user.created_at).toLocaleDateString()}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Last active {new Date(user.updated_at).toLocaleDateString()} at {new Date(user.updated_at).toLocaleTimeString()}
                     </p>
                   </div>
                   <div className="text-right">

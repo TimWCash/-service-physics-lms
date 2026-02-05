@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import Link from 'next/link'
 import { AuthService } from '@/lib/auth'
-import { courseData, LearningActivity, CourseSection } from '@/data/courseData'
+import { courseModules, LearningActivity, CourseModule } from '@/data/courseDataV3'
 import Quiz from '@/app/components/Quiz'
 import VideoPlayer from '@/app/components/VideoPlayer'
 import ContentViewer from '@/app/components/ContentViewer'
+import DiscussionQuestions from '@/app/components/DiscussionQuestions'
 
 export default function ActivityPage() {
   const params = useParams()
   const router = useRouter()
   const [activity, setActivity] = useState<LearningActivity | null>(null)
-  const [section, setSection] = useState<CourseSection | null>(null)
+  const [module, setModule] = useState<CourseModule | null>(null)
   const [isCompleted, setIsCompleted] = useState(false)
 
   useEffect(() => {
@@ -23,18 +24,18 @@ export default function ActivityPage() {
       return
     }
 
-    const sectionId = params.sectionId as string
+    const moduleId = params.moduleId as string
     const activityId = params.activityId as string
 
-    const foundSection = courseData.find(s => s.id === sectionId)
-    const foundActivity = foundSection?.activities.find(a => a.id === activityId)
+    const foundModule = courseModules.find(m => m.id === moduleId)
+    const foundActivity = foundModule?.activities.find(a => a.id === activityId)
 
-    if (!foundActivity || !foundSection) {
+    if (!foundActivity || !foundModule) {
       router.push('/dashboard')
       return
     }
 
-    setSection(foundSection)
+    setModule(foundModule)
     setActivity(foundActivity)
 
     const progress = AuthService.getProgress(activityId)
@@ -42,13 +43,13 @@ export default function ActivityPage() {
   }, [params, router])
 
   const handleComplete = async (score?: number) => {
-    if (activity && section) {
-      await AuthService.updateProgress(activity.id, true, score, section.id)
+    if (activity && module) {
+      await AuthService.updateProgress(activity.id, true, score, module.id)
       setIsCompleted(true)
     }
   }
 
-  if (!activity || !section) return null
+  if (!activity || !module) return null
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -66,7 +67,7 @@ export default function ActivityPage() {
                 </svg>
               </Link>
               <div>
-                <p className="text-sm text-gray-500">{section.title}</p>
+                <p className="text-sm text-gray-500">{module.title}</p>
                 <h1 className="text-xl font-semibold text-gray-900">
                   {activity.title}
                 </h1>
@@ -104,11 +105,23 @@ export default function ActivityPage() {
           ) : (
             <ContentViewer
               content={activity.content || ''}
+              externalUrl={activity.externalUrl}
+              description={activity.description}
               onComplete={handleComplete}
               isCompleted={isCompleted}
             />
           )}
         </div>
+
+        {/* Discussion Questions */}
+        {activity.discussionQuestions && activity.discussionQuestions.length > 0 && (
+          <div className="mt-8">
+            <DiscussionQuestions
+              questions={activity.discussionQuestions}
+              activityId={activity.id}
+            />
+          </div>
+        )}
 
         {/* Navigation */}
         <div className="mt-6 flex justify-between">
@@ -118,7 +131,7 @@ export default function ActivityPage() {
           >
             Back to Course
           </Link>
-          {!isCompleted && (activity.type === 'ebook' || activity.type === 'reading') && (
+          {!isCompleted && (activity.type === 'ebook' || activity.type === 'reading' || activity.type === 'audio' || activity.type === 'practice') && (
             <button
               onClick={() => handleComplete()}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"

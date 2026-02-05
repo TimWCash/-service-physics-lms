@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AuthService, User } from '@/lib/auth'
-import { courseData, courseMetadata } from '@/data/courseData'
+import { courseModules, courseMetadata } from '@/data/courseDataV3'
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null)
@@ -63,6 +63,25 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+        {/* Welcome Banner */}
+        <Link
+          href="/welcome"
+          className="block mb-8 bg-gradient-to-r from-primary-500 to-primary-700 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="text-4xl">🎓</div>
+              <div>
+                <h3 className="text-xl font-bold mb-1">Welcome to Problem Solving</h3>
+                <p className="text-primary-100">Learn course objectives and tips to succeed</p>
+              </div>
+            </div>
+            <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </Link>
+
         {/* Progress Card */}
         <div className="card p-8 mb-8 hover:shadow-soft-lg">
           <div className="flex items-center justify-between mb-6">
@@ -85,63 +104,73 @@ export default function Dashboard() {
           </div>
           <div className="mt-6 grid grid-cols-3 gap-4">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
-              <div className="text-2xl font-bold text-primary-700">{courseData.length}</div>
-              <div className="text-sm text-gray-600 mt-1">Sections</div>
+              <div className="text-2xl font-bold text-primary-700">{courseModules.length}</div>
+              <div className="text-sm text-gray-600 mt-1">Modules</div>
             </div>
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-100">
               <div className="text-2xl font-bold text-emerald-700">
-                {courseData.reduce((acc, section) => acc + section.activities.length, 0)}
+                {courseModules.reduce((acc, module) => acc + module.activities.length, 0)}
               </div>
               <div className="text-sm text-gray-600 mt-1">Activities</div>
             </div>
             <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 border border-amber-100">
-              <div className="text-2xl font-bold text-amber-700">8-10h</div>
+              <div className="text-2xl font-bold text-amber-700">7-8h</div>
               <div className="text-sm text-gray-600 mt-1">Duration</div>
             </div>
           </div>
         </div>
 
-        {/* Course Sections */}
+        {/* Course Modules */}
         <div className="space-y-6">
-          {courseData.map((section, sectionIndex) => (
-            <div key={section.id} className="card overflow-hidden hover:shadow-soft-lg animate-slide-in" style={{ animationDelay: `${sectionIndex * 0.1}s` }}>
-              <div className="section-header">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-primary-100 text-sm font-semibold tracking-wide uppercase">
-                      Section {sectionIndex + 1}
-                    </span>
-                    <h3 className="text-2xl font-bold text-white mt-1.5">
-                      {section.title}
-                    </h3>
+          {courseModules.map((module, moduleIndex) => (
+            <div key={module.id} className="card overflow-hidden hover:shadow-soft-lg animate-slide-in" style={{ animationDelay: `${moduleIndex * 0.1}s` }}>
+              <Link href={`/module/${module.id}`}>
+                <div
+                  className="section-header cursor-pointer hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: module.colorHex }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-white/80 text-sm font-semibold tracking-wide uppercase">
+                        Module {moduleIndex + 1}
+                      </span>
+                      <h3 className="text-2xl font-bold text-white mt-1.5">
+                        {module.title}
+                      </h3>
+                      <div className="flex items-center gap-3 mt-2 text-white/80 text-sm">
+                        <span>{module.timeEstimateMinutes} minutes</span>
+                        <span>•</span>
+                        <span>{module.activities.length} activities</span>
+                      </div>
+                    </div>
+                    {module.accessLevel === 'free' ? (
+                      <span className="badge badge-free">
+                        Free
+                      </span>
+                    ) : (
+                      <span className="badge badge-premium">
+                        Premium
+                      </span>
+                    )}
                   </div>
-                  {section.accessLevel === 'free' ? (
-                    <span className="badge badge-free">
-                      Free
-                    </span>
-                  ) : (
-                    <span className="badge badge-premium">
-                      Premium
-                    </span>
-                  )}
                 </div>
-              </div>
+              </Link>
 
               <div className="p-6">
-                {section.activities.length === 0 ? (
+                {module.activities.length === 0 ? (
                   <p className="text-gray-500 italic text-center py-8">
                     No activities available yet. Check back soon!
                   </p>
                 ) : (
                   <div className="space-y-3">
-                    {section.activities.map((activity, activityIndex) => {
+                    {module.activities.map((activity, activityIndex) => {
                       const activityProgress = AuthService.getProgress(activity.id)
                       const isCompleted = activityProgress?.completed || false
 
                       return (
                         <Link
                           key={activity.id}
-                          href={`/course/${section.id}/${activity.id}`}
+                          href={`/course/${module.id}/${activity.id}`}
                           className="activity-card"
                         >
                           <div className="flex items-center space-x-4">
@@ -166,15 +195,17 @@ export default function Dashboard() {
                                 <span className="text-sm text-gray-600 font-medium">
                                   {activity.type === 'ebook' && '📚 E-book'}
                                   {activity.type === 'video' && '🎥 Video'}
+                                  {activity.type === 'audio' && '🎧 Audio'}
                                   {activity.type === 'reading' && '📖 Reading'}
                                   {activity.type === 'quiz' && '✏️ Quiz'}
+                                  {activity.type === 'practice' && '✍️ Practice'}
                                   {activity.type === 'coaching' && '💡 Coaching'}
                                 </span>
                                 {activity.duration && (
                                   <>
                                     <span className="text-gray-300">•</span>
                                     <span className="text-sm text-gray-500">
-                                      {activity.duration}
+                                      {activity.duration} min
                                     </span>
                                   </>
                                 )}

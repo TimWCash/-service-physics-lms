@@ -11,6 +11,9 @@ export interface User {
       completedAt?: string;
     };
   };
+  notes?: {
+    [activityId: string]: string;
+  };
 }
 
 export class AuthService {
@@ -34,26 +37,55 @@ export class AuthService {
     const userId = `user_${email.replace(/[^a-z0-9]/gi, '_').toLowerCase()}`;
 
     // Create or update profile in database (without Supabase Auth)
-    const { error: profileError } = await supabase
-      .from('profiles')
-      .upsert({
-        id: userId,
-        email,
-        full_name: name,
-        updated_at: new Date().toISOString()
-      }, {
-        onConflict: 'id'
-      })
+    try {
+      const { data, error: profileError } = await supabase
+        .from('profiles')
+        .upsert({
+          id: userId,
+          email,
+          full_name: name,
+          updated_at: new Date().toISOString()
+        })
 
-    if (profileError) {
-      console.error('Error creating profile:', profileError)
+      if (profileError) {
+        console.error('Supabase profile error:', JSON.stringify(profileError))
+      } else {
+        console.log('Profile created successfully:', data)
+      }
+    } catch (err) {
+      console.error('Exception creating profile:', err)
+    }
+
+    // Load existing progress from Supabase
+    const progress: User['progress'] = {}
+    try {
+      const { data: progressData, error: progressError } = await supabase
+        .from('course_progress')
+        .select('activity_id, completed, completed_at')
+        .eq('user_id', userId)
+        .eq('completed', true)
+
+      if (progressError) {
+        console.error('Error loading progress:', progressError)
+      } else if (progressData) {
+        progressData.forEach((item) => {
+          progress[item.activity_id] = {
+            completed: item.completed,
+            completedAt: item.completed_at
+          }
+        })
+        console.log('Loaded progress:', progressData.length, 'completed activities')
+      }
+    } catch (err) {
+      console.error('Exception loading progress:', err)
     }
 
     const user: User = {
       id: userId,
       email,
       name,
-      progress: {}
+      progress,
+      notes: {}
     };
 
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
@@ -103,8 +135,25 @@ export class AuthService {
     if (!user) return 0;
 
     const completed = Object.values(user.progress).filter(p => p.completed).length;
-    const total = 13; // Total activities in the course
+    const total = 17; // Total activities across all 7 modules (3+3+4+3+2+2+2)
 
     return Math.round((completed / total) * 100);
+  }
+
+  static saveNote(activityId: string, note: string): void {
+    const user = this.getUser();
+    if (!user) return;
+
+    if (!user.notes) {
+      user.notes = {};
+    }
+
+    user.notes[activityId] = note;
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+  }
+
+  static getNote(activityId: string): string {
+    const user = this.getUser();
+    return user?.notes?.[activityId] || '';
   }
 }
