@@ -5,12 +5,54 @@ import ReactMarkdown from 'react-markdown'
 interface ContentViewerProps {
   content: string;
   externalUrl?: string;
+  audioUrl?: string;
   description?: string;
   onComplete: () => void;
   isCompleted: boolean;
 }
 
-export default function ContentViewer({ content, externalUrl, description, onComplete, isCompleted }: ContentViewerProps) {
+export default function ContentViewer({ content, externalUrl, audioUrl, description, onComplete, isCompleted }: ContentViewerProps) {
+  // If there's an audio URL, show the audio player
+  if (audioUrl) {
+    return (
+      <div className="p-8">
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-8">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              </svg>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">Audio Content</h2>
+
+          {description && (
+            <p className="text-gray-700 mb-6 max-w-2xl mx-auto leading-relaxed text-center">
+              {description}
+            </p>
+          )}
+
+          <div className="bg-white rounded-xl p-6 shadow-md">
+            <audio
+              controls
+              className="w-full"
+              preload="metadata"
+            >
+              <source src={audioUrl} type="audio/wav" />
+              <source src={audioUrl} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+
+          <p className="text-sm text-gray-600 mt-6 text-center">
+            🎧 Listen to the audio above, then mark as complete and answer the discussion questions below.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   // If there's an external URL and no content, show the external resource card
   if (externalUrl && !content) {
     return (

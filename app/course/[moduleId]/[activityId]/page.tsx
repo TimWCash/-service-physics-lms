@@ -106,6 +106,7 @@ export default function ActivityPage() {
             <ContentViewer
               content={activity.content || ''}
               externalUrl={activity.externalUrl}
+              audioUrl={activity.audioUrl}
               description={activity.description}
               onComplete={handleComplete}
               isCompleted={isCompleted}
