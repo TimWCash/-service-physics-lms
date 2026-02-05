@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { jsPDF } from 'jspdf'
+import Image from 'next/image'
 import { AuthService, User } from '@/lib/auth'
 import { courseModules, courseMetadata } from '@/data/courseDataV3'
 import confetti from 'canvas-confetti'
@@ -245,8 +246,17 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
       <div className="max-w-3xl mx-auto">
         {/* Celebration Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full mb-6 shadow-xl animate-bounce">
-            <span className="text-5xl">🎉</span>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <Image
+              src="/images/sp-logo.png"
+              alt="Service Physics"
+              width={80}
+              height={80}
+              className="rounded-2xl shadow-xl"
+            />
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full shadow-xl animate-bounce">
+              <span className="text-5xl">🎉</span>
+            </div>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -277,7 +287,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <div className="text-sm text-gray-600">Modules</div>
             </div>
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 text-center border border-emerald-100">
-              <div className="text-3xl font-bold text-emerald-700">23</div>
+              <div className="text-3xl font-bold text-emerald-700">25</div>
               <div className="text-sm text-gray-600">Activities</div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center border border-purple-100">

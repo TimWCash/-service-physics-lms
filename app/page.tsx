@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { AuthService } from '@/lib/auth'
 
 export default function Home() {
@@ -30,8 +31,17 @@ export default function Home() {
       {/* Left Side - Hero Section */}
       <div className="flex-1 flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-primary-600 via-primary-700 to-indigo-800 text-white">
         <div className="max-w-2xl animate-fade-in">
-          <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
-            🎓 Professional Development
+          <div className="flex items-center gap-4 mb-8">
+            <Image
+              src="/images/sp-logo-white.png"
+              alt="Service Physics"
+              width={80}
+              height={80}
+              className="drop-shadow-lg"
+            />
+            <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold">
+              🎓 Professional Development
+            </div>
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
