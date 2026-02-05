@@ -90,27 +90,44 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'A scientific approach to improvement',
       contentHtml: `
-        <div class="prose">
-          <p>Our problem-solving approach is built on the <strong>Improvement Kata</strong>, a systematic method for achieving challenging goals through iterative learning and experimentation.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Our problem-solving approach is built on the <span class="font-semibold text-teal-700">Improvement Kata</span> — a systematic method for achieving challenging goals through iterative learning and experimentation.</p>
 
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4">THE IMPROVEMENT KATA</h4>
-            <div class="space-y-2">
-              <div class="flex items-center">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3">1</span>
-                <span>Understand the Direction</span>
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 p-8 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
+
+            <h4 class="text-xl font-bold mb-6 flex items-center">
+              <span class="text-3xl mr-3">🎯</span> THE IMPROVEMENT KATA
+            </h4>
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
+                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">1</span>
+                <div>
+                  <span class="font-semibold text-lg">Understand the Direction</span>
+                  <p class="text-teal-100 text-sm">Know where you're headed</p>
+                </div>
               </div>
-              <div class="flex items-center">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3">2</span>
-                <span>Grasp the Current Condition</span>
+              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
+                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">2</span>
+                <div>
+                  <span class="font-semibold text-lg">Grasp the Current Condition</span>
+                  <p class="text-teal-100 text-sm">Understand where you are now</p>
+                </div>
               </div>
-              <div class="flex items-center">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3">3</span>
-                <span>Establish Next Target</span>
+              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
+                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">3</span>
+                <div>
+                  <span class="font-semibold text-lg">Establish Next Target</span>
+                  <p class="text-teal-100 text-sm">Set your next milestone</p>
+                </div>
               </div>
-              <div class="flex items-center">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3">4</span>
-                <span>Experiment to Learn</span>
+              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
+                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">4</span>
+                <div>
+                  <span class="font-semibold text-lg">Experiment to Learn</span>
+                  <p class="text-teal-100 text-sm">Test, learn, and adapt</p>
+                </div>
               </div>
             </div>
           </div>
@@ -123,27 +140,45 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Why Plan, Do, Check, Act',
       contentHtml: `
-        <div class="prose">
-          <p>The PDCA cycle is the foundation of scientific problem-solving. It provides a structured approach to testing ideas and learning from results.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-blue-700">PDCA cycle</span> is the foundation of scientific problem-solving. It provides a structured approach to testing ideas and learning from results.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4 text-center">PDCA FOR PROBLEM SOLVING</h4>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center">
-                <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-2">P</div>
-                <p class="font-semibold">Define the problem</p>
-              </div>
-              <div class="text-center">
-                <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-2">D</div>
-                <p class="font-semibold">Grasp the situation</p>
-              </div>
-              <div class="text-center">
-                <div class="w-16 h-16 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-2">C</div>
-                <p class="font-semibold">Experiment to learn</p>
-              </div>
-              <div class="text-center">
-                <div class="w-16 h-16 bg-red-500 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-2">A</div>
-                <p class="font-semibold">Evaluate results</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🔄</span> PDCA FOR PROBLEM SOLVING
+              </h4>
+            </div>
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">P</div>
+                  <div class="relative z-10">
+                    <div class="text-3xl font-black mb-2">PLAN</div>
+                    <p class="text-blue-100 text-sm">Define the problem & set targets</p>
+                  </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">D</div>
+                  <div class="relative z-10">
+                    <div class="text-3xl font-black mb-2">DO</div>
+                    <p class="text-emerald-100 text-sm">Execute your experiment</p>
+                  </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">C</div>
+                  <div class="relative z-10">
+                    <div class="text-3xl font-black mb-2">CHECK</div>
+                    <p class="text-amber-100 text-sm">Measure & analyze results</p>
+                  </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-500 to-red-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">A</div>
+                  <div class="relative z-10">
+                    <div class="text-3xl font-black mb-2">ACT</div>
+                    <p class="text-rose-100 text-sm">Standardize or iterate</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -156,32 +191,54 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Using Cynefin to light the way',
       contentHtml: `
-        <div class="prose">
-          <p>The Cynefin Framework helps us understand the nature of problems and choose appropriate responses.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-purple-700">Cynefin Framework</span> helps us understand the nature of problems and choose appropriate responses.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4 text-center">CYNEFIN FRAMEWORK</h4>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-4 bg-blue-100 rounded">
-                <h5 class="font-bold">Complex</h5>
-                <p class="text-sm">Probe → Sense → Respond</p>
-              </div>
-              <div class="p-4 bg-green-100 rounded">
-                <h5 class="font-bold">Complicated</h5>
-                <p class="text-sm">Sense → Analyze → Respond</p>
-              </div>
-              <div class="p-4 bg-red-100 rounded">
-                <h5 class="font-bold">Chaotic</h5>
-                <p class="text-sm">Act → Sense → Respond</p>
-              </div>
-              <div class="p-4 bg-yellow-100 rounded">
-                <h5 class="font-bold">Clear</h5>
-                <p class="text-sm">Sense → Categorize → Respond</p>
-              </div>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🧭</span> CYNEFIN FRAMEWORK
+              </h4>
             </div>
-            <div class="mt-4 p-3 bg-gray-200 rounded text-center">
-              <p class="font-bold text-sm">Disorder (Center)</p>
-              <p class="text-xs">Don't know which domain you're in</p>
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-4 border-2 border-blue-200 hover:border-blue-400 transition-colors">
+                  <div class="flex items-center mb-2">
+                    <span class="text-2xl mr-2">🔬</span>
+                    <h5 class="font-bold text-blue-900">Complex</h5>
+                  </div>
+                  <p class="text-sm text-blue-700 font-medium">Probe → Sense → Respond</p>
+                  <p class="text-xs text-blue-600 mt-1">Emergent practice</p>
+                </div>
+                <div class="rounded-xl bg-gradient-to-br from-green-50 to-green-100 p-4 border-2 border-green-200 hover:border-green-400 transition-colors">
+                  <div class="flex items-center mb-2">
+                    <span class="text-2xl mr-2">🔧</span>
+                    <h5 class="font-bold text-green-900">Complicated</h5>
+                  </div>
+                  <p class="text-sm text-green-700 font-medium">Sense → Analyze → Respond</p>
+                  <p class="text-xs text-green-600 mt-1">Expert practice</p>
+                </div>
+                <div class="rounded-xl bg-gradient-to-br from-red-50 to-red-100 p-4 border-2 border-red-200 hover:border-red-400 transition-colors">
+                  <div class="flex items-center mb-2">
+                    <span class="text-2xl mr-2">🚨</span>
+                    <h5 class="font-bold text-red-900">Chaotic</h5>
+                  </div>
+                  <p class="text-sm text-red-700 font-medium">Act → Sense → Respond</p>
+                  <p class="text-xs text-red-600 mt-1">Novel practice</p>
+                </div>
+                <div class="rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 p-4 border-2 border-amber-200 hover:border-amber-400 transition-colors">
+                  <div class="flex items-center mb-2">
+                    <span class="text-2xl mr-2">✅</span>
+                    <h5 class="font-bold text-amber-900">Clear</h5>
+                  </div>
+                  <p class="text-sm text-amber-700 font-medium">Sense → Categorize → Respond</p>
+                  <p class="text-xs text-amber-600 mt-1">Best practice</p>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-gray-100 rounded-xl text-center border-2 border-dashed border-gray-300">
+                <p class="font-bold text-gray-700">❓ Disorder</p>
+                <p class="text-xs text-gray-500">When you don't know which domain you're in</p>
+              </div>
             </div>
           </div>
         </div>
@@ -195,13 +252,23 @@ const module1: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 45 minutes</p>
-          <p class="mb-6">Watch the videos, listen to the audio, or read the case studies below. Use the discussion questions to guide your thinking and prepare for coaching sessions.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">1 hour 45 minutes</p>
+              <p class="text-indigo-100">Total learning time</p>
+            </div>
+          </div>
 
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-            <p class="font-semibold">📝 Pro Tip:</p>
-            <p>Take notes as you go and answer the discussion questions. Plan to review your answers with your coach.</p>
+          <p class="text-gray-700 leading-relaxed">Watch the videos, listen to the audio, or read the case studies below. Use the discussion questions to guide your thinking and prepare for coaching sessions.</p>
+
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 p-5 text-white shadow-lg">
+            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-6xl opacity-20">💡</div>
+            <div class="relative z-10">
+              <p class="font-bold text-lg mb-1">📝 Pro Tip</p>
+              <p class="text-amber-50">Take notes as you go and answer the discussion questions. Plan to review your answers with your coach.</p>
+            </div>
           </div>
         </div>
       `,
@@ -214,32 +281,38 @@ const module1: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 p-6 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-3xl">🎓</span>
+              </div>
               <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Stop here and make notes to answer the discussion questions below. When you next meet with your coach, discuss your responses and any follow-up questions to build your understanding.</p>
+                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
+                <p class="text-blue-100">Stop here and make notes to answer the discussion questions below. When you next meet with your coach, discuss your responses and any follow-up questions.</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-gray-50 border-2 border-gray-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-3">
-              <svg class="w-6 h-6 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div class="flex-1">
-                <h5 class="font-bold mb-2">Additional Questions for Your Coach</h5>
-                <p class="text-sm text-gray-600 mb-3">Use this space to document any additional questions:</p>
-                <ul class="space-y-2">
-                  <li class="flex"><span class="mr-2">•</span><span class="text-gray-400">[ Your question here ]</span></li>
-                  <li class="flex"><span class="mr-2">•</span><span class="text-gray-400">[ Your question here ]</span></li>
-                  <li class="flex"><span class="mr-2">•</span><span class="text-gray-400">[ Your question here ]</span></li>
-                </ul>
+          <div class="rounded-xl bg-gray-50 border-2 border-gray-200 p-5">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-2xl">❓</span>
+              <h5 class="font-bold text-gray-800">Questions for Your Coach</h5>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Use this space to document any additional questions:</p>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-400 italic">Your question here...</span>
+              </div>
+              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-400 italic">Your question here...</span>
+              </div>
+              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-400 italic">Your question here...</span>
               </div>
             </div>
           </div>
@@ -252,8 +325,12 @@ const module1: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Glossary Reference',
       contentHtml: `
-        <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-4">
-          <p class="text-sm">Seeing terms or words in here that you are unfamiliar with? <a href="/glossary" class="text-purple-600 font-semibold hover:underline">Check out the Service Physics Glossary</a> for definitions.</p>
+        <div class="rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-200 p-5 flex items-center gap-4">
+          <span class="text-3xl">📖</span>
+          <div>
+            <p class="text-gray-700">Seeing unfamiliar terms?</p>
+            <a href="/glossary" class="font-bold text-purple-700 hover:text-purple-900 transition-colors">Check out the Service Physics Glossary →</a>
+          </div>
         </div>
       `,
       order: 2
@@ -392,59 +469,63 @@ const module2: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The A3 Problem Solving Process',
       contentHtml: `
-        <div class="prose">
-          <p>The A3 is a structured approach to problem-solving that fits on a single sheet of A3 paper. It guides you through a systematic process of understanding, analyzing, and solving problems.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-cyan-700">A3</span> is a structured approach to problem-solving that fits on a single sheet of A3 paper. It guides you through a systematic process of understanding, analyzing, and solving problems.</p>
 
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4">A3 STRUCTURE</h4>
-            <div class="space-y-3">
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">1</span>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-cyan-600 to-teal-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">📋</span> A3 STRUCTURE
+              </h4>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">1</span>
                 <div>
-                  <p class="font-semibold">Background</p>
-                  <p class="text-sm text-gray-600">Why is this important?</p>
+                  <p class="font-semibold text-gray-900">Background</p>
+                  <p class="text-sm text-gray-500">Why is this important?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">2</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">2</span>
                 <div>
-                  <p class="font-semibold">Current Condition</p>
-                  <p class="text-sm text-gray-600">What is happening now?</p>
+                  <p class="font-semibold text-gray-900">Current Condition</p>
+                  <p class="text-sm text-gray-500">What is happening now?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">3</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">3</span>
                 <div>
-                  <p class="font-semibold">Goal/Target</p>
-                  <p class="text-sm text-gray-600">What do we want to achieve?</p>
+                  <p class="font-semibold text-gray-900">Goal/Target</p>
+                  <p class="text-sm text-gray-500">What do we want to achieve?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">4</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">4</span>
                 <div>
-                  <p class="font-semibold">Root Cause Analysis</p>
-                  <p class="text-sm text-gray-600">Why is this happening?</p>
+                  <p class="font-semibold text-gray-900">Root Cause Analysis</p>
+                  <p class="text-sm text-gray-500">Why is this happening?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">5</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">5</span>
                 <div>
-                  <p class="font-semibold">Countermeasures</p>
-                  <p class="text-sm text-gray-600">What will we try?</p>
+                  <p class="font-semibold text-gray-900">Countermeasures</p>
+                  <p class="text-sm text-gray-500">What will we try?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">6</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">6</span>
                 <div>
-                  <p class="font-semibold">Implementation Plan</p>
-                  <p class="text-sm text-gray-600">How and when?</p>
+                  <p class="font-semibold text-gray-900">Implementation Plan</p>
+                  <p class="text-sm text-gray-500">How and when?</p>
                 </div>
               </div>
-              <div class="flex items-start">
-                <span class="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold mr-3 flex-shrink-0">7</span>
+              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">7</span>
                 <div>
-                  <p class="font-semibold">Follow-up</p>
-                  <p class="text-sm text-gray-600">What were the results?</p>
+                  <p class="font-semibold text-gray-900">Follow-up</p>
+                  <p class="text-sm text-gray-500">What were the results?</p>
                 </div>
               </div>
             </div>
@@ -458,24 +539,48 @@ const module2: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The 5 Whys Technique',
       contentHtml: `
-        <div class="prose">
-          <p>The 5 Whys is a simple but powerful technique for getting to the root cause of a problem by asking "Why?" repeatedly.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-orange-700">5 Whys</span> is a simple but powerful technique for getting to the root cause of a problem by asking "Why?" repeatedly.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">EXAMPLE: 5 WHYS</h4>
-            <div class="space-y-3">
-              <div class="p-3 bg-white rounded border-l-4 border-red-400">
-                <p class="font-semibold text-red-900">Problem: Customer received wrong order</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🔍</span> EXAMPLE: 5 WHYS IN ACTION
+              </h4>
+            </div>
+            <div class="p-6">
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500 to-rose-600 p-4 text-white mb-4 shadow-lg">
+                <div class="absolute right-2 top-2 text-4xl opacity-20">❌</div>
+                <p class="font-bold text-lg">Problem: Customer received wrong order</p>
               </div>
-              <div class="pl-4">
-                <p class="text-sm"><strong>Why 1:</strong> Packer selected wrong item</p>
-                <p class="text-sm"><strong>Why 2:</strong> Barcode scanner wasn't working</p>
-                <p class="text-sm"><strong>Why 3:</strong> Battery was dead</p>
-                <p class="text-sm"><strong>Why 4:</strong> No charging schedule exists</p>
-                <p class="text-sm"><strong>Why 5:</strong> Process wasn't designed with equipment maintenance in mind</p>
+
+              <div class="space-y-2 mb-4 pl-4 border-l-2 border-orange-300">
+                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 1:</span>
+                  <span class="text-gray-700">Packer selected wrong item</span>
+                </div>
+                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 2:</span>
+                  <span class="text-gray-700">Barcode scanner wasn't working</span>
+                </div>
+                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 3:</span>
+                  <span class="text-gray-700">Battery was dead</span>
+                </div>
+                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 4:</span>
+                  <span class="text-gray-700">No charging schedule exists</span>
+                </div>
+                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
+                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 5:</span>
+                  <span class="text-gray-700">Process wasn't designed with equipment maintenance</span>
+                </div>
               </div>
-              <div class="p-3 bg-green-50 rounded border-l-4 border-green-400">
-                <p class="font-semibold text-green-900">Root Cause: No equipment maintenance process</p>
+
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 p-4 text-white shadow-lg">
+                <div class="absolute right-2 top-2 text-4xl opacity-20">✅</div>
+                <p class="text-emerald-100 text-sm font-medium">ROOT CAUSE IDENTIFIED</p>
+                <p class="font-bold text-lg">No equipment maintenance process</p>
               </div>
             </div>
           </div>
@@ -490,9 +595,16 @@ const module2: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 50 minutes</p>
-          <p class="mb-6">Learn about the A3 and 5 Whys through role-play videos and real-world case studies.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-500 to-teal-600 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">1 hour 50 minutes</p>
+              <p class="text-cyan-100">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">Learn about the A3 and 5 Whys through role-play videos and real-world case studies.</p>
         </div>
       `,
       order: 1
@@ -529,7 +641,7 @@ const module2: CourseModule = {
       type: 'video',
       duration: '30',
       description: 'Watch this role-play demonstration showing effective and ineffective coaching approaches when working through an A3 problem-solving process.',
-      videoUrl: 'https://vimeo.com/123456789',
+      videoUrl: 'https://www.youtube.com/watch?v=rJ5qI7ox3mw',
       thumbnailUrl: '/images/good-bad-coach.jpg',
       discussionQuestions: [
         {
@@ -639,39 +751,43 @@ const module3: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The 7 Types of Waste',
       contentHtml: `
-        <div class="prose">
-          <p>Understanding waste is fundamental to improvement. The 7 types of waste help us identify opportunities for improvement in any process.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Understanding waste is fundamental to improvement. The <span class="font-semibold text-red-600">7 types of waste</span> help us identify opportunities for improvement in any process.</p>
 
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4">THE 7 WASTES (TIMWOOD)</h4>
-            <div class="space-y-2">
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">T</span>
-                <span><strong>Transportation</strong> - Unnecessary movement of materials</span>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🗑️</span> THE 7 WASTES (TIMWOOD)
+              </h4>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-red-50 to-transparent border-l-4 border-red-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">T</span>
+                <div><span class="font-bold text-gray-900">Transportation</span><span class="text-gray-600"> — Unnecessary movement of materials</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">I</span>
-                <span><strong>Inventory</strong> - Excess products/materials</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-orange-50 to-transparent border-l-4 border-orange-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">I</span>
+                <div><span class="font-bold text-gray-900">Inventory</span><span class="text-gray-600"> — Excess products/materials</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">M</span>
-                <span><strong>Motion</strong> - Unnecessary movement of people</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-amber-50 to-transparent border-l-4 border-amber-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">M</span>
+                <div><span class="font-bold text-gray-900">Motion</span><span class="text-gray-600"> — Unnecessary movement of people</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">W</span>
-                <span><strong>Waiting</strong> - Idle time</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-yellow-50 to-transparent border-l-4 border-yellow-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">W</span>
+                <div><span class="font-bold text-gray-900">Waiting</span><span class="text-gray-600"> — Idle time</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">O</span>
-                <span><strong>Overproduction</strong> - Making more than needed</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-lime-50 to-transparent border-l-4 border-lime-500 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-lime-500 to-lime-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">O</span>
+                <div><span class="font-bold text-gray-900">Overproduction</span><span class="text-gray-600"> — Making more than needed</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">O</span>
-                <span><strong>Overprocessing</strong> - Doing more than required</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-teal-50 to-transparent border-l-4 border-teal-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">O</span>
+                <div><span class="font-bold text-gray-900">Overprocessing</span><span class="text-gray-600"> — Doing more than required</span></div>
               </div>
-              <div class="p-3 bg-white rounded flex items-center">
-                <span class="font-bold text-teal-600 mr-3">D</span>
-                <span><strong>Defects</strong> - Errors requiring rework</span>
+              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-rose-50 to-transparent border-l-4 border-rose-400 hover:shadow-md transition-shadow">
+                <span class="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">D</span>
+                <div><span class="font-bold text-gray-900">Defects</span><span class="text-gray-600"> — Errors requiring rework</span></div>
               </div>
             </div>
           </div>
@@ -684,25 +800,35 @@ const module3: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Work vs Waste',
       contentHtml: `
-        <div class="prose">
-          <p>Not all activity is valuable. Learn to distinguish between work that creates value and waste that doesn't.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Not all activity is valuable. Learn to distinguish between <span class="font-semibold text-emerald-600">work that creates value</span> and <span class="font-semibold text-red-600">waste that doesn't</span>.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-4 bg-green-50 rounded border-2 border-green-400">
-                <h5 class="font-bold text-green-900 mb-2">Value-Added Work</h5>
-                <ul class="text-sm space-y-1">
-                  <li>• Transforms the product/service</li>
-                  <li>• Customer willing to pay for it</li>
-                  <li>• Done right the first time</li>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 p-6 text-white shadow-xl">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-3xl">✅</span>
+                  <h5 class="font-bold text-xl">Value-Added</h5>
+                </div>
+                <ul class="space-y-2 text-emerald-50">
+                  <li class="flex items-start gap-2"><span>•</span> Transforms the product/service</li>
+                  <li class="flex items-start gap-2"><span>•</span> Customer willing to pay for it</li>
+                  <li class="flex items-start gap-2"><span>•</span> Done right the first time</li>
                 </ul>
               </div>
-              <div class="p-4 bg-red-50 rounded border-2 border-red-400">
-                <h5 class="font-bold text-red-900 mb-2">Non-Value-Added (Waste)</h5>
-                <ul class="text-sm space-y-1">
-                  <li>• Doesn't transform product</li>
-                  <li>• Customer won't pay for it</li>
-                  <li>• Can be eliminated</li>
+            </div>
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 p-6 text-white shadow-xl">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-3xl">❌</span>
+                  <h5 class="font-bold text-xl">Non-Value (Waste)</h5>
+                </div>
+                <ul class="space-y-2 text-rose-50">
+                  <li class="flex items-start gap-2"><span>•</span> Doesn't transform product</li>
+                  <li class="flex items-start gap-2"><span>•</span> Customer won't pay for it</li>
+                  <li class="flex items-start gap-2"><span>•</span> Can be eliminated</li>
                 </ul>
               </div>
             </div>
@@ -753,6 +879,27 @@ const module3: CourseModule = {
   activities: [
     {
       id: 'activity-03-01',
+      title: 'Work vs Waste',
+      type: 'video',
+      duration: '5',
+      description: 'Learn to distinguish between value-added work and waste in any process. Understanding this difference is fundamental to improvement.',
+      videoUrl: 'https://www.youtube.com/watch?v=0G515SOjhJA',
+      thumbnailUrl: '/images/work-vs-waste.jpg',
+      discussionQuestions: [
+        {
+          id: 'dq-03-01-01',
+          question: 'How would you define value-added work in your role? What activities do you perform that customers would be willing to pay for?',
+          order: 1
+        },
+        {
+          id: 'dq-03-01-02',
+          question: 'Think about your typical workday. What percentage of your time is spent on value-added vs non-value-added activities?',
+          order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-03-02',
       title: 'Service Physics 101 with Steve',
       type: 'audio',
       duration: '18',
@@ -761,14 +908,14 @@ const module3: CourseModule = {
       thumbnailUrl: '/images/steve-sp101.jpg',
       discussionQuestions: [
         {
-          id: 'dq-03-01-01',
+          id: 'dq-03-02-01',
           question: 'What types of waste are most common in service operations? How do they differ from manufacturing waste?',
           order: 1
         }
       ]
     },
     {
-      id: 'activity-03-02',
+      id: 'activity-03-03',
       title: 'Burger Assembly: Spotting the 7 Wastes',
       type: 'video',
       duration: '1',
@@ -777,19 +924,19 @@ const module3: CourseModule = {
       thumbnailUrl: '/images/burger-waste.jpg',
       discussionQuestions: [
         {
-          id: 'dq-03-02-01',
+          id: 'dq-03-03-01',
           question: 'Which types of waste did you identify in the burger assembly? What surprised you most?',
           order: 1
         },
         {
-          id: 'dq-03-02-02',
+          id: 'dq-03-03-02',
           question: 'How might these wastes compound and create additional problems in the operation?',
           order: 2
         }
       ]
     },
     {
-      id: 'activity-03-03',
+      id: 'activity-03-04',
       title: 'MOD Pizza Case Study',
       type: 'reading',
       duration: '15',
@@ -798,14 +945,14 @@ const module3: CourseModule = {
       thumbnailUrl: '/images/mod-pizza.jpg',
       discussionQuestions: [
         {
-          id: 'dq-03-03-01',
+          id: 'dq-03-04-01',
           question: 'What approach did MOD Pizza take to identify and eliminate waste? What were the results?',
           order: 1
         }
       ]
     },
     {
-      id: 'activity-03-04',
+      id: 'activity-03-05',
       title: 'Spaghetti Mapping Practice',
       type: 'practice',
       duration: '10',
@@ -828,7 +975,7 @@ const module3: CourseModule = {
       `,
       discussionQuestions: [
         {
-          id: 'dq-03-04-01',
+          id: 'dq-03-05-01',
           question: 'What did your spaghetti diagram reveal about the process? Where were the biggest opportunities for improvement?',
           order: 1
         }
@@ -887,28 +1034,35 @@ const module4: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The Gap: Current vs Target',
       contentHtml: `
-        <div class="prose">
-          <p>A well-defined problem clearly articulates the gap between the current condition and the target condition.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">A well-defined problem clearly articulates the <span class="font-semibold text-indigo-600">gap</span> between the current condition and the target condition.</p>
 
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4 text-center">THE PROBLEM DEFINITION GAP</h4>
-            <div class="flex items-center justify-between">
-              <div class="flex-1 p-4 bg-red-100 rounded border-2 border-red-400 text-center">
-                <p class="font-bold text-red-900">Current Condition</p>
-                <p class="text-sm mt-2">What's happening now</p>
-              </div>
-              <div class="px-4">
-                <svg class="w-12 h-12 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-              <div class="flex-1 p-4 bg-green-100 rounded border-2 border-green-400 text-center">
-                <p class="font-bold text-green-900">Target Condition</p>
-                <p class="text-sm mt-2">What we want to achieve</p>
-              </div>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🎯</span> THE PROBLEM DEFINITION GAP
+              </h4>
             </div>
-            <div class="mt-4 p-4 bg-white rounded text-center">
-              <p class="font-bold">THE GAP = THE PROBLEM</p>
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex-1 relative overflow-hidden rounded-xl bg-gradient-to-br from-red-500 to-rose-600 p-5 text-white shadow-lg">
+                  <div class="absolute top-0 right-0 text-6xl opacity-10">📍</div>
+                  <p class="font-bold text-lg">Current Condition</p>
+                  <p class="text-red-100 text-sm mt-1">What's happening now</p>
+                </div>
+                <div class="flex flex-col items-center px-2">
+                  <div class="text-4xl animate-pulse">➡️</div>
+                  <span class="text-xs text-gray-500 font-bold mt-1">THE GAP</span>
+                </div>
+                <div class="flex-1 relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 p-5 text-white shadow-lg">
+                  <div class="absolute top-0 right-0 text-6xl opacity-10">🏆</div>
+                  <p class="font-bold text-lg">Target Condition</p>
+                  <p class="text-emerald-100 text-sm mt-1">What we want to achieve</p>
+                </div>
+              </div>
+              <div class="mt-6 p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl text-center border-2 border-dashed border-indigo-300">
+                <p class="font-black text-xl text-indigo-800">THE GAP = THE PROBLEM</p>
+              </div>
             </div>
           </div>
         </div>
@@ -920,17 +1074,23 @@ const module4: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Problem Statement Template',
       contentHtml: `
-        <div class="prose">
-          <p>A good problem statement is specific, measurable, and focuses on the gap rather than the solution.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">A good problem statement is <span class="font-semibold text-blue-600">specific</span>, <span class="font-semibold text-blue-600">measurable</span>, and focuses on the gap rather than the solution.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">PROBLEM STATEMENT FORMAT</h4>
-            <div class="p-4 bg-blue-50 rounded border-l-4 border-blue-400">
-              <p class="font-mono text-sm mb-3">[Process/Area] is experiencing [Current Condition with data], which is [X%] away from [Target Condition with data], causing [Impact].</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">📝</span> PROBLEM STATEMENT FORMAT
+              </h4>
+            </div>
+            <div class="p-6">
+              <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-5 border-2 border-blue-200 mb-4">
+                <p class="font-mono text-sm text-blue-900 leading-relaxed">[Process/Area] is experiencing <span class="bg-blue-200 px-1 rounded">[Current Condition with data]</span>, which is <span class="bg-blue-200 px-1 rounded">[X%]</span> away from <span class="bg-blue-200 px-1 rounded">[Target Condition with data]</span>, causing <span class="bg-blue-200 px-1 rounded">[Impact]</span>.</p>
+              </div>
 
-              <div class="mt-4 pt-4 border-t border-blue-200">
-                <p class="font-bold text-sm mb-2">Example:</p>
-                <p class="text-sm italic">The customer service team is experiencing an average response time of 48 hours, which is 300% away from our target of 12 hours, causing decreased customer satisfaction scores and increased complaints.</p>
+              <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <p class="font-bold text-sm text-gray-700 mb-2 flex items-center"><span class="mr-2">💡</span> Example:</p>
+                <p class="text-sm text-gray-600 italic leading-relaxed">The customer service team is experiencing an average response time of 48 hours, which is 300% away from our target of 12 hours, causing decreased customer satisfaction scores and increased complaints.</p>
               </div>
             </div>
           </div>
@@ -945,9 +1105,16 @@ const module4: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Practice',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 50 minutes</p>
-          <p class="mb-6">Learn to write clear, actionable problem statements through examples and practice.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">1 hour 50 minutes</p>
+              <p class="text-indigo-100">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">Learn to write clear, actionable problem statements through examples and practice.</p>
         </div>
       `,
       order: 1
@@ -959,15 +1126,16 @@ const module4: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 p-6 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-3xl">🎓</span>
+              </div>
               <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Write a problem statement for a real issue you're facing and be ready to refine it with your coach.</p>
+                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
+                <p class="text-blue-100">Write a problem statement for a real issue you're facing and be ready to refine it with your coach.</p>
               </div>
             </div>
           </div>
@@ -1103,27 +1271,43 @@ const module5: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The Experiment Plan',
       contentHtml: `
-        <div class="prose">
-          <p>Experiments are how we learn and improve. An experiment plan helps us test our ideas systematically.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Experiments are how we learn and improve. An <span class="font-semibold text-emerald-600">experiment plan</span> helps us test our ideas systematically.</p>
 
-          <div class="my-6 p-6 bg-green-50 rounded-lg border-2 border-green-200">
-            <h4 class="text-green-900 font-bold mb-4">EXPERIMENT PLAN STRUCTURE</h4>
-            <div class="space-y-3">
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">Step 1: What do we expect?</p>
-                <p class="text-sm text-gray-600">Hypothesis - What we think will happen</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🧪</span> EXPERIMENT PLAN STRUCTURE
+              </h4>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-transparent rounded-xl border-l-4 border-emerald-400 hover:shadow-md transition-shadow">
+                <span class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">1</span>
+                <div>
+                  <p class="font-bold text-gray-900">What do we expect?</p>
+                  <p class="text-sm text-emerald-600">Hypothesis — What we think will happen</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">Step 2: What will we try?</p>
-                <p class="text-sm text-gray-600">Test - The specific change we'll make</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-green-50 to-transparent rounded-xl border-l-4 border-green-400 hover:shadow-md transition-shadow">
+                <span class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">2</span>
+                <div>
+                  <p class="font-bold text-gray-900">What will we try?</p>
+                  <p class="text-sm text-green-600">Test — The specific change we'll make</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">Step 3: How will we know?</p>
-                <p class="text-sm text-gray-600">Measure - How we'll collect data</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-teal-50 to-transparent rounded-xl border-l-4 border-teal-400 hover:shadow-md transition-shadow">
+                <span class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">3</span>
+                <div>
+                  <p class="font-bold text-gray-900">How will we know?</p>
+                  <p class="text-sm text-teal-600">Measure — How we'll collect data</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">Step 4: What did we learn?</p>
-                <p class="text-sm text-gray-600">Results - What actually happened</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-400 hover:shadow-md transition-shadow">
+                <span class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">4</span>
+                <div>
+                  <p class="font-bold text-gray-900">What did we learn?</p>
+                  <p class="text-sm text-cyan-600">Results — What actually happened</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1136,29 +1320,37 @@ const module5: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Point Kaizen',
       contentHtml: `
-        <div class="prose">
-          <p>Point Kaizen are small, rapid experiments that can be completed quickly to test ideas and learn.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed"><span class="font-semibold text-lime-600">Point Kaizen</span> are small, rapid experiments that can be completed quickly to test ideas and learn.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">CHARACTERISTICS OF POINT KAIZEN</h4>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <span class="text-green-600 font-bold mr-2">✓</span>
-                <span><strong>Quick:</strong> Can be completed in days or weeks</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-600 font-bold mr-2">✓</span>
-                <span><strong>Focused:</strong> Targets a specific problem</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-600 font-bold mr-2">✓</span>
-                <span><strong>Low-cost:</strong> Minimal resources required</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-green-600 font-bold mr-2">✓</span>
-                <span><strong>Measurable:</strong> Clear before/after data</span>
-              </li>
-            </ul>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-lime-500 to-green-500 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">⚡</span> CHARACTERISTICS OF POINT KAIZEN
+              </h4>
+            </div>
+            <div class="p-6 grid grid-cols-2 gap-4">
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-lime-100 to-lime-50 p-4 border-2 border-lime-200 hover:border-lime-400 transition-colors">
+                <div class="text-3xl mb-2">🚀</div>
+                <p class="font-bold text-gray-900">Quick</p>
+                <p class="text-sm text-gray-600">Completed in days or weeks</p>
+              </div>
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-100 to-green-50 p-4 border-2 border-green-200 hover:border-green-400 transition-colors">
+                <div class="text-3xl mb-2">🎯</div>
+                <p class="font-bold text-gray-900">Focused</p>
+                <p class="text-sm text-gray-600">Targets a specific problem</p>
+              </div>
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 p-4 border-2 border-emerald-200 hover:border-emerald-400 transition-colors">
+                <div class="text-3xl mb-2">💰</div>
+                <p class="font-bold text-gray-900">Low-cost</p>
+                <p class="text-sm text-gray-600">Minimal resources required</p>
+              </div>
+              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-teal-100 to-teal-50 p-4 border-2 border-teal-200 hover:border-teal-400 transition-colors">
+                <div class="text-3xl mb-2">📊</div>
+                <p class="font-bold text-gray-900">Measurable</p>
+                <p class="text-sm text-gray-600">Clear before/after data</p>
+              </div>
+            </div>
           </div>
         </div>
       `,
@@ -1171,9 +1363,16 @@ const module5: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 45 minutes</p>
-          <p class="mb-6">Learn how to design and run effective experiments through real-world examples.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">45 minutes</p>
+              <p class="text-emerald-100">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">Learn how to design and run effective experiments through real-world examples.</p>
         </div>
       `,
       order: 1
@@ -1185,15 +1384,16 @@ const module5: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-green-700 p-6 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-3xl">🎓</span>
+              </div>
               <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Design a simple experiment you can run in your work environment and discuss it with your coach.</p>
+                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
+                <p class="text-emerald-100">Design a simple experiment you can run in your work environment and discuss it with your coach.</p>
               </div>
             </div>
           </div>
@@ -1395,27 +1595,43 @@ const module6: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Reviewing Experiment Results',
       contentHtml: `
-        <div class="prose">
-          <p>Measuring and reviewing results helps us learn from our experiments and decide on next steps.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Measuring and reviewing results helps us <span class="font-semibold text-amber-600">learn from our experiments</span> and decide on next steps.</p>
 
-          <div class="my-6 p-6 bg-yellow-50 rounded-lg border-2 border-yellow-600">
-            <h4 class="text-yellow-900 font-bold mb-4">RESULTS REVIEW QUESTIONS</h4>
-            <div class="space-y-3">
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">Did we achieve our target?</p>
-                <p class="text-sm text-gray-600">Compare results to hypothesis</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">📊</span> RESULTS REVIEW QUESTIONS
+              </h4>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center p-4 bg-gradient-to-r from-amber-50 to-transparent rounded-xl border-l-4 border-amber-400 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">🎯</span>
+                <div>
+                  <p class="font-bold text-gray-900">Did we achieve our target?</p>
+                  <p class="text-sm text-amber-600">Compare results to hypothesis</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">What did we learn?</p>
-                <p class="text-sm text-gray-600">Insights from the data</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-orange-50 to-transparent rounded-xl border-l-4 border-orange-400 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">💡</span>
+                <div>
+                  <p class="font-bold text-gray-900">What did we learn?</p>
+                  <p class="text-sm text-orange-600">Insights from the data</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">What surprised us?</p>
-                <p class="text-sm text-gray-600">Unexpected findings</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-yellow-50 to-transparent rounded-xl border-l-4 border-yellow-400 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">😮</span>
+                <div>
+                  <p class="font-bold text-gray-900">What surprised us?</p>
+                  <p class="text-sm text-yellow-600">Unexpected findings</p>
+                </div>
               </div>
-              <div class="p-3 bg-white rounded">
-                <p class="font-semibold">What's our next experiment?</p>
-                <p class="text-sm text-gray-600">How do we build on what we learned?</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-lime-50 to-transparent rounded-xl border-l-4 border-lime-400 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">🔄</span>
+                <div>
+                  <p class="font-bold text-gray-900">What's our next experiment?</p>
+                  <p class="text-sm text-lime-600">How do we build on what we learned?</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1428,28 +1644,37 @@ const module6: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Capturing Feedback',
       contentHtml: `
-        <div class="prose">
-          <p>Effective measurement includes both quantitative data and qualitative feedback from people affected by the change.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Effective measurement includes both <span class="font-semibold text-blue-600">quantitative data</span> and <span class="font-semibold text-green-600">qualitative feedback</span> from people affected by the change.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">TYPES OF FEEDBACK</h4>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-4 bg-blue-50 rounded">
-                <h5 class="font-bold mb-2">Quantitative</h5>
-                <ul class="text-sm space-y-1">
-                  <li>• Numbers & metrics</li>
-                  <li>• Time studies</li>
-                  <li>• Error rates</li>
-                  <li>• Customer satisfaction scores</li>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 p-6 text-white shadow-xl">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-3xl">📈</span>
+                  <h5 class="font-bold text-xl">Quantitative</h5>
+                </div>
+                <ul class="space-y-2 text-blue-100">
+                  <li class="flex items-start gap-2"><span>•</span> Numbers & metrics</li>
+                  <li class="flex items-start gap-2"><span>•</span> Time studies</li>
+                  <li class="flex items-start gap-2"><span>•</span> Error rates</li>
+                  <li class="flex items-start gap-2"><span>•</span> Satisfaction scores</li>
                 </ul>
               </div>
-              <div class="p-4 bg-green-50 rounded">
-                <h5 class="font-bold mb-2">Qualitative</h5>
-                <ul class="text-sm space-y-1">
-                  <li>• Observations</li>
-                  <li>• Interviews</li>
-                  <li>• Open-ended surveys</li>
-                  <li>• Team discussions</li>
+            </div>
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-6 text-white shadow-xl">
+              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-3xl">💬</span>
+                  <h5 class="font-bold text-xl">Qualitative</h5>
+                </div>
+                <ul class="space-y-2 text-green-100">
+                  <li class="flex items-start gap-2"><span>•</span> Observations</li>
+                  <li class="flex items-start gap-2"><span>•</span> Interviews</li>
+                  <li class="flex items-start gap-2"><span>•</span> Open-ended surveys</li>
+                  <li class="flex items-start gap-2"><span>•</span> Team discussions</li>
                 </ul>
               </div>
             </div>
@@ -1465,9 +1690,16 @@ const module6: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 45 minutes</p>
-          <p class="mb-6">Learn how to effectively measure results and gather meaningful feedback.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">45 minutes</p>
+              <p class="text-amber-100">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">Learn how to effectively measure results and gather meaningful feedback.</p>
         </div>
       `,
       order: 1
@@ -1479,15 +1711,16 @@ const module6: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 p-6 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-3xl">🎓</span>
+              </div>
               <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Think about how you currently measure success in your work and what you might be missing.</p>
+                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
+                <p class="text-amber-100">Think about how you currently measure success in your work and what you might be missing.</p>
               </div>
             </div>
           </div>
@@ -1593,29 +1826,50 @@ const module7: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The PDCA Cycle',
       contentHtml: `
-        <div class="prose">
-          <p>Continuous improvement means repeating the PDCA cycle over and over, learning and improving with each iteration.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Continuous improvement means repeating the <span class="font-semibold text-green-600">PDCA cycle</span> over and over, learning and improving with each iteration.</p>
 
-          <div class="my-6 p-6 bg-orange-50 rounded-lg border-2 border-orange-300">
-            <h4 class="text-orange-900 font-bold mb-4 text-center">CONTINUOUS IMPROVEMENT CYCLE</h4>
-            <div class="relative">
-              <div class="flex justify-center items-center">
-                <svg class="w-64 h-64" viewBox="0 0 200 200">
-                  <circle cx="100" cy="100" r="80" fill="none" stroke="#d2691e" stroke-width="2" stroke-dasharray="5,5"/>
-                  <g transform="rotate(-90 100 100)">
-                    <path d="M 100 20 A 80 80 0 0 1 180 100" fill="#3b82f6" opacity="0.7"/>
-                    <path d="M 180 100 A 80 80 0 0 1 100 180" fill="#10b981" opacity="0.7"/>
-                    <path d="M 100 180 A 80 80 0 0 1 20 100" fill="#f59e0b" opacity="0.7"/>
-                    <path d="M 20 100 A 80 80 0 0 1 100 20" fill="#ef4444" opacity="0.7"/>
-                  </g>
-                  <text x="100" y="40" text-anchor="middle" class="text-sm font-bold">PLAN</text>
-                  <text x="160" y="105" text-anchor="middle" class="text-sm font-bold">DO</text>
-                  <text x="100" y="170" text-anchor="middle" class="text-sm font-bold">CHECK</text>
-                  <text x="40" y="105" text-anchor="middle" class="text-sm font-bold">ACT</text>
-                </svg>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🔄</span> CONTINUOUS IMPROVEMENT CYCLE
+              </h4>
+            </div>
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">P</div>
+                  <div class="relative z-10">
+                    <div class="text-2xl font-black mb-1">PLAN</div>
+                    <p class="text-blue-100 text-sm">Define & set targets</p>
+                  </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">D</div>
+                  <div class="relative z-10">
+                    <div class="text-2xl font-black mb-1">DO</div>
+                    <p class="text-emerald-100 text-sm">Execute & experiment</p>
+                  </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">C</div>
+                  <div class="relative z-10">
+                    <div class="text-2xl font-black mb-1">CHECK</div>
+                    <p class="text-amber-100 text-sm">Measure & analyze</p>
+                  </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-500 to-red-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">A</div>
+                  <div class="relative z-10">
+                    <div class="text-2xl font-black mb-1">ACT</div>
+                    <p class="text-rose-100 text-sm">Standardize or iterate</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-gradient-to-r from-gray-100 to-gray-50 rounded-xl text-center">
+                <p class="text-gray-600 text-sm">Each cycle builds on learning from the previous one ♻️</p>
               </div>
             </div>
-            <p class="text-center mt-4 text-sm">Each cycle builds on the learning from the previous one</p>
           </div>
         </div>
       `,
@@ -1626,27 +1880,43 @@ const module7: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Anatomy of Improvement',
       contentHtml: `
-        <div class="prose">
-          <p>Sustainable improvement requires both technical changes and behavioral changes in how we work.</p>
+        <div class="space-y-6">
+          <p class="text-lg text-gray-700 leading-relaxed">Sustainable improvement requires both <span class="font-semibold text-purple-600">technical changes</span> and <span class="font-semibold text-purple-600">behavioral changes</span> in how we work.</p>
 
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">ELEMENTS OF LASTING CHANGE</h4>
-            <div class="space-y-3">
-              <div class="p-3 bg-blue-50 rounded">
-                <p class="font-semibold">🔧 Technical System</p>
-                <p class="text-sm">Tools, processes, and methods</p>
+          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-purple-600 to-violet-600 px-6 py-4">
+              <h4 class="text-white font-bold text-lg flex items-center">
+                <span class="text-2xl mr-2">🌳</span> ELEMENTS OF LASTING CHANGE
+              </h4>
+            </div>
+            <div class="p-6 space-y-3">
+              <div class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-xl border-l-4 border-blue-500 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">🔧</span>
+                <div>
+                  <p class="font-bold text-gray-900">Technical System</p>
+                  <p class="text-sm text-blue-600">Tools, processes, and methods</p>
+                </div>
               </div>
-              <div class="p-3 bg-green-50 rounded">
-                <p class="font-semibold">👥 Social System</p>
-                <p class="text-sm">People, relationships, and culture</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-green-50 to-transparent rounded-xl border-l-4 border-green-500 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">👥</span>
+                <div>
+                  <p class="font-bold text-gray-900">Social System</p>
+                  <p class="text-sm text-green-600">People, relationships, and culture</p>
+                </div>
               </div>
-              <div class="p-3 bg-yellow-50 rounded">
-                <p class="font-semibold">📚 Knowledge System</p>
-                <p class="text-sm">Training, coaching, and learning</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-amber-50 to-transparent rounded-xl border-l-4 border-amber-500 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">📚</span>
+                <div>
+                  <p class="font-bold text-gray-900">Knowledge System</p>
+                  <p class="text-sm text-amber-600">Training, coaching, and learning</p>
+                </div>
               </div>
-              <div class="p-3 bg-purple-50 rounded">
-                <p class="font-semibold">🎯 Management System</p>
-                <p class="text-sm">Metrics, reviews, and accountability</p>
+              <div class="flex items-center p-4 bg-gradient-to-r from-purple-50 to-transparent rounded-xl border-l-4 border-purple-500 hover:shadow-md transition-shadow">
+                <span class="text-3xl mr-4">🎯</span>
+                <div>
+                  <p class="font-bold text-gray-900">Management System</p>
+                  <p class="text-sm text-purple-600">Metrics, reviews, and accountability</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1661,9 +1931,16 @@ const module7: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Read',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 35 minutes</p>
-          <p class="mb-6">Learn what makes improvement sustainable and how to build a culture of continuous improvement.</p>
+        <div class="space-y-6">
+          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl text-white shadow-lg">
+            <span class="text-4xl">⏱️</span>
+            <div>
+              <p class="text-2xl font-bold">35 minutes</p>
+              <p class="text-green-100">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">Learn what makes improvement sustainable and how to build a culture of continuous improvement.</p>
         </div>
       `,
       order: 1
@@ -1675,29 +1952,48 @@ const module7: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 p-6 text-white shadow-xl">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+            <div class="flex items-start gap-4 relative z-10">
+              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
+                <span class="text-3xl">🎓</span>
+              </div>
               <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Reflect on your improvement journey through this course and plan your next steps with your coach.</p>
+                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
+                <p class="text-green-100">Reflect on your improvement journey through this course and plan your next steps with your coach.</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6">
-            <h4 class="font-bold text-green-900 mb-3">🎉 Congratulations!</h4>
-            <p class="text-sm mb-3">You've completed the Problem Solving 101 course. You now have the foundations to:</p>
-            <ul class="text-sm space-y-1">
-              <li>• Identify and define problems systematically</li>
-              <li>• Use structured problem-solving tools</li>
-              <li>• Design and run improvement experiments</li>
-              <li>• Measure and evaluate results</li>
-              <li>• Build continuous improvement into your work</li>
-            </ul>
+          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-400 via-yellow-400 to-orange-400 p-6 shadow-xl">
+            <div class="absolute top-2 right-4 text-6xl opacity-30">🏆</div>
+            <div class="relative z-10">
+              <h4 class="font-black text-2xl text-gray-900 mb-3">🎉 Congratulations!</h4>
+              <p class="text-gray-800 mb-4">You've completed Problem Solving 101! You now have the foundations to:</p>
+              <div class="grid grid-cols-1 gap-2">
+                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
+                  <span class="text-green-600">✓</span>
+                  <span class="text-sm text-gray-800">Identify and define problems systematically</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
+                  <span class="text-green-600">✓</span>
+                  <span class="text-sm text-gray-800">Use structured problem-solving tools</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
+                  <span class="text-green-600">✓</span>
+                  <span class="text-sm text-gray-800">Design and run improvement experiments</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
+                  <span class="text-green-600">✓</span>
+                  <span class="text-sm text-gray-800">Measure and evaluate results</span>
+                </div>
+                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
+                  <span class="text-green-600">✓</span>
+                  <span class="text-sm text-gray-800">Build continuous improvement into your work</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       `,
@@ -1712,7 +2008,7 @@ const module7: CourseModule = {
       type: 'video',
       duration: '5',
       description: 'See how F1 teams use continuous improvement to shave milliseconds off pit stop times.',
-      videoUrl: 'https://www.youtube.com/watch?v=example',
+      videoUrl: 'https://www.youtube.com/watch?v=3jrjBwm1Y68',
       thumbnailUrl: '/images/f1-pitstop.jpg',
       discussionQuestions: [
         {
