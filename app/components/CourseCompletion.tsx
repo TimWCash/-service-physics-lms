@@ -57,6 +57,14 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
       const margin = 20
       let yPosition = 20
 
+      // Helper function to check page break
+      const checkPageBreak = (neededSpace: number = 30) => {
+        if (yPosition > 280 - neededSpace) {
+          doc.addPage()
+          yPosition = 20
+        }
+      }
+
       // Title
       doc.setFontSize(24)
       doc.setTextColor(33, 69, 87) // Service Physics teal
@@ -65,7 +73,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
 
       doc.setFontSize(16)
       doc.setTextColor(100)
-      doc.text('Problem Solving 101 - Your Learning Notes', margin, yPosition)
+      doc.text('Problem Solving 101 - Your Learning Journal', margin, yPosition)
       yPosition += 15
 
       // User info
@@ -82,79 +90,133 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
       doc.line(margin, yPosition, pageWidth - margin, yPosition)
       yPosition += 15
 
-      // Loop through modules and activities to get notes
-      let hasNotes = false
+      // Get all answers
+      const allAnswers = user.answers || {}
+      let hasContent = false
 
+      // Loop through modules and activities
       for (const module of courseModules) {
-        let moduleHasNotes = false
-        let moduleNotesContent: { activityTitle: string; note: string }[] = []
+        let moduleContent: {
+          activityTitle: string
+          questions: { question: string; answer: string }[]
+          additionalNotes: string
+        }[] = []
 
         for (const activity of module.activities) {
-          const note = user.notes?.[activity.id]
-          if (note && note.trim()) {
-            moduleHasNotes = true
-            hasNotes = true
-            moduleNotesContent.push({
+          const activityAnswers = allAnswers[activity.id] || {}
+          const additionalNotes = user.notes?.[activity.id] || ''
+
+          // Check if activity has any content (answers or notes)
+          const hasAnswers = activity.discussionQuestions?.some(q => activityAnswers[q.id]?.trim())
+          const hasNotes = additionalNotes.trim()
+
+          if (hasAnswers || hasNotes) {
+            hasContent = true
+            const questions: { question: string; answer: string }[] = []
+
+            // Collect questions and answers
+            if (activity.discussionQuestions) {
+              for (const q of activity.discussionQuestions.sort((a, b) => a.order - b.order)) {
+                const answer = activityAnswers[q.id] || ''
+                if (answer.trim()) {
+                  questions.push({
+                    question: q.question,
+                    answer: answer
+                  })
+                }
+              }
+            }
+
+            moduleContent.push({
               activityTitle: activity.title,
-              note: note
+              questions,
+              additionalNotes
             })
           }
         }
 
-        if (moduleHasNotes) {
-          // Check if we need a new page
-          if (yPosition > 250) {
-            doc.addPage()
-            yPosition = 20
-          }
+        // If module has content, add to PDF
+        if (moduleContent.length > 0) {
+          checkPageBreak(40)
 
-          // Module title
+          // Module title with background
+          doc.setFillColor(33, 69, 87)
+          doc.rect(margin, yPosition - 5, pageWidth - margin * 2, 12, 'F')
           doc.setFontSize(14)
-          doc.setTextColor(33, 69, 87)
-          doc.text(module.title, margin, yPosition)
-          yPosition += 10
+          doc.setTextColor(255, 255, 255)
+          doc.text(module.title, margin + 5, yPosition + 3)
+          yPosition += 15
 
-          for (const { activityTitle, note } of moduleNotesContent) {
-            // Check if we need a new page
-            if (yPosition > 250) {
-              doc.addPage()
-              yPosition = 20
-            }
+          for (const { activityTitle, questions, additionalNotes } of moduleContent) {
+            checkPageBreak(30)
 
             // Activity title
-            doc.setFontSize(11)
-            doc.setTextColor(80)
-            doc.text(`• ${activityTitle}`, margin + 5, yPosition)
-            yPosition += 7
+            doc.setFontSize(12)
+            doc.setTextColor(33, 69, 87)
+            doc.text(activityTitle, margin, yPosition)
+            yPosition += 8
 
-            // Note content - wrap text
-            doc.setFontSize(10)
-            doc.setTextColor(60)
-            const splitNote = doc.splitTextToSize(note, pageWidth - margin * 2 - 10)
+            // Questions and answers
+            for (const { question, answer } of questions) {
+              checkPageBreak(25)
 
-            for (const line of splitNote) {
-              if (yPosition > 280) {
-                doc.addPage()
-                yPosition = 20
+              // Question
+              doc.setFontSize(10)
+              doc.setTextColor(80)
+              const splitQuestion = doc.splitTextToSize(`Q: ${question}`, pageWidth - margin * 2 - 5)
+              for (const line of splitQuestion) {
+                checkPageBreak(10)
+                doc.text(line, margin + 5, yPosition)
+                yPosition += 5
               }
-              doc.text(line, margin + 10, yPosition)
+              yPosition += 2
+
+              // Answer
+              doc.setFontSize(10)
+              doc.setTextColor(40)
+              const splitAnswer = doc.splitTextToSize(`A: ${answer}`, pageWidth - margin * 2 - 10)
+              for (const line of splitAnswer) {
+                checkPageBreak(10)
+                doc.text(line, margin + 10, yPosition)
+                yPosition += 5
+              }
               yPosition += 5
             }
+
+            // Additional notes
+            if (additionalNotes.trim()) {
+              checkPageBreak(20)
+              doc.setFontSize(10)
+              doc.setTextColor(100)
+              doc.text('Additional Notes:', margin + 5, yPosition)
+              yPosition += 5
+
+              doc.setTextColor(60)
+              const splitNotes = doc.splitTextToSize(additionalNotes, pageWidth - margin * 2 - 10)
+              for (const line of splitNotes) {
+                checkPageBreak(10)
+                doc.text(line, margin + 10, yPosition)
+                yPosition += 5
+              }
+              yPosition += 5
+            }
+
             yPosition += 5
           }
+
           yPosition += 10
         }
       }
 
-      if (!hasNotes) {
+      if (!hasContent) {
         doc.setFontSize(12)
         doc.setTextColor(100)
-        doc.text('No notes were recorded during the course.', margin, yPosition)
+        doc.text('No responses were recorded during the course.', margin, yPosition)
         yPosition += 10
-        doc.text('Consider retaking activities and adding reflections!', margin, yPosition)
+        doc.text('Consider retaking activities and answering the discussion questions!', margin, yPosition)
       }
 
-      // Footer on last page
+      // Footer on all pages
       const pageCount = doc.getNumberOfPages()
       for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i)
@@ -169,7 +231,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
       }
 
       // Save the PDF
-      doc.save(`Service-Physics-Notes-${user.name.replace(/\s+/g, '-')}.pdf`)
+      doc.save(`Service-Physics-Journal-${user.name.replace(/\s+/g, '-')}.pdf`)
     } catch (error) {
       console.error('Error generating PDF:', error)
       alert('There was an error generating your PDF. Please try again.')
@@ -261,7 +323,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <span>Download My Learning Notes (PDF)</span>
+                  <span>Download My Learning Journal (PDF)</span>
                 </>
               )}
             </button>

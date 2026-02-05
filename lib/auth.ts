@@ -14,6 +14,11 @@ export interface User {
   notes?: {
     [activityId: string]: string;
   };
+  answers?: {
+    [activityId: string]: {
+      [questionId: string]: string;
+    };
+  };
 }
 
 export class AuthService {
@@ -156,5 +161,27 @@ export class AuthService {
   static getNote(activityId: string): string {
     const user = this.getUser();
     return user?.notes?.[activityId] || '';
+  }
+
+  static saveAnswers(activityId: string, answers: { [questionId: string]: string }): void {
+    const user = this.getUser();
+    if (!user) return;
+
+    if (!user.answers) {
+      user.answers = {};
+    }
+
+    user.answers[activityId] = answers;
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+  }
+
+  static getAnswers(activityId: string): { [questionId: string]: string } {
+    const user = this.getUser();
+    return user?.answers?.[activityId] || {};
+  }
+
+  static getAllAnswers(): { [activityId: string]: { [questionId: string]: string } } {
+    const user = this.getUser();
+    return user?.answers || {};
   }
 }
