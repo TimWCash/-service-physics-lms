@@ -361,7 +361,7 @@ const module1: CourseModule = {
       duration: '45',
       description: 'Read this article by John Shook, chairman and CEO of the Lean Enterprise Institute, about adding meaning to work through problem-solving.',
       thumbnailUrl: '/images/john-shook.jpg',
-      externalUrl: 'https://www.lean.org/the-lean-post/articles/redefining-work/',
+      externalUrl: '/pdfs/Shook - Redefining Work.pdf',
       discussionQuestions: [
         {
           id: 'dq-01-01-01',
@@ -402,7 +402,7 @@ const module1: CourseModule = {
       type: 'reading',
       duration: '18',
       description: 'An experiment done in the Harvard Business School about the effects of getting stuck solutioning.',
-      externalUrl: 'https://hbr.org/2023/05/is-your-team-caught-in-a-solution-fixation-trap',
+      externalUrl: '/pdfs/The Solution Fixation Trap.pdf',
       thumbnailUrl: '/images/solution-fixation.jpg',
       discussionQuestions: [
         {
@@ -683,7 +683,7 @@ const module2: CourseModule = {
       type: 'audio',
       duration: '16',
       description: 'Listen to this audio case study about applying structured problem-solving at a food manufacturing facility.',
-      audioUrl: '/audio/hot-dog-plant.mp3',
+      audioUrl: '/audio/Hot Dog Plant.wav',
       thumbnailUrl: '/images/hot-dog-plant.jpg',
       discussionQuestions: [
         {
@@ -1152,7 +1152,7 @@ const module4: CourseModule = {
       type: 'video',
       duration: '5',
       description: 'Watch this clip from Moneyball showing how redefining the problem led to a breakthrough solution.',
-      videoUrl: 'https://www.youtube.com/watch?v=rTEQFss-1Ck',
+      videoUrl: 'https://www.youtube.com/watch?v=WlTgg4s1sSg',
       thumbnailUrl: '/images/moneyball.jpg',
       discussionQuestions: [
         {
