@@ -2110,12 +2110,12 @@ const module7: CourseModule = {
       discussionQuestions: [
         {
           id: 'dq-07-02-01',
-          question: 'What organizational factors led to Boeing\'s quality problems? How did culture play a role?',
+          question: 'What warning signs or early indicators of failure were ignored or overlooked before the crisis escalated?',
           order: 1
         },
         {
           id: 'dq-07-02-02',
-          question: 'What safeguards can organizations put in place to maintain a culture of continuous improvement and quality?',
+          question: 'How does the situation at Boeing highlight the importance of a culture of continuous improvement?',
           order: 2
         }
       ]
