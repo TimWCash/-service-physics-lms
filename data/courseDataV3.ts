@@ -2089,12 +2089,12 @@ const module7: CourseModule = {
       discussionQuestions: [
         {
           id: 'dq-07-01-01',
-          question: 'What enables F1 teams to improve pit stops to under 2 seconds? What systems and practices support this level of performance?',
+          question: 'What is the time difference between the 1950\'s pit stop and the 2013 pit stop? What type of improvements did you see that contributed to this difference?',
           order: 1
         },
         {
           id: 'dq-07-01-02',
-          question: 'How can you apply the principles of F1 pit stop improvement to your own work?',
+          question: 'How does this improvement illustrate iterative problem solving and continuous improvement?',
           order: 2
         }
       ]
