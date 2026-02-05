@@ -1164,6 +1164,61 @@ const module4: CourseModule = {
     },
     {
       id: 'activity-04-02',
+      title: 'Writing a Problem Statement with Service Delays at Panda Express',
+      type: 'video',
+      duration: '12',
+      description: 'Practice writing a problem statement by observing real service delays at Panda Express.',
+      videoUrl: 'https://www.youtube.com/watch?v=7WGZ9Pi1YnM',
+      thumbnailUrl: '/images/panda-problem-statement.jpg',
+      content: `
+        <div class="space-y-6">
+          <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-500 p-6 rounded-r-xl">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">📋 How to Complete This Activity</h3>
+
+            <div class="space-y-4">
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Observe the Work</h4>
+                  <p class="text-gray-700">Imagine you are observing the work at Panda Express where customers are ordering their dishes as they go down the line. Follow the customer in the gray shirt, noting their time in queue. We are trying to understand what is getting in the way of delivering a consistent and timely experience for customers with no unnecessary waiting.</p>
+                  <p class="text-gray-600 mt-2 italic">Panda Express has a goal of a <strong>3-minute customer service time</strong>. Watch to see if that plan is in action.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Review the Time Study Data</h4>
+                  <p class="text-gray-700">Review the time study data taken during these observations that capture the current condition.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Practice Writing a Problem Statement</h4>
+                  <p class="text-gray-700">Practice writing a problem statement with the current state observed and potential target.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      discussionQuestions: [
+        {
+          id: 'dq-04-02-01',
+          question: 'Based on the observations, what is the gap between the current condition and the target of 3-minute service time?',
+          order: 1
+        },
+        {
+          id: 'dq-04-02-02',
+          question: 'What problem statement would you write based on the data observed? Remember to include current condition, target, and impact.',
+          order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-04-03',
       title: 'Panda Express Drive-Thru Case Study',
       type: 'video',
       duration: '10',
@@ -1172,19 +1227,19 @@ const module4: CourseModule = {
       thumbnailUrl: '/images/panda-case.jpg',
       discussionQuestions: [
         {
-          id: 'dq-04-02-01',
+          id: 'dq-04-03-01',
           question: 'What data was used to define the current condition? How did this help clarify the problem?',
           order: 1
         },
         {
-          id: 'dq-04-02-02',
+          id: 'dq-04-03-02',
           question: 'How did the team avoid jumping to solutions before fully defining the problem?',
           order: 2
         }
       ]
     },
     {
-      id: 'activity-04-03',
+      id: 'activity-04-04',
       title: 'Problem Statement Practice',
       type: 'practice',
       duration: '9',
@@ -1212,7 +1267,7 @@ const module4: CourseModule = {
       `,
       discussionQuestions: [
         {
-          id: 'dq-04-03-01',
+          id: 'dq-04-04-01',
           question: 'Share your problem statement. Does it clearly describe the gap? Is it measurable? Does it focus on the problem rather than a solution?',
           order: 1
         }
