@@ -118,6 +118,22 @@ export default function Dashboard() {
               <div className="text-sm text-gray-600 mt-1">Duration</div>
             </div>
           </div>
+
+          {/* Course Complete Button */}
+          {progress >= 100 && (
+            <div className="mt-6">
+              <Link
+                href="/complete"
+                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl animate-pulse"
+              >
+                <span className="text-2xl">🎉</span>
+                <span>Celebrate Your Completion & Schedule Coaching!</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Course Modules */}
