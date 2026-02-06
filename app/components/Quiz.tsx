@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { QuizQuestion } from '@/data/courseData'
+import { QuizQuestion } from '@/data/courseDataV3'
 import { AuthService } from '@/lib/auth'
 
 interface QuizProps {
