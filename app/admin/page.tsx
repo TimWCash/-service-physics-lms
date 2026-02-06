@@ -62,7 +62,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const checkAuthorization = () => {
       try {
-        const userStr = localStorage.getItem('service_physics_user')
+        const userStr = localStorage.getItem('sp_lms_user')
         if (!userStr) {
           setIsAuthorized(false)
           return
