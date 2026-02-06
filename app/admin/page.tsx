@@ -39,7 +39,9 @@ export default function AdminDashboard() {
         .select('id, email, full_name, created_at, updated_at')
         .order('updated_at', { ascending: false })
 
-      if (profilesError) throw profilesError
+      if (profilesError) {
+        console.error('Profiles error:', profilesError)
+      }
 
       // Fetch all course progress including scores
       const { data: progressData, error: progressError } = await supabase
@@ -47,7 +49,9 @@ export default function AdminDashboard() {
         .select('user_id, activity_id, completed, score, completed_at')
         .eq('completed', true)
 
-      if (progressError) throw progressError
+      if (progressError) {
+        console.error('Progress error:', progressError)
+      }
 
       // Calculate total activities (31 across 7 modules including quizzes)
       const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
@@ -57,41 +61,93 @@ export default function AdminDashboard() {
         module.activities.filter(a => a.type === 'quiz').map(a => a.id)
       )
 
-      // Combine data
-      const usersWithProgress = profiles?.map(profile => {
-        const userProgress = progressData?.filter(p => p.user_id === profile.id) || []
-        const completedCount = userProgress.length
-        const completedActivities = userProgress.map(p => p.activity_id)
+      // Get unique user IDs from progress data (fallback if profiles table is empty)
+      const uniqueUserIds = [...new Set(progressData?.map(p => p.user_id) || [])]
 
-        // Extract quiz scores
-        const quizScores: QuizScore[] = userProgress
-          .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
-          .map(p => {
-            let activityName = p.activity_id
-            courseModules.forEach(module => {
-              const activity = module.activities.find(a => a.id === p.activity_id)
-              if (activity) activityName = activity.title
+      // Build users list - either from profiles or from progress data
+      let usersWithProgress: UserProgress[] = []
+
+      if (profiles && profiles.length > 0) {
+        // Use profiles as the source
+        usersWithProgress = profiles.map(profile => {
+          const userProgress = progressData?.filter(p => p.user_id === profile.id) || []
+          const completedCount = userProgress.length
+          const completedActivities = userProgress.map(p => p.activity_id)
+
+          // Extract quiz scores
+          const quizScores: QuizScore[] = userProgress
+            .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
+            .map(p => {
+              let activityName = p.activity_id
+              courseModules.forEach(module => {
+                const activity = module.activities.find(a => a.id === p.activity_id)
+                if (activity) activityName = activity.title
+              })
+              return {
+                activityId: p.activity_id,
+                activityName,
+                score: p.score,
+                completedAt: p.completed_at
+              }
             })
-            return {
-              activityId: p.activity_id,
-              activityName,
-              score: p.score,
-              completedAt: p.completed_at
-            }
-          })
 
-        return {
-          id: profile.id,
-          email: profile.email,
-          full_name: profile.full_name,
-          created_at: profile.created_at,
-          updated_at: profile.updated_at,
-          progressCount: completedCount,
-          progressPercentage: Math.round((completedCount / totalActivities) * 100),
-          completedActivities,
-          quizScores
-        }
-      }) || []
+          return {
+            id: profile.id,
+            email: profile.email,
+            full_name: profile.full_name,
+            created_at: profile.created_at,
+            updated_at: profile.updated_at,
+            progressCount: completedCount,
+            progressPercentage: Math.round((completedCount / totalActivities) * 100),
+            completedActivities,
+            quizScores
+          }
+        })
+      } else if (uniqueUserIds.length > 0) {
+        // Fallback: Build user list from progress data
+        usersWithProgress = uniqueUserIds.map(userId => {
+          const userProgress = progressData?.filter(p => p.user_id === userId) || []
+          const completedCount = userProgress.length
+          const completedActivities = userProgress.map(p => p.activity_id)
+
+          // Find earliest and latest completion dates
+          const dates = userProgress.map(p => new Date(p.completed_at).getTime())
+          const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
+          const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
+
+          // Extract quiz scores
+          const quizScores: QuizScore[] = userProgress
+            .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
+            .map(p => {
+              let activityName = p.activity_id
+              courseModules.forEach(module => {
+                const activity = module.activities.find(a => a.id === p.activity_id)
+                if (activity) activityName = activity.title
+              })
+              return {
+                activityId: p.activity_id,
+                activityName,
+                score: p.score,
+                completedAt: p.completed_at
+              }
+            })
+
+          // Convert user_id back to email format (user_tim_example_com -> tim@example.com)
+          const emailFromId = userId.replace(/^user_/, '').replace(/_/g, '.').replace(/\.([^.]+)$/, '@$1')
+
+          return {
+            id: userId,
+            email: emailFromId,
+            full_name: emailFromId.split('@')[0],
+            created_at: earliestDate,
+            updated_at: latestDate,
+            progressCount: completedCount,
+            progressPercentage: Math.round((completedCount / totalActivities) * 100),
+            completedActivities,
+            quizScores
+          }
+        })
+      }
 
       setUsers(usersWithProgress)
     } catch (error) {
