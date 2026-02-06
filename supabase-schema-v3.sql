@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS public.course_progress (
   activity_id TEXT NOT NULL,
   section_id TEXT NOT NULL,
   completed BOOLEAN DEFAULT FALSE,
+  score INTEGER,  -- Quiz scores (0-100)
   completed_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
