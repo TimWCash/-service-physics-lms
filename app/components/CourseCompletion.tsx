@@ -15,6 +15,12 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
   const [showCalendly, setShowCalendly] = useState(false)
 
+  // Calculate actual progress
+  const completedCount = Object.values(user.progress).filter(p => p.completed).length
+  const totalActivities = courseModules.reduce((acc, m) => acc + m.activities.length, 0)
+  const progressPercent = Math.round((completedCount / totalActivities) * 100)
+  const isFullyComplete = progressPercent >= 100
+
   useEffect(() => {
     // Trigger celebration confetti on mount
     const duration = 3 * 1000
@@ -303,12 +309,15 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
           </div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Congratulations, {user.name}!
+            {isFullyComplete ? 'Congratulations' : 'Great Progress'}, {user.name}!
           </h1>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            You've completed <span className="font-semibold text-teal-700">Service Physics Problem Solving 101</span>!
-            You're now equipped with powerful tools to tackle challenges systematically.
+            {isFullyComplete ? (
+              <>You've completed <span className="font-semibold text-teal-700">Service Physics Problem Solving 101</span>! You're now equipped with powerful tools to tackle challenges systematically.</>
+            ) : (
+              <>You've made excellent progress on <span className="font-semibold text-teal-700">Service Physics Problem Solving 101</span>! Complete the remaining activities to finish the course.</>
+            )}
           </p>
         </div>
 
@@ -334,7 +343,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <div className="text-sm text-gray-600">Activities</div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center border border-purple-100">
-              <div className="text-3xl font-bold text-purple-700">100%</div>
+              <div className={`text-3xl font-bold ${isFullyComplete ? 'text-purple-700' : 'text-amber-600'}`}>{progressPercent}%</div>
               <div className="text-sm text-gray-600">Complete</div>
             </div>
           </div>

@@ -21,13 +21,13 @@ export default function CompletePage() {
     const currentProgress = AuthService.getCourseProgress()
     setProgress(currentProgress)
 
-    // If not complete, redirect to dashboard
-    if (currentProgress < 100) {
+    // If less than 80%, redirect to dashboard (allow 80%+ for users who completed before quizzes were added)
+    if (currentProgress < 80) {
       router.push('/dashboard')
     }
   }, [router])
 
-  if (!user || progress < 100) {
+  if (!user || progress < 80) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
