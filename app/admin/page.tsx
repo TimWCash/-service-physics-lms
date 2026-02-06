@@ -33,17 +33,7 @@ export default function AdminDashboard() {
 
   const fetchUserProgress = async () => {
     try {
-      // Fetch all profiles
-      const { data: profiles, error: profilesError } = await supabase
-        .from('profiles')
-        .select('id, email, full_name, created_at, updated_at')
-        .order('updated_at', { ascending: false })
-
-      if (profilesError) {
-        console.error('Profiles error:', profilesError)
-      }
-
-      // Fetch all course progress including scores
+      // Fetch all course progress including scores - this is the primary data source
       const { data: progressData, error: progressError } = await supabase
         .from('course_progress')
         .select('user_id, activity_id, completed, score, completed_at')
@@ -53,6 +43,19 @@ export default function AdminDashboard() {
         console.error('Progress error:', progressError)
       }
 
+      console.log('Progress data fetched:', progressData?.length || 0, 'records')
+
+      // Also try to fetch profiles for additional info
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('id, email, full_name, created_at, updated_at')
+
+      if (profilesError) {
+        console.error('Profiles error:', profilesError)
+      }
+
+      console.log('Profiles fetched:', profiles?.length || 0, 'records')
+
       // Calculate total activities (31 across 7 modules including quizzes)
       const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
 
@@ -61,94 +64,72 @@ export default function AdminDashboard() {
         module.activities.filter(a => a.type === 'quiz').map(a => a.id)
       )
 
-      // Get unique user IDs from progress data (fallback if profiles table is empty)
+      // Get unique user IDs from progress data
       const uniqueUserIds = [...new Set(progressData?.map(p => p.user_id) || [])]
 
-      // Build users list - either from profiles or from progress data
-      let usersWithProgress: UserProgress[] = []
+      console.log('Unique users from progress:', uniqueUserIds)
 
-      if (profiles && profiles.length > 0) {
-        // Use profiles as the source
-        usersWithProgress = profiles.map(profile => {
-          const userProgress = progressData?.filter(p => p.user_id === profile.id) || []
-          const completedCount = userProgress.length
-          const completedActivities = userProgress.map(p => p.activity_id)
+      // Create a map of profiles for quick lookup
+      const profileMap = new Map(profiles?.map(p => [p.id, p]) || [])
 
-          // Extract quiz scores
-          const quizScores: QuizScore[] = userProgress
-            .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
-            .map(p => {
-              let activityName = p.activity_id
-              courseModules.forEach(module => {
-                const activity = module.activities.find(a => a.id === p.activity_id)
-                if (activity) activityName = activity.title
-              })
-              return {
-                activityId: p.activity_id,
-                activityName,
-                score: p.score,
-                completedAt: p.completed_at
-              }
+      // Build users list from progress data (primary source)
+      let usersWithProgress: UserProgress[] = uniqueUserIds.map(userId => {
+        const userProgress = progressData?.filter(p => p.user_id === userId) || []
+        const completedCount = userProgress.length
+        const completedActivities = userProgress.map(p => p.activity_id)
+
+        // Find earliest and latest completion dates
+        const dates = userProgress.map(p => new Date(p.completed_at).getTime()).filter(d => !isNaN(d))
+        const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
+        const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
+
+        // Extract quiz scores
+        const quizScores: QuizScore[] = userProgress
+          .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
+          .map(p => {
+            let activityName = p.activity_id
+            courseModules.forEach(module => {
+              const activity = module.activities.find(a => a.id === p.activity_id)
+              if (activity) activityName = activity.title
             })
+            return {
+              activityId: p.activity_id,
+              activityName,
+              score: p.score,
+              completedAt: p.completed_at
+            }
+          })
 
-          return {
-            id: profile.id,
-            email: profile.email,
-            full_name: profile.full_name,
-            created_at: profile.created_at,
-            updated_at: profile.updated_at,
-            progressCount: completedCount,
-            progressPercentage: Math.round((completedCount / totalActivities) * 100),
-            completedActivities,
-            quizScores
-          }
-        })
-      } else if (uniqueUserIds.length > 0) {
-        // Fallback: Build user list from progress data
-        usersWithProgress = uniqueUserIds.map(userId => {
-          const userProgress = progressData?.filter(p => p.user_id === userId) || []
-          const completedCount = userProgress.length
-          const completedActivities = userProgress.map(p => p.activity_id)
+        // Try to get profile info, fallback to deriving from user_id
+        const profile = profileMap.get(userId)
+        let email = profile?.email || ''
+        let fullName = profile?.full_name || ''
 
-          // Find earliest and latest completion dates
-          const dates = userProgress.map(p => new Date(p.completed_at).getTime())
-          const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
-          const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
-
-          // Extract quiz scores
-          const quizScores: QuizScore[] = userProgress
-            .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
-            .map(p => {
-              let activityName = p.activity_id
-              courseModules.forEach(module => {
-                const activity = module.activities.find(a => a.id === p.activity_id)
-                if (activity) activityName = activity.title
-              })
-              return {
-                activityId: p.activity_id,
-                activityName,
-                score: p.score,
-                completedAt: p.completed_at
-              }
-            })
-
+        if (!email) {
           // Convert user_id back to email format (user_tim_example_com -> tim@example.com)
-          const emailFromId = userId.replace(/^user_/, '').replace(/_/g, '.').replace(/\.([^.]+)$/, '@$1')
+          email = userId.replace(/^user_/, '').replace(/_/g, '.').replace(/\.([^.]+)$/, '@$1')
+        }
+        if (!fullName) {
+          fullName = email.split('@')[0]
+        }
 
-          return {
-            id: userId,
-            email: emailFromId,
-            full_name: emailFromId.split('@')[0],
-            created_at: earliestDate,
-            updated_at: latestDate,
-            progressCount: completedCount,
-            progressPercentage: Math.round((completedCount / totalActivities) * 100),
-            completedActivities,
-            quizScores
-          }
-        })
-      }
+        return {
+          id: userId,
+          email,
+          full_name: fullName,
+          created_at: profile?.created_at || earliestDate,
+          updated_at: profile?.updated_at || latestDate,
+          progressCount: completedCount,
+          progressPercentage: Math.round((completedCount / totalActivities) * 100),
+          completedActivities,
+          quizScores
+        }
+      })
 
+      // Sort by most recent activity
+      usersWithProgress.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+
+      console.log('Final users with progress:', usersWithProgress.length)
       setUsers(usersWithProgress)
     } catch (error) {
       console.error('Error fetching user progress:', error)

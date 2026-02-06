@@ -321,6 +321,58 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
           </p>
         </div>
 
+        {/* Schedule Coaching Session - TOP CTA */}
+        <div className="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-xl p-8 mb-8 text-white">
+          <div className="flex items-start gap-4 mb-6">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
+              <span className="text-3xl">📅</span>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Schedule Your Coaching Session!</h2>
+              <p className="text-primary-100">
+                Connect with Brian or Steve to discuss what you've learned and how to apply it in your work.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur rounded-xl p-6 mb-6">
+            <h3 className="font-semibold mb-3">In your session, you'll:</h3>
+            <ul className="space-y-2 text-primary-100">
+              <li className="flex items-start gap-2">
+                <span className="text-white">✓</span>
+                Review your key learnings and notes
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-white">✓</span>
+                Discuss how to apply these concepts to real problems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-white">✓</span>
+                Get personalized guidance on your next steps
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-white">✓</span>
+                Ask questions and deepen your understanding
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 text-center">
+            <p className="text-gray-700 mb-4">
+              Contact <span className="font-semibold text-primary-700">Maria</span> to schedule time with Brian or Steve for your coaching session.
+            </p>
+            <a
+              href="mailto:maria@servicephysics.com?subject=Problem%20Solving%20101%20Complete%20-%20Request%20Coaching%20Session&body=Hi%20Maria%2C%0A%0AI%20have%20completed%20the%20Problem%20Solving%20101%20course%20and%20would%20like%20to%20schedule%20a%20coaching%20session%20with%20Brian%20or%20Steve.%0A%0APlease%20let%20me%20know%20the%20available%20times.%0A%0AThank%20you!"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all shadow-lg hover:shadow-xl text-lg"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>Email Maria to Schedule</span>
+            </a>
+          </div>
+        </div>
+
         {/* Achievement Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border border-emerald-100">
           <div className="flex items-center gap-4 mb-6">
@@ -328,8 +380,8 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <span className="text-3xl">🏆</span>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-gray-900">Course Complete!</h2>
-              <p className="text-gray-600">All 7 modules mastered</p>
+              <h2 className="text-2xl font-bold text-gray-900">{isFullyComplete ? 'Course Complete!' : 'Great Progress!'}</h2>
+              <p className="text-gray-600">{isFullyComplete ? 'All 7 modules mastered' : `${completedCount} of ${totalActivities} activities completed`}</p>
             </div>
           </div>
 
@@ -339,12 +391,12 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <div className="text-sm text-gray-600">Modules</div>
             </div>
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 text-center border border-emerald-100">
-              <div className="text-3xl font-bold text-emerald-700">31</div>
-              <div className="text-sm text-gray-600">Activities</div>
+              <div className="text-3xl font-bold text-emerald-700">{completedCount}</div>
+              <div className="text-sm text-gray-600">Completed</div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center border border-purple-100">
               <div className={`text-3xl font-bold ${isFullyComplete ? 'text-purple-700' : 'text-amber-600'}`}>{progressPercent}%</div>
-              <div className="text-sm text-gray-600">Complete</div>
+              <div className="text-sm text-gray-600">Progress</div>
             </div>
           </div>
 
@@ -414,73 +466,6 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <span>Download Glossary & Common Language (PDF)</span>
             </a>
           </div>
-        </div>
-
-        {/* Schedule Coaching Session */}
-        <div className="bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl shadow-xl p-8 text-white">
-          <div className="flex items-start gap-4 mb-6">
-            <div className="w-16 h-16 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
-              <span className="text-3xl">📅</span>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold mb-2">One Last Step!</h2>
-              <p className="text-primary-100">
-                Schedule a coaching session with Brian or Steve to discuss what you've learned and how to apply it in your work.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white/10 backdrop-blur rounded-xl p-6 mb-6">
-            <h3 className="font-semibold mb-3">In your session, you'll:</h3>
-            <ul className="space-y-2 text-primary-100">
-              <li className="flex items-start gap-2">
-                <span className="text-white">✓</span>
-                Review your key learnings and notes
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-white">✓</span>
-                Discuss how to apply these concepts to real problems
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-white">✓</span>
-                Get personalized guidance on your next steps
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-white">✓</span>
-                Ask questions and deepen your understanding
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 text-center">
-            <p className="text-gray-700 mb-4">
-              Reach out to <span className="font-semibold text-primary-700">Brian</span> or <span className="font-semibold text-primary-700">Steve</span> to schedule your coaching session.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="mailto:brian@servicephysics.com?subject=Course%20Complete%20-%20Ready%20for%20Coaching%20Session"
-                className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all shadow-md"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Email Brian</span>
-              </a>
-              <a
-                href="mailto:steve@servicephysics.com?subject=Course%20Complete%20-%20Ready%20for%20Coaching%20Session"
-                className="flex items-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-all shadow-md"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Email Steve</span>
-              </a>
-            </div>
-          </div>
-
-          <p className="text-center text-primary-200 text-sm mt-6">
-            💡 Pro tip: Download your notes before your session so you can reference them!
-          </p>
         </div>
 
         {/* Back to Dashboard */}
