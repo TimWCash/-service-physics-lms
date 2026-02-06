@@ -89,9 +89,9 @@ Edit `data/courseDataV3.ts` and add to the appropriate module's `activities` arr
 }
 ```
 
-**Important:** After adding activities, update the `total` count in `lib/auth.ts` (line ~143):
+**Important:** After adding activities, update the `total` count in `lib/auth.ts` (line ~144):
 ```typescript
-const total = 25; // Update this number
+const total = 31; // Update this number (currently 25 activities + 6 quizzes)
 ```
 
 Also update `courseMetadata.totalActivities` in `data/courseDataV3.ts`.
@@ -149,7 +149,40 @@ discussionQuestions: [
 ]
 ```
 
-### 5. Changing Video URLs
+### 5. Adding/Editing Quiz Questions
+
+Quizzes are type `'quiz'` activities with a `questions` array:
+
+```typescript
+{
+  id: 'activity-01-quiz',
+  title: 'Module 1 Knowledge Check',
+  type: 'quiz',
+  duration: '5',
+  description: 'Test your understanding of the module concepts.',
+  questions: [
+    {
+      id: 'q-01-01',           // Unique question ID
+      question: 'Question text here?',
+      options: [
+        'Option A',
+        'Option B',
+        'Option C',
+        'Option D'
+      ],
+      correctAnswer: 0,        // Index of correct option (0-based)
+      explanation: 'Explanation shown after quiz submission.'
+    }
+  ]
+}
+```
+
+**Quiz Scoring:**
+- Scores are calculated as percentage of correct answers
+- Scores are saved to Supabase `course_progress.score` column
+- Passing score display: 70%+ shows "🎉 Great Job!", below shows "💪 Keep Learning!"
+
+### 6. Changing Video URLs
 
 Find the activity and update the `videoUrl`:
 ```typescript
@@ -217,11 +250,40 @@ For Vercel, add these in Project Settings > Environment Variables.
 ## Database (Supabase)
 
 ### Tables
-- `profiles` - User information (id, email, full_name)
-- `course_progress` - Activity completion tracking
+
+**profiles** - User information
+```sql
+CREATE TABLE profiles (
+  id TEXT PRIMARY KEY,
+  email TEXT NOT NULL,
+  full_name TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+```
+
+**course_progress** - Activity completion and quiz scores
+```sql
+CREATE TABLE course_progress (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id TEXT NOT NULL,
+  activity_id TEXT NOT NULL,
+  section_id TEXT,
+  completed BOOLEAN DEFAULT FALSE,
+  score INTEGER,  -- Quiz scores (0-100)
+  completed_at TIMESTAMP WITH TIME ZONE,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  UNIQUE(user_id, activity_id)
+);
+```
+
+**⚠️ Important:** If quiz scores aren't saving, ensure the `score` column exists:
+```sql
+ALTER TABLE course_progress ADD COLUMN IF NOT EXISTS score INTEGER;
+```
 
 ### User Data Storage
-- **Progress:** Saved to Supabase + localStorage
+- **Progress & Quiz Scores:** Saved to Supabase + localStorage
 - **Notes & Answers:** Saved to localStorage only (client-side)
 
 ### Resetting a User's Progress
@@ -229,6 +291,12 @@ In Supabase dashboard:
 ```sql
 DELETE FROM course_progress WHERE user_id = 'user_email_formatted';
 ```
+
+### Viewing Quiz Scores
+Quiz scores are visible in the Admin Dashboard (`/admin`). Scores are color-coded:
+- 🟢 Green: 80% or higher
+- 🟡 Amber: 60-79%
+- 🔴 Red: Below 60%
 
 ---
 
@@ -292,13 +360,21 @@ When adding new content, verify:
 
 ---
 
-## Known Placeholders
+## Admin Dashboard
 
-These items need real content:
+Access the admin dashboard at `/admin` to:
+- View all enrolled users
+- Track overall progress percentage per user
+- See quiz scores with color-coded performance indicators
+- View list of completed activities per user
 
-1. **MOD Pizza Case Study** (`activity-03-04`)
-   - Currently: `https://example.com/mod-pizza-case-study`
-   - Action: Replace with actual PDF or article URL
+### Admin Tools
+
+| Tool | URL | Purpose |
+|------|-----|---------|
+| User Progress | `/admin` | View all user progress and quiz scores |
+| Content Management | `/admin/content` | Edit activity content and URLs |
+| URL Management | `/admin/urls` | Update external links and media URLs |
 
 ---
 
@@ -319,7 +395,10 @@ For coaching session scheduling (shown on completion page):
 | Feb 2025 | Added audio player support |
 | Feb 2025 | Added discussion questions with auto-save |
 | Feb 2025 | Added completion celebration with PDF export |
+| Feb 2025 | Added 6 module quizzes (31 total activities) |
+| Feb 2025 | Added quiz score tracking in Admin Dashboard |
+| Feb 2025 | Added quiz scores to completion PDF |
 
 ---
 
-*Last updated: February 5, 2025*
+*Last updated: February 6, 2025*
