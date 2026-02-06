@@ -92,7 +92,7 @@ export class AuthService {
     try {
       const { data: progressData, error: progressError } = await supabase
         .from('course_progress')
-        .select('activity_id, completed, completed_at')
+        .select('activity_id, completed, completed_at, score')
         .eq('user_id', userId)
         .eq('completed', true)
 
@@ -102,7 +102,8 @@ export class AuthService {
         progressData.forEach((item) => {
           progress[item.activity_id] = {
             completed: item.completed,
-            completedAt: item.completed_at
+            completedAt: item.completed_at,
+            score: item.score ?? undefined
           }
         })
         console.log('Loaded progress:', progressData.length, 'completed activities')

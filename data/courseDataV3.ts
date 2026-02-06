@@ -2477,7 +2477,7 @@ export const courseMetadata = {
   title: 'Service Physics Problem Solving 101',
   description: 'Master the art of problem-solving with proven frameworks, practical tools, and real-world applications.',
   totalModules: 7,
-  totalActivities: 31, // 25 activities + 6 module quizzes across 7 modules
+  totalActivities: 30, // 24 activities + 6 module quizzes across 7 modules
   instructor: 'Service Physics Academy',
   estimatedDuration: '7-8 hours',
   skillLevel: 'Beginner to Intermediate',
