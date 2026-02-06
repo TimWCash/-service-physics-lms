@@ -7,9 +7,13 @@ import Image from 'next/image'
 import { AuthService, User } from '@/lib/auth'
 import { courseModules, courseMetadata } from '@/data/courseDataV3'
 
+// Admin email whitelist - keep in sync with admin/page.tsx
+const ADMIN_EMAILS = ['tim@servicephysics.com', 'maria@servicephysics.com', 'brian@servicephysics.com', 'steve@servicephysics.com', 'timothy.cashman@gmail.com']
+
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null)
   const [progress, setProgress] = useState(0)
+  const [isAdmin, setIsAdmin] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -27,6 +31,11 @@ export default function Dashboard() {
       const syncedUser = AuthService.getUser()
       setUser(syncedUser)
       setProgress(AuthService.getCourseProgress())
+
+      // Check if user is admin
+      if (syncedUser?.email) {
+        setIsAdmin(ADMIN_EMAILS.includes(syncedUser.email.toLowerCase()))
+      }
     }
 
     initDashboard()
@@ -60,16 +69,32 @@ export default function Dashboard() {
                   </h1>
                   <p className="text-sm text-gray-600 mt-0.5">
                     Welcome back, <span className="font-semibold text-primary-600">{user.name}</span>!
+                    {isAdmin && (
+                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">
+                        👑 Admin
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
             </div>
-            <button
-              onClick={handleLogout}
-              className="btn-secondary"
-            >
-              Logout
-            </button>
+            <div className="flex items-center gap-3">
+              {isAdmin && (
+                <Link
+                  href="/admin"
+                  className="px-4 py-2 bg-amber-100 text-amber-800 rounded-lg hover:bg-amber-200 transition-colors font-medium text-sm flex items-center gap-2"
+                >
+                  <span>📊</span>
+                  Admin Dashboard
+                </Link>
+              )}
+              <button
+                onClick={handleLogout}
+                className="btn-secondary"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </header>
