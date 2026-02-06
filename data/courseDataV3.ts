@@ -1188,7 +1188,7 @@ const module4: CourseModule = {
   id: 'module-04',
   title: 'Defining Problems',
   colorHex: '#42a5b8', // Lighter blue-teal
-  timeEstimateMinutes: 110,
+  timeEstimateMinutes: 40,
   order: 4,
   accessLevel: 'free',
 
@@ -1274,7 +1274,7 @@ const module4: CourseModule = {
           <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
             <span class="text-4xl">⏱️</span>
             <div>
-              <p class="text-2xl font-bold">1 hour 50 minutes</p>
+              <p class="text-2xl font-bold">40 minutes</p>
               <p class="text-indigo-100">Total learning time</p>
             </div>
           </div>
@@ -1329,10 +1329,31 @@ const module4: CourseModule = {
     },
     {
       id: 'activity-04-02',
-      title: 'Writing a Problem Statement with Service Delays at Panda Express',
+      title: 'Panda Express Drive-Thru Case Study',
       type: 'video',
-      duration: '12',
-      description: 'Practice writing a problem statement by observing real service delays at Panda Express.',
+      duration: '10',
+      description: 'A real-world case study walking through how to define a complex operational problem at Panda Express.',
+      videoUrl: 'https://www.youtube.com/watch?v=kUZFDYBSNAY',
+      thumbnailUrl: '/images/panda-case.jpg',
+      discussionQuestions: [
+        {
+          id: 'dq-04-02-01',
+          question: 'What data was used to define the current condition? How did this help clarify the problem?',
+          order: 1
+        },
+        {
+          id: 'dq-04-02-02',
+          question: 'How did the team avoid jumping to solutions before fully defining the problem?',
+          order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-04-03',
+      title: 'Problem Statement Practice: Panda Express Service Delays',
+      type: 'video',
+      duration: '20',
+      description: 'Practice writing a problem statement by observing and analyzing real service delays at Panda Express.',
       videoUrl: 'https://www.youtube.com/watch?v=7WGZ9Pi1YnM',
       thumbnailUrl: '/images/panda-problem-statement.jpg',
       content: `
@@ -1345,8 +1366,8 @@ const module4: CourseModule = {
                 <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
                 <div>
                   <h4 class="font-semibold text-gray-900">Observe the Work</h4>
-                  <p class="text-gray-700">Imagine you are observing the work at Panda Express where customers are ordering their dishes as they go down the line. Follow the customer in the gray shirt, noting their time in queue. We are trying to understand what is getting in the way of delivering a consistent and timely experience for customers with no unnecessary waiting.</p>
-                  <p class="text-gray-600 mt-2 italic">Panda Express has a goal of a <strong>3-minute customer service time</strong>. Watch to see if that plan is in action.</p>
+                  <p class="text-gray-700">Imagine you are observing the work at Panda Express where customers are ordering their dishes as they go down the line. You are following the customer in the gray shirt, noting their time in queue. We are trying to understand what is getting in the way of delivering a consistent and timely experience for the customers with no unnecessary waiting.</p>
+                  <p class="text-gray-600 mt-2 italic">Panda Express has a goal of a <strong>3-minute customer service time</strong>. We are watching to see if that plan is in action.</p>
                 </div>
               </div>
 
@@ -1367,61 +1388,15 @@ const module4: CourseModule = {
               </div>
             </div>
           </div>
-        </div>
-      `,
-      discussionQuestions: [
-        {
-          id: 'dq-04-02-01',
-          question: 'Based on the observations, what is the gap between the current condition and the target of 3-minute service time?',
-          order: 1
-        },
-        {
-          id: 'dq-04-02-02',
-          question: 'What problem statement would you write based on the data observed? Remember to include current condition, target, and impact.',
-          order: 2
-        }
-      ]
-    },
-    {
-      id: 'activity-04-03',
-      title: 'Panda Express Drive-Thru Case Study',
-      type: 'video',
-      duration: '10',
-      description: 'A real-world case study walking through how to define a complex operational problem at Panda Express.',
-      videoUrl: 'https://www.youtube.com/watch?v=kUZFDYBSNAY',
-      thumbnailUrl: '/images/panda-case.jpg',
-      discussionQuestions: [
-        {
-          id: 'dq-04-03-01',
-          question: 'What data was used to define the current condition? How did this help clarify the problem?',
-          order: 1
-        },
-        {
-          id: 'dq-04-03-02',
-          question: 'How did the team avoid jumping to solutions before fully defining the problem?',
-          order: 2
-        }
-      ]
-    },
-    {
-      id: 'activity-04-04',
-      title: 'Problem Statement Practice',
-      type: 'practice',
-      duration: '9',
-      description: 'Practice writing and refining problem statements using real scenarios.',
-      content: `
-        <div class="prose">
-          <h3>Write Your Problem Statement</h3>
-          <p>Use the template to write a clear problem statement for a real issue you're facing.</p>
 
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
-            <h4 class="font-bold">Template:</h4>
-            <p class="font-mono text-sm">[Process/Area] is experiencing [Current Condition with data], which is [X%] away from [Target Condition with data], causing [Impact].</p>
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4 rounded-r-xl">
+            <h4 class="font-bold text-blue-900">Problem Statement Template:</h4>
+            <p class="font-mono text-sm text-blue-800 mt-2">[Process/Area] is experiencing [Current Condition with data], which is [X%] away from [Target Condition with data], causing [Impact].</p>
           </div>
 
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
-            <h4 class="font-bold">Checklist - Good problem statements are:</h4>
-            <ul>
+          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4 rounded-r-xl">
+            <h4 class="font-bold text-yellow-900">Checklist - Good problem statements are:</h4>
+            <ul class="mt-2 space-y-1 text-yellow-800">
               <li>☐ Specific (not vague)</li>
               <li>☐ Measurable (includes data)</li>
               <li>☐ Focused on the gap (not the solution)</li>
@@ -1432,9 +1407,19 @@ const module4: CourseModule = {
       `,
       discussionQuestions: [
         {
-          id: 'dq-04-04-01',
-          question: 'Share your problem statement. Does it clearly describe the gap? Is it measurable? Does it focus on the problem rather than a solution?',
+          id: 'dq-04-03-01',
+          question: 'Based on the observations, what is the gap between the current condition and the target of 3-minute service time?',
           order: 1
+        },
+        {
+          id: 'dq-04-03-02',
+          question: 'What problem statement would you write based on the data observed? Remember to include current condition, target, and impact.',
+          order: 2
+        },
+        {
+          id: 'dq-04-03-03',
+          question: 'Share your problem statement. Does it clearly describe the gap? Is it measurable? Does it focus on the problem rather than a solution?',
+          order: 3
         }
       ]
     },
