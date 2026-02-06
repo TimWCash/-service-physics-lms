@@ -33,11 +33,10 @@ export default function AdminDashboard() {
 
   const fetchUserProgress = async () => {
     try {
-      // Fetch all course progress - this is the primary data source
-      // Note: score column may not exist in all deployments, so we fetch without it first
+      // Fetch all course progress including scores - this is the primary data source
       const { data: progressData, error: progressError } = await supabase
         .from('course_progress')
-        .select('user_id, activity_id, completed, completed_at')
+        .select('user_id, activity_id, completed, score, completed_at')
         .eq('completed', true)
 
       if (progressError) {
