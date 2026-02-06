@@ -1003,11 +1003,10 @@ const module3: CourseModule = {
     {
       id: 'activity-03-02',
       title: 'Service Physics 101 with Steve',
-      type: 'audio',
+      type: 'video',
       duration: '18',
       description: 'Listen to Steve explain the fundamentals of identifying waste in service operations.',
-      audioUrl: '/audio/sp-101-steve.mp3',
-      thumbnailUrl: '/images/steve-sp101.jpg',
+      videoUrl: 'https://www.youtube.com/watch?v=0G515SOjhJA',
       discussionQuestions: [
         {
           id: 'dq-03-02-01',
