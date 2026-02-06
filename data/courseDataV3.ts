@@ -1700,8 +1700,18 @@ const module5: CourseModule = {
       discussionQuestions: [
         {
           id: 'dq-05-02-01',
-          question: 'What was the hypothesis being tested? What did they measure?',
+          question: 'What were the perceived problems and lagging indicators that Panda Express initially presented with their drive thru operation?',
           order: 1
+        },
+        {
+          id: 'dq-05-02-02',
+          question: 'What were the leading indicators we uncovered while grasping the situation?',
+          order: 2
+        },
+        {
+          id: 'dq-05-02-03',
+          question: 'How did the target condition change as the understanding of the work changed?',
+          order: 3
         }
       ]
     },
