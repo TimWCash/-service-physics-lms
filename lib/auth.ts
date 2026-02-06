@@ -112,12 +112,39 @@ export class AuthService {
       console.error('Exception loading progress:', err)
     }
 
+    // Load existing notes and answers from Supabase
+    const notes: User['notes'] = {}
+    const answers: User['answers'] = {}
+    try {
+      const { data: notesData, error: notesError } = await supabase
+        .from('user_notes')
+        .select('activity_id, notes, answers')
+        .eq('user_id', userId)
+
+      if (notesError) {
+        console.error('Error loading notes:', notesError)
+      } else if (notesData) {
+        notesData.forEach((item) => {
+          if (item.notes) {
+            notes[item.activity_id] = item.notes
+          }
+          if (item.answers && Object.keys(item.answers).length > 0) {
+            answers[item.activity_id] = item.answers as { [questionId: string]: string }
+          }
+        })
+        console.log('Loaded notes for', notesData.length, 'activities')
+      }
+    } catch (err) {
+      console.error('Exception loading notes:', err)
+    }
+
     const user: User = {
       id: userId,
       email,
       name,
       progress,
-      notes: {}
+      notes,
+      answers
     };
 
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
@@ -200,6 +227,9 @@ export class AuthService {
 
     user.notes[activityId] = note;
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+
+    // Also save to Supabase (fire and forget with retry)
+    this.saveNoteToSupabase(activityId, note, user.answers?.[activityId] || {});
   }
 
   static getNote(activityId: string): string {
@@ -217,6 +247,9 @@ export class AuthService {
 
     user.answers[activityId] = answers;
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+
+    // Also save to Supabase (fire and forget with retry)
+    this.saveNoteToSupabase(activityId, user.notes?.[activityId] || '', answers);
   }
 
   static getAnswers(activityId: string): { [questionId: string]: string } {
@@ -229,11 +262,43 @@ export class AuthService {
     return user?.answers || {};
   }
 
-  // Sync progress from Supabase to localStorage
+  // Save notes and answers to Supabase
+  private static async saveNoteToSupabase(
+    activityId: string,
+    notes: string,
+    answers: { [questionId: string]: string }
+  ): Promise<void> {
+    const user = this.getUser();
+    if (!user) return;
+
+    try {
+      await withRetry(async () => {
+        const { error } = await supabase
+          .from('user_notes')
+          .upsert({
+            user_id: user.id,
+            activity_id: activityId,
+            notes: notes || '',
+            answers: answers || {},
+            updated_at: new Date().toISOString()
+          });
+
+        if (error) {
+          throw error;
+        }
+      });
+    } catch (error) {
+      console.error('Failed to save notes to Supabase:', error);
+      // Notes are still saved locally
+    }
+  }
+
+  // Sync progress and notes from Supabase to localStorage
   static async syncFromSupabase(): Promise<void> {
     const user = this.getUser();
     if (!user) return;
 
+    // Sync progress
     try {
       const { data: progressData, error: progressError } = await supabase
         .from('course_progress')
@@ -243,10 +308,7 @@ export class AuthService {
 
       if (progressError) {
         console.error('Error syncing progress:', progressError)
-        return;
-      }
-
-      if (progressData) {
+      } else if (progressData) {
         // Reset progress and rebuild from Supabase (source of truth)
         const newProgress: User['progress'] = {};
         progressData.forEach((item) => {
@@ -257,13 +319,44 @@ export class AuthService {
           }
         });
 
-        // Update localStorage with synced data
         user.progress = newProgress;
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
         console.log('Synced progress from Supabase:', progressData.length, 'completed activities')
       }
     } catch (err) {
       console.error('Exception syncing progress:', err)
     }
+
+    // Sync notes and answers
+    try {
+      const { data: notesData, error: notesError } = await supabase
+        .from('user_notes')
+        .select('activity_id, notes, answers')
+        .eq('user_id', user.id)
+
+      if (notesError) {
+        console.error('Error syncing notes:', notesError)
+      } else if (notesData) {
+        const newNotes: User['notes'] = {};
+        const newAnswers: User['answers'] = {};
+
+        notesData.forEach((item) => {
+          if (item.notes) {
+            newNotes[item.activity_id] = item.notes
+          }
+          if (item.answers && Object.keys(item.answers).length > 0) {
+            newAnswers[item.activity_id] = item.answers as { [questionId: string]: string }
+          }
+        });
+
+        user.notes = newNotes;
+        user.answers = newAnswers;
+        console.log('Synced notes from Supabase:', notesData.length, 'activities')
+      }
+    } catch (err) {
+      console.error('Exception syncing notes:', err)
+    }
+
+    // Save all synced data to localStorage
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
   }
 }

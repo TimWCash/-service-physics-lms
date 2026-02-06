@@ -93,6 +93,18 @@ CREATE TABLE IF NOT EXISTS public.deep_dive_resources (
   UNIQUE(module_id, resource_type, display_order)
 );
 
+-- NEW: Create user_notes table for discussion answers and notes
+CREATE TABLE IF NOT EXISTS public.user_notes (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id TEXT REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL,
+  activity_id TEXT NOT NULL,
+  notes TEXT,
+  answers JSONB DEFAULT '{}'::jsonb,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+  UNIQUE(user_id, activity_id)
+);
+
 -- Disable Row Level Security for demo purposes (enable in production)
 ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.course_progress DISABLE ROW LEVEL SECURITY;
@@ -101,6 +113,7 @@ ALTER TABLE public.module_sections DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.discussion_questions DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.coaching_prep DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.deep_dive_resources DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.user_notes DISABLE ROW LEVEL SECURITY;
 
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_course_progress_user_id ON public.course_progress(user_id);
@@ -112,9 +125,12 @@ CREATE INDEX IF NOT EXISTS idx_module_sections_column_type ON public.module_sect
 CREATE INDEX IF NOT EXISTS idx_discussion_questions_activity_id ON public.discussion_questions(activity_id);
 CREATE INDEX IF NOT EXISTS idx_coaching_prep_module_id ON public.coaching_prep(module_id);
 CREATE INDEX IF NOT EXISTS idx_deep_dive_resources_module_id ON public.deep_dive_resources(module_id);
+CREATE INDEX IF NOT EXISTS idx_user_notes_user_id ON public.user_notes(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_notes_activity_id ON public.user_notes(activity_id);
 
 -- Add comments for documentation
 COMMENT ON TABLE public.module_sections IS 'Stores content for 3-column layout (Overview, Dive In, Recap) per module';
 COMMENT ON TABLE public.discussion_questions IS 'Stores discussion questions for each activity';
 COMMENT ON TABLE public.coaching_prep IS 'Stores coaching prep content for module recap sections';
 COMMENT ON TABLE public.deep_dive_resources IS 'Stores additional learning resources (books, videos) per module';
+COMMENT ON TABLE public.user_notes IS 'Stores user discussion answers and notes per activity';
