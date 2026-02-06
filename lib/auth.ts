@@ -1,4 +1,5 @@
 import { supabase } from './supabase'
+import { courseModules } from '@/data/courseDataV3'
 
 export interface User {
   id: string;
@@ -172,8 +173,17 @@ export class AuthService {
     const user = this.getUser();
     if (!user) return 0;
 
-    const completed = Object.values(user.progress).filter(p => p.completed).length;
-    const total = 31; // Total activities across all 7 modules (including 6 quizzes)
+    // Get valid activity IDs from course data
+    const validActivityIds = new Set(
+      courseModules.flatMap(module => module.activities.map(a => a.id))
+    );
+
+    // Only count completed activities that still exist in the course
+    const completed = Object.entries(user.progress)
+      .filter(([activityId, p]) => p.completed && validActivityIds.has(activityId))
+      .length;
+
+    const total = validActivityIds.size;
 
     const progress = Math.round((completed / total) * 100);
     return Math.min(progress, 100); // Cap at 100%

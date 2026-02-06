@@ -121,16 +121,18 @@ export default function AdminDashboard() {
       // Build users list from progress data (primary source)
       let usersWithProgress: UserProgress[] = uniqueUserIds.map(userId => {
         const userProgress = progressByUser.get(userId) || []
-        const completedCount = userProgress.length
-        const completedActivities = userProgress.map(p => p.activity_id)
+        // Only count activities that still exist in the course
+        const validProgress = userProgress.filter(p => activityLookup.has(p.activity_id))
+        const completedCount = validProgress.length
+        const completedActivities = validProgress.map(p => p.activity_id)
 
-        // Find earliest and latest completion dates
-        const dates = userProgress.map(p => new Date(p.completed_at).getTime()).filter(d => !isNaN(d))
+        // Find earliest and latest completion dates (from valid activities only)
+        const dates = validProgress.map(p => new Date(p.completed_at).getTime()).filter(d => !isNaN(d))
         const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
         const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
 
-        // Extract quiz completions using pre-computed quiz IDs
-        const quizScores: QuizScore[] = userProgress
+        // Extract quiz completions using pre-computed quiz IDs (only valid activities)
+        const quizScores: QuizScore[] = validProgress
           .filter(p => quizActivityIds.has(p.activity_id))
           .map(p => {
             const activity = activityLookup.get(p.activity_id)
