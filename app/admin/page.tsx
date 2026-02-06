@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
-import { courseData } from '@/data/courseData'
+import { courseModules } from '@/data/courseDataV3'
 
 interface UserProgress {
   id: string
@@ -41,8 +41,8 @@ export default function AdminDashboard() {
 
       if (progressError) throw progressError
 
-      // Calculate total activities
-      const totalActivities = courseData.reduce((acc, section) => acc + section.activities.length, 0)
+      // Calculate total activities (25 across 7 modules)
+      const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
 
       // Combine data
       const usersWithProgress = profiles?.map(profile => {
@@ -193,10 +193,10 @@ export default function AdminDashboard() {
                     <p className="text-xs font-semibold text-gray-700 mb-2">Completed Activities:</p>
                     <div className="flex flex-wrap gap-2">
                       {user.completedActivities.map((activityId) => {
-                        // Find activity name from courseData
+                        // Find activity name from courseModules
                         let activityName = activityId
-                        courseData.forEach(section => {
-                          const activity = section.activities.find(a => a.id === activityId)
+                        courseModules.forEach(module => {
+                          const activity = module.activities.find(a => a.id === activityId)
                           if (activity) {
                             activityName = activity.title
                           }
