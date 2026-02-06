@@ -21,6 +21,31 @@ export interface User {
   };
 }
 
+// Retry helper for Supabase operations
+async function withRetry<T>(
+  operation: () => Promise<T>,
+  maxRetries: number = 3,
+  delayMs: number = 1000
+): Promise<T> {
+  let lastError: Error | null = null;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error as Error;
+      console.warn(`Supabase operation failed (attempt ${attempt}/${maxRetries}):`, error);
+
+      if (attempt < maxRetries) {
+        // Exponential backoff
+        await new Promise(resolve => setTimeout(resolve, delayMs * attempt));
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 export class AuthService {
   private static STORAGE_KEY = 'sp_lms_user';
 
@@ -105,7 +130,7 @@ export class AuthService {
     const user = this.getUser();
     if (!user) return;
 
-    // Update local storage
+    // Update local storage first (optimistic update)
     user.progress[activityId] = {
       completed,
       score,
@@ -113,21 +138,28 @@ export class AuthService {
     };
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
 
-    // Update Supabase database
-    const { error } = await supabase
-      .from('course_progress')
-      .upsert({
-        user_id: user.id,
-        activity_id: activityId,
-        section_id: sectionId || 'unknown',
-        completed,
-        score: score || null,
-        completed_at: completed ? new Date().toISOString() : null,
-        updated_at: new Date().toISOString()
-      })
+    // Update Supabase database with retry logic
+    try {
+      await withRetry(async () => {
+        const { error } = await supabase
+          .from('course_progress')
+          .upsert({
+            user_id: user.id,
+            activity_id: activityId,
+            section_id: sectionId || 'unknown',
+            completed,
+            score: score || null,
+            completed_at: completed ? new Date().toISOString() : null,
+            updated_at: new Date().toISOString()
+          })
 
-    if (error) {
-      console.error('Error updating progress in Supabase:', error)
+        if (error) {
+          throw error;
+        }
+      });
+    } catch (error) {
+      console.error('Failed to update progress in Supabase after retries:', error)
+      // Progress is still saved locally, will sync on next login
     }
   }
 

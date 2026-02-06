@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { QuizQuestion } from '@/data/courseDataV3'
 import { AuthService } from '@/lib/auth'
 
@@ -17,6 +17,17 @@ export default function Quiz({ questions, activityId, onComplete, isCompleted, t
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([])
   const [showResults, setShowResults] = useState(isCompleted)
   const [score, setScore] = useState(0)
+  const [savedScore, setSavedScore] = useState<number | null>(null)
+
+  // Load saved score on mount if already completed
+  useEffect(() => {
+    if (isCompleted) {
+      const progress = AuthService.getProgress(activityId)
+      if (progress?.score !== undefined) {
+        setSavedScore(progress.score)
+      }
+    }
+  }, [activityId, isCompleted])
 
   const handleAnswerSelect = (answerIndex: number) => {
     if (showResults) return
@@ -58,8 +69,52 @@ export default function Quiz({ questions, activityId, onComplete, isCompleted, t
   const question = questions[currentQuestion]
 
   if (showResults) {
-    const savedProgress = AuthService.getProgress(activityId)
-    const displayScore = savedProgress?.score || score
+    const displayScore = savedScore ?? score
+    const correctCount = selectedAnswers.length > 0
+      ? selectedAnswers.filter((a, i) => a === questions[i]?.correctAnswer).length
+      : Math.round((displayScore / 100) * questions.length)
+
+    // If we're showing results for a previously completed quiz (no answers in memory)
+    if (isCompleted && selectedAnswers.length === 0) {
+      return (
+        <div className="p-8">
+          <div className="text-center mb-8">
+            <div className={`inline-block px-8 py-4 rounded-full ${
+              displayScore >= 70 ? 'bg-green-100' : 'bg-yellow-100'
+            }`}>
+              <p className={`text-5xl font-bold ${
+                displayScore >= 70 ? 'text-green-600' : 'text-yellow-600'
+              }`}>
+                {displayScore}%
+              </p>
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mt-4">
+              {displayScore >= 70 ? '🎉 Quiz Completed!' : '💪 Quiz Completed!'}
+            </h2>
+            <p className="text-gray-600 mt-2">
+              You scored {displayScore}% on this quiz ({correctCount} out of {questions.length} correct)
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
+              Retake this quiz to see detailed question breakdown.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <button
+              onClick={() => {
+                setShowResults(false)
+                setSelectedAnswers([])
+                setCurrentQuestion(0)
+                setSavedScore(null)
+              }}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+            >
+              Retake Quiz
+            </button>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div className="p-8">
@@ -77,7 +132,7 @@ export default function Quiz({ questions, activityId, onComplete, isCompleted, t
             {displayScore >= 70 ? '🎉 Great Job!' : '💪 Keep Learning!'}
           </h2>
           <p className="text-gray-600 mt-2">
-            You got {selectedAnswers.filter((a, i) => a === questions[i].correctAnswer).length} out of {questions.length} questions correct
+            You got {correctCount} out of {questions.length} questions correct
           </p>
         </div>
 
@@ -106,7 +161,7 @@ export default function Quiz({ questions, activityId, onComplete, isCompleted, t
                   <div className="flex-1">
                     <p className="font-medium text-gray-900 mb-3">{q.question}</p>
                     <p className="text-sm text-gray-700 mb-2">
-                      <strong>Your answer:</strong> {q.options[selectedAnswers[i]]}
+                      <strong>Your answer:</strong> {q.options[selectedAnswers[i]] || 'Not answered'}
                     </p>
                     {!isCorrect && (
                       <p className="text-sm text-gray-700 mb-2">

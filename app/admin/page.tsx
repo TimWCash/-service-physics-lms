@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { supabase } from '@/lib/supabase'
 import { courseModules } from '@/data/courseDataV3'
 
@@ -23,13 +23,65 @@ interface UserProgress {
   quizScores: QuizScore[]
 }
 
+const USERS_PER_PAGE = 20
+const ADMIN_EMAILS = ['tim@servicephysics.com', 'maria@servicephysics.com', 'brian@servicephysics.com', 'steve@servicephysics.com', 'timothy.cashman@gmail.com']
+
 export default function AdminDashboard() {
   const [users, setUsers] = useState<UserProgress[]>([])
   const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null)
+
+  // Pre-compute activity lookup map for O(1) lookups
+  const activityLookup = useMemo(() => {
+    const map = new Map<string, { title: string; type: string }>()
+    courseModules.forEach(module => {
+      module.activities.forEach(activity => {
+        map.set(activity.id, { title: activity.title, type: activity.type })
+      })
+    })
+    return map
+  }, [])
+
+  // Pre-compute quiz activity IDs
+  const quizActivityIds = useMemo(() => {
+    return new Set(
+      courseModules.flatMap(module =>
+        module.activities.filter(a => a.type === 'quiz').map(a => a.id)
+      )
+    )
+  }, [])
+
+  // Pre-compute total activities
+  const totalActivities = useMemo(() => {
+    return courseModules.reduce((acc, module) => acc + module.activities.length, 0)
+  }, [])
+
+  // Check if user is authorized admin
+  useEffect(() => {
+    const checkAuthorization = () => {
+      try {
+        const userStr = localStorage.getItem('service_physics_user')
+        if (!userStr) {
+          setIsAuthorized(false)
+          return
+        }
+        const user = JSON.parse(userStr)
+        const email = user.email?.toLowerCase()
+        setIsAuthorized(ADMIN_EMAILS.includes(email))
+      } catch {
+        setIsAuthorized(false)
+      }
+    }
+    checkAuthorization()
+  }, [])
 
   useEffect(() => {
-    fetchUserProgress()
-  }, [])
+    if (isAuthorized) {
+      fetchUserProgress()
+    }
+  }, [isAuthorized])
 
   const fetchUserProgress = async () => {
     try {
@@ -43,8 +95,6 @@ export default function AdminDashboard() {
         console.error('Progress error:', progressError)
       }
 
-      console.log('Progress data fetched:', progressData?.length || 0, 'records')
-
       // Also try to fetch profiles for additional info
       const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
@@ -54,27 +104,23 @@ export default function AdminDashboard() {
         console.error('Profiles error:', profilesError)
       }
 
-      console.log('Profiles fetched:', profiles?.length || 0, 'records')
-
-      // Calculate total activities (31 across 7 modules including quizzes)
-      const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
-
-      // Get quiz activity IDs
-      const quizActivityIds = courseModules.flatMap(module =>
-        module.activities.filter(a => a.type === 'quiz').map(a => a.id)
-      )
+      // Create profile lookup map for O(1) lookups
+      const profileMap = new Map(profiles?.map(p => [p.id, p]) || [])
 
       // Get unique user IDs from progress data
       const uniqueUserIds = [...new Set(progressData?.map(p => p.user_id) || [])]
 
-      console.log('Unique users from progress:', uniqueUserIds)
-
-      // Create a map of profiles for quick lookup
-      const profileMap = new Map(profiles?.map(p => [p.id, p]) || [])
+      // Group progress data by user for efficient processing
+      const progressByUser = new Map<string, typeof progressData>()
+      progressData?.forEach(p => {
+        const existing = progressByUser.get(p.user_id) || []
+        existing.push(p)
+        progressByUser.set(p.user_id, existing)
+      })
 
       // Build users list from progress data (primary source)
       let usersWithProgress: UserProgress[] = uniqueUserIds.map(userId => {
-        const userProgress = progressData?.filter(p => p.user_id === userId) || []
+        const userProgress = progressByUser.get(userId) || []
         const completedCount = userProgress.length
         const completedActivities = userProgress.map(p => p.activity_id)
 
@@ -83,18 +129,14 @@ export default function AdminDashboard() {
         const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
         const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
 
-        // Extract quiz completions (score tracking requires adding score column to Supabase)
+        // Extract quiz completions using pre-computed quiz IDs
         const quizScores: QuizScore[] = userProgress
-          .filter(p => quizActivityIds.includes(p.activity_id))
+          .filter(p => quizActivityIds.has(p.activity_id))
           .map(p => {
-            let activityName = p.activity_id
-            courseModules.forEach(module => {
-              const activity = module.activities.find(a => a.id === p.activity_id)
-              if (activity) activityName = activity.title
-            })
+            const activity = activityLookup.get(p.activity_id)
             return {
               activityId: p.activity_id,
-              activityName,
+              activityName: activity?.title || p.activity_id,
               score: (p as { score?: number }).score || 0,
               completedAt: p.completed_at
             }
@@ -129,13 +171,63 @@ export default function AdminDashboard() {
       // Sort by most recent activity
       usersWithProgress.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
 
-      console.log('Final users with progress:', usersWithProgress.length)
       setUsers(usersWithProgress)
     } catch (error) {
       console.error('Error fetching user progress:', error)
     } finally {
       setLoading(false)
     }
+  }
+
+  // Filter users by search query
+  const filteredUsers = useMemo(() => {
+    if (!searchQuery.trim()) return users
+    const query = searchQuery.toLowerCase()
+    return users.filter(user =>
+      user.email.toLowerCase().includes(query) ||
+      user.full_name.toLowerCase().includes(query)
+    )
+  }, [users, searchQuery])
+
+  // Paginated users
+  const paginatedUsers = useMemo(() => {
+    const startIndex = (currentPage - 1) * USERS_PER_PAGE
+    return filteredUsers.slice(startIndex, startIndex + USERS_PER_PAGE)
+  }, [filteredUsers, currentPage])
+
+  const totalPages = Math.ceil(filteredUsers.length / USERS_PER_PAGE)
+
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery])
+
+  // Authorization check
+  if (isAuthorized === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      </div>
+    )
+  }
+
+  if (!isAuthorized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="card p-8 max-w-md text-center">
+          <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Access Denied</h2>
+          <p className="text-gray-600 mb-4">You don&apos;t have permission to view this page.</p>
+          <a href="/dashboard" className="btn-primary inline-block">
+            Return to Dashboard
+          </a>
+        </div>
+      </div>
+    )
   }
 
   if (loading) {
@@ -211,11 +303,28 @@ export default function AdminDashboard() {
           </a>
         </div>
 
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">User Progress</h2>
+        {/* Search and Title */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <h2 className="text-2xl font-bold text-gray-900">User Progress</h2>
+          {users.length > 0 && (
+            <div className="relative w-full sm:w-64">
+              <input
+                type="text"
+                placeholder="Search users..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              />
+              <svg className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         {users.length === 0 ? (
           <div className="card p-12 text-center">
             <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -224,96 +333,124 @@ export default function AdminDashboard() {
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No users yet</h3>
             <p className="text-gray-600">Users will appear here once they sign up and start learning.</p>
           </div>
-        ) : (
-          <div className="space-y-4">
-            {users.map((user) => (
-              <div key={user.id} className="card p-6 hover:shadow-soft-lg">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900">{user.full_name}</h3>
-                    <p className="text-sm text-gray-600">{user.email}</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Joined {new Date(user.created_at).toLocaleDateString()}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      Last active {new Date(user.updated_at).toLocaleDateString()} at {new Date(user.updated_at).toLocaleTimeString()}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
-                      {user.progressPercentage}%
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {user.progressCount} activities completed
-                    </p>
-                  </div>
-                </div>
-
-                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
-                  <div
-                    className="bg-gradient-to-r from-primary-600 to-primary-700 h-3 rounded-full transition-all duration-500 ease-out shadow-md"
-                    style={{ width: `${user.progressPercentage}%` }}
-                  />
-                </div>
-
-                {/* Quiz Scores */}
-                {user.quizScores.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-xs font-semibold text-gray-700 mb-2">📝 Quiz Scores:</p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                      {user.quizScores.map((quiz) => (
-                        <div
-                          key={quiz.activityId}
-                          className={`px-3 py-2 rounded-lg text-xs font-medium border ${
-                            quiz.score >= 80
-                              ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                              : quiz.score >= 60
-                              ? 'bg-amber-50 text-amber-800 border-amber-200'
-                              : 'bg-red-50 text-red-800 border-red-200'
-                          }`}
-                        >
-                          <div className="font-semibold">{quiz.activityName.replace('Module ', 'M').replace(' Knowledge Check', '')}</div>
-                          <div className="text-lg font-bold">{quiz.score}%</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {user.completedActivities.length > 0 && (
-                  <div className="mt-4">
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Completed Activities:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {user.completedActivities.map((activityId) => {
-                        // Find activity name from courseModules
-                        let activityName = activityId
-                        let isQuiz = false
-                        courseModules.forEach(module => {
-                          const activity = module.activities.find(a => a.id === activityId)
-                          if (activity) {
-                            activityName = activity.title
-                            isQuiz = activity.type === 'quiz'
-                          }
-                        })
-
-                        // Skip quizzes in the completed list since they're shown above
-                        if (isQuiz) return null
-
-                        return (
-                          <span
-                            key={activityId}
-                            className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200"
-                          >
-                            ✓ {activityName}
-                          </span>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+        ) : filteredUsers.length === 0 ? (
+          <div className="card p-12 text-center">
+            <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No matching users</h3>
+            <p className="text-gray-600">Try a different search term.</p>
           </div>
+        ) : (
+          <>
+            <div className="space-y-4">
+              {paginatedUsers.map((user) => (
+                <div key={user.id} className="card p-6 hover:shadow-soft-lg">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-gray-900">{user.full_name}</h3>
+                      <p className="text-sm text-gray-600">{user.email}</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Joined {new Date(user.created_at).toLocaleDateString()}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Last active {new Date(user.updated_at).toLocaleDateString()} at {new Date(user.updated_at).toLocaleTimeString()}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+                        {user.progressPercentage}%
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        {user.progressCount} activities completed
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+                    <div
+                      className="bg-gradient-to-r from-primary-600 to-primary-700 h-3 rounded-full transition-all duration-500 ease-out shadow-md"
+                      style={{ width: `${user.progressPercentage}%` }}
+                    />
+                  </div>
+
+                  {/* Quiz Scores */}
+                  {user.quizScores.length > 0 && (
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold text-gray-700 mb-2">📝 Quiz Scores:</p>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                        {user.quizScores.map((quiz) => (
+                          <div
+                            key={quiz.activityId}
+                            className={`px-3 py-2 rounded-lg text-xs font-medium border ${
+                              quiz.score >= 80
+                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                : quiz.score >= 60
+                                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                : 'bg-red-50 text-red-800 border-red-200'
+                            }`}
+                          >
+                            <div className="font-semibold">{quiz.activityName.replace('Module ', 'M').replace(' Knowledge Check', '')}</div>
+                            <div className="text-lg font-bold">{quiz.score}%</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {user.completedActivities.length > 0 && (
+                    <div className="mt-4">
+                      <p className="text-xs font-semibold text-gray-700 mb-2">Completed Activities:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {user.completedActivities.map((activityId) => {
+                          const activity = activityLookup.get(activityId)
+                          // Skip quizzes in the completed list since they're shown above
+                          if (activity?.type === 'quiz') return null
+
+                          return (
+                            <span
+                              key={activityId}
+                              className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200"
+                            >
+                              ✓ {activity?.title || activityId}
+                            </span>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-2 mt-8">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                >
+                  Previous
+                </button>
+                <span className="px-4 py-2 text-gray-600">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+            )}
+
+            {/* Results info */}
+            <p className="text-center text-sm text-gray-500 mt-4">
+              Showing {((currentPage - 1) * USERS_PER_PAGE) + 1} - {Math.min(currentPage * USERS_PER_PAGE, filteredUsers.length)} of {filteredUsers.length} users
+            </p>
+          </>
         )}
       </main>
     </div>

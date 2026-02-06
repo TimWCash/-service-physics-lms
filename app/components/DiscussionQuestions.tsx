@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { DiscussionQuestion } from '@/data/courseDataV3'
 import { AuthService } from '@/lib/auth'
 
@@ -14,6 +14,11 @@ export default function DiscussionQuestions({ questions, activityId }: Props) {
   const [notes, setNotes] = useState('')
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle')
 
+  // Refs to track debounce timeouts - prevents memory leaks
+  const answerTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const notesTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const statusTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
   useEffect(() => {
     // Load existing notes and answers for this activity
     const savedNotes = AuthService.getNote(activityId)
@@ -23,36 +28,50 @@ export default function DiscussionQuestions({ questions, activityId }: Props) {
     setAnswers(savedAnswers)
   }, [activityId])
 
+  // Cleanup all timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (answerTimeoutRef.current) clearTimeout(answerTimeoutRef.current)
+      if (notesTimeoutRef.current) clearTimeout(notesTimeoutRef.current)
+      if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current)
+    }
+  }, [])
+
   const saveData = useCallback((newAnswers: { [questionId: string]: string }, newNotes: string) => {
     setSaveStatus('saving')
     AuthService.saveNote(activityId, newNotes)
     AuthService.saveAnswers(activityId, newAnswers)
     setSaveStatus('saved')
-    setTimeout(() => setSaveStatus('idle'), 2000)
+
+    // Clear previous status timeout
+    if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current)
+    statusTimeoutRef.current = setTimeout(() => setSaveStatus('idle'), 2000)
   }, [activityId])
 
   const handleAnswerChange = (questionId: string, value: string) => {
     const newAnswers = { ...answers, [questionId]: value }
     setAnswers(newAnswers)
 
+    // Clear previous timeout before setting new one
+    if (answerTimeoutRef.current) clearTimeout(answerTimeoutRef.current)
+
     // Debounced save
-    const timeoutId = setTimeout(() => {
+    answerTimeoutRef.current = setTimeout(() => {
       saveData(newAnswers, notes)
     }, 500)
-
-    return () => clearTimeout(timeoutId)
   }
 
   const handleNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newNotes = e.target.value
     setNotes(newNotes)
 
+    // Clear previous timeout before setting new one
+    if (notesTimeoutRef.current) clearTimeout(notesTimeoutRef.current)
+
     // Debounced save
-    const timeoutId = setTimeout(() => {
+    notesTimeoutRef.current = setTimeout(() => {
       saveData(answers, newNotes)
     }, 500)
-
-    return () => clearTimeout(timeoutId)
   }
 
   if (!questions || questions.length === 0) {
