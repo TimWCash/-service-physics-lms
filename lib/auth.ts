@@ -121,6 +121,7 @@ export class AuthService {
         activity_id: activityId,
         section_id: sectionId || 'unknown',
         completed,
+        score: score || null,
         completed_at: completed ? new Date().toISOString() : null,
         updated_at: new Date().toISOString()
       })
@@ -140,7 +141,7 @@ export class AuthService {
     if (!user) return 0;
 
     const completed = Object.values(user.progress).filter(p => p.completed).length;
-    const total = 25; // Total activities across all 7 modules
+    const total = 31; // Total activities across all 7 modules (including 6 quizzes)
 
     const progress = Math.round((completed / total) * 100);
     return Math.min(progress, 100); // Cap at 100%

@@ -416,6 +416,53 @@ const module1: CourseModule = {
           order: 2
         }
       ]
+    },
+    {
+      id: 'activity-01-quiz',
+      title: 'Module 1 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of the problem solving approach concepts covered in this module.',
+      questions: [
+        {
+          id: 'q-01-01',
+          question: 'Which of these statements define a problem?',
+          options: [
+            'A gap between X and Y',
+            'It takes a very long time to do X and Y',
+            'People are using X to do Y',
+            'There are 14Xs and 14Ys, but demand requires 12Xs and 16Ys',
+            'A & C',
+            'A & D'
+          ],
+          correctAnswer: 5,
+          explanation: 'A problem is defined as a gap between current state and desired state. Both "A gap between X and Y" and the demand mismatch example represent gaps.'
+        },
+        {
+          id: 'q-01-02',
+          question: 'What is beneficial about the Check step in the PDCA (Plan Do Check Act) framework?',
+          options: [
+            'Ensure that we have designed a test that will prove our hypothesis',
+            'Ensure that all cross functional teams have checked their work',
+            'Ensures that decisions are based on evidence rather than assumptions',
+            'All of the above'
+          ],
+          correctAnswer: 2,
+          explanation: 'The Check step ensures decisions are based on evidence rather than assumptions by reviewing actual results against expected outcomes.'
+        },
+        {
+          id: 'q-01-03',
+          question: 'Imagine we want to fix a Boeing airplane engine. We know that fuel is leaking somewhere inside of the engine; we are not sure why. How do you classify and approach this problem using the Cynefin Framework?',
+          options: [
+            'Clear (Approach: Apply best practice such as standard work or work routines)',
+            'Complicated (Approach: Bring in a subject matter expert, such as an airplane mechanic, to run diagnostic tests)',
+            'Complex (Approach: Bring a committee of airport personnel consisting of ground crew, pilots, and air traffic control to discuss the problem)',
+            'Chaotic (Approach: Bring in the Boeing CEO to set direction and context)'
+          ],
+          correctAnswer: 1,
+          explanation: 'This is a Complicated problem - the cause-effect relationship exists but requires expertise to diagnose. A subject matter expert running diagnostic tests is the appropriate approach.'
+        }
+      ]
     }
   ],
 
@@ -695,6 +742,61 @@ const module2: CourseModule = {
           id: 'dq-02-03-02',
           question: 'What role did data play in their problem-solving process?',
           order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-02-quiz',
+      title: 'Module 2 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of the problem solving tools covered in this module.',
+      questions: [
+        {
+          id: 'q-02-01',
+          question: 'Why is an A3 divided into left- and right-hand sides?',
+          options: [
+            'To provide an aesthetically pleasing visual format',
+            'To organize problem-solving thinking into two sections',
+            'To emphasize that 50% of our time should be spent on understanding the problem',
+            'To emphasize that most of our time should be spent on solving the problem'
+          ],
+          correctAnswer: 3,
+          explanation: 'The A3 is divided to emphasize that most of our time should be spent on understanding the problem (left side) before moving to solutions (right side).'
+        },
+        {
+          id: 'q-02-02',
+          question: 'What is the goal of the left-hand side of the A3?',
+          options: [
+            'Generate solutions',
+            'Understand the problem',
+            'Solve the problem'
+          ],
+          correctAnswer: 1,
+          explanation: 'The left-hand side of the A3 focuses on understanding the problem thoroughly before jumping to solutions.'
+        },
+        {
+          id: 'q-02-03',
+          question: 'How might we write a hypothesis?',
+          options: [
+            'Use the 5 Whys framework',
+            'Use the problem-solution-outcome framework',
+            'Use the 3C\'s Model (Company, Customer, Competitor)',
+            'If X, then Y'
+          ],
+          correctAnswer: 3,
+          explanation: 'A hypothesis is written in the "If X, then Y" format, stating a prediction that can be tested.'
+        },
+        {
+          id: 'q-02-04',
+          question: 'What might we plot on a 2x2 matrix to help us prioritize problems to solve?',
+          options: [
+            'Ease & Expected Cost',
+            'Incremental Revenue & Expected Cost',
+            'Ease & Impact'
+          ],
+          correctAnswer: 2,
+          explanation: 'An Ease vs Impact matrix helps prioritize problems by considering how easy they are to solve and what impact the solution will have.'
         }
       ]
     }
@@ -983,6 +1085,65 @@ const module3: CourseModule = {
           id: 'dq-03-05-01',
           question: 'What did your spaghetti diagram reveal about the process? Where were the biggest opportunities for improvement?',
           order: 1
+        }
+      ]
+    },
+    {
+      id: 'activity-03-quiz',
+      title: 'Module 3 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of identifying problems and waste.',
+      questions: [
+        {
+          id: 'q-03-01',
+          question: 'Why is it important to go to the field (gemba)?',
+          options: [
+            'To personally observe the actual process',
+            'To rely on reports and data provided by a third party',
+            'To grasp the current condition',
+            'To supervise employees more closely to ensure they are adhering to standard operating procedures (SOPs)',
+            'All of the above',
+            'A & C',
+            'A & C & D'
+          ],
+          correctAnswer: 5,
+          explanation: 'Going to gemba is important to personally observe the actual process and grasp the current condition firsthand.'
+        },
+        {
+          id: 'q-03-02',
+          question: 'How would we classify labor spend as a key performance indicator?',
+          options: [
+            'Lagging Indicator',
+            'Leading Indicator'
+          ],
+          correctAnswer: 0,
+          explanation: 'Labor spend is a lagging indicator because it measures outcomes that have already occurred.'
+        },
+        {
+          id: 'q-03-03',
+          question: 'What is the difference between waste and cost?',
+          options: [
+            'Waste represents non-value-adding activities, while costs (resources) are incurred for both value-adding and non-value-adding activities',
+            'Waste includes only material losses while cost covers all business expenses',
+            'Cost is always higher than waste in any process',
+            'Waste and cost are the same because both involve spending money',
+            'B & C'
+          ],
+          correctAnswer: 0,
+          explanation: 'Waste represents non-value-adding activities, while costs are incurred for both value-adding and non-value-adding activities.'
+        },
+        {
+          id: 'q-03-04',
+          question: 'Why is overproduction referred to as the "mother of all wastes"?',
+          options: [
+            'It is the most expensive type of waste across industry',
+            'It leads to, amplifies, and can hide other types of waste, such as excess inventory, transportation, and defects',
+            'It is the only type of waste that directly impacts customer satisfaction',
+            'It focuses exclusively on producing too many defective products'
+          ],
+          correctAnswer: 1,
+          explanation: 'Overproduction leads to and can hide other types of waste like excess inventory, transportation, and defects.'
         }
       ]
     }
@@ -1275,6 +1436,50 @@ const module4: CourseModule = {
           id: 'dq-04-04-01',
           question: 'Share your problem statement. Does it clearly describe the gap? Is it measurable? Does it focus on the problem rather than a solution?',
           order: 1
+        }
+      ]
+    },
+    {
+      id: 'activity-04-quiz',
+      title: 'Module 4 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of defining problems.',
+      questions: [
+        {
+          id: 'q-04-01',
+          question: 'What is a problem?',
+          options: [
+            'A headache',
+            'A gap',
+            'An unsolvable dilemma',
+            'A change to be solution-oriented',
+            'Something that requires escalation to my boss'
+          ],
+          correctAnswer: 1,
+          explanation: 'A problem is defined as a gap between the current condition and the desired/target condition.'
+        },
+        {
+          id: 'q-04-02',
+          question: 'Reflect on this statement: "There isn\'t enough space in the store to add the third point of sale terminal." Is this a well-defined problem?',
+          options: [
+            'This is not a problem statement because it outlines a lack of something rather than a gap',
+            'This is a good problem statement because it identifies the root cause'
+          ],
+          correctAnswer: 0,
+          explanation: 'This is not a well-defined problem statement because it describes a lack of something rather than identifying a measurable gap between current and target conditions.'
+        },
+        {
+          id: 'q-04-03',
+          question: 'Reflect on this statement: "We have trouble finding and hiring good people." Is this a well-defined problem?',
+          options: [
+            'This is a good problem statement',
+            'This is not a problem statement because it is vague, general, and non-specific',
+            'This is not a problem statement because it does not identify the root cause or indicate an understanding of the work',
+            'B & C'
+          ],
+          correctAnswer: 3,
+          explanation: 'This statement is vague, non-specific, and doesn\'t identify root cause or demonstrate understanding of the work process.'
         }
       ]
     }
@@ -1601,6 +1806,51 @@ const module5: CourseModule = {
           order: 3
         }
       ]
+    },
+    {
+      id: 'activity-05-quiz',
+      title: 'Module 5 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of experimentation and learning.',
+      questions: [
+        {
+          id: 'q-05-01',
+          question: 'A client team is designing an experiment to evaluate a new work distribution model. Which of the following would be the strongest indicator that their experiment is well-planned?',
+          options: [
+            'The experiment only includes experienced employees to ensure smooth execution',
+            'The team has predefined KPIs, timeframes, roles, controllable factors, and a plan to document uncontrollable variables',
+            'The team focuses on flexibility and allows conditions to change naturally',
+            'They plan to measure based on subjective feedback rather than structured data collection'
+          ],
+          correctAnswer: 1,
+          explanation: 'A well-planned experiment has predefined KPIs, timeframes, roles, controllable factors, and a plan to document uncontrollable variables.'
+        },
+        {
+          id: 'q-05-02',
+          question: 'Point Kaizen relies on iterative testing through the PDCA cycle. What is the key reason for conducting as many loops through PDCA as possible during a Point Kaizen experiment?',
+          options: [
+            'To minimize the duration of the experiment and reduce costs',
+            'To create complexity in the process and test multiple variables at once',
+            'To refine and validate hypotheses through continuous learning and improvement',
+            'To scale process improvements as quickly as possible across the organization'
+          ],
+          correctAnswer: 2,
+          explanation: 'Multiple PDCA loops allow you to refine and validate hypotheses through continuous learning and improvement.'
+        },
+        {
+          id: 'q-05-03',
+          question: 'In the context of process improvement, how can questioning every detail of the current process lead to better results than simply observing the process?',
+          options: [
+            'Questioning every detail forces a deeper understanding of the underlying assumptions and inefficiencies',
+            'Questioning eliminates the need for data collection, making the process faster',
+            'Observing the process typically results in identifying inefficiencies without needing to ask questions',
+            'Questioning each detail only complicates the process and leads to analysis paralysis'
+          ],
+          correctAnswer: 0,
+          explanation: 'Questioning every detail forces a deeper understanding of underlying assumptions and inefficiencies that may not be visible through observation alone.'
+        }
+      ]
     }
   ],
 
@@ -1851,6 +2101,51 @@ const module6: CourseModule = {
           id: 'dq-06-03-02',
           question: 'How can you balance quantitative metrics with qualitative feedback in your measurement approach?',
           order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-06-quiz',
+      title: 'Module 6 Knowledge Check',
+      type: 'quiz',
+      duration: '5',
+      description: 'Test your understanding of measurement and evaluation.',
+      questions: [
+        {
+          id: 'q-06-01',
+          question: 'In the Act phase of PDCA, how does documenting results with supporting metrics and observations influence decision-making?',
+          options: [
+            'It helps create decisions based on gut feelings and observations made during the experiment',
+            'It ensures decisions are based on observable facts and insights derived from the data',
+            'It limits the possibility of change by relying on pre-existing assumptions',
+            'It focuses the decision-making process solely on KPIs without the distraction of qualitative factors'
+          ],
+          correctAnswer: 1,
+          explanation: 'Documenting results with metrics ensures decisions are based on observable facts and insights derived from the data, not assumptions.'
+        },
+        {
+          id: 'q-06-02',
+          question: 'How does focusing on fact-based observations during the test help validate or iterate hypotheses more effectively?',
+          options: [
+            'It ensures the test is interpreted in a way that supports the original hypothesis',
+            'It allows for a more emotional response to the outcomes of the test',
+            'It helps identify the underlying reasons why a target was or wasn\'t achieved, leading to a clearer understanding of the experiment\'s results',
+            'It encourages flexible interpretations of the data, enabling a broader range of conclusions'
+          ],
+          correctAnswer: 2,
+          explanation: 'Fact-based observations help identify underlying reasons why targets were or weren\'t achieved, leading to clearer understanding.'
+        },
+        {
+          id: 'q-06-03',
+          question: 'How does asking open-ended questions of operators contribute to the process of iterative improvement in the Check phase?',
+          options: [
+            'They help uncover subjective feelings, which can distract from objective data collection',
+            'They encourage operators to reflect on their experience, helping to understand the reality of their work rather than positive or negative preferences of the experiment',
+            'They focus solely on personal satisfaction above just process efficiency',
+            'They provide a more emotional and subjective view, which is useful for understanding personal preferences'
+          ],
+          correctAnswer: 1,
+          explanation: 'Open-ended questions encourage operators to reflect on their experience, helping understand the reality of their work.'
         }
       ]
     }
@@ -2188,7 +2483,7 @@ export const courseMetadata = {
   title: 'Service Physics Problem Solving 101',
   description: 'Master the art of problem-solving with proven frameworks, practical tools, and real-world applications.',
   totalModules: 7,
-  totalActivities: 25, // Updated count of all activities across 7 modules
+  totalActivities: 31, // 25 activities + 6 module quizzes across 7 modules
   instructor: 'Service Physics Academy',
   estimatedDuration: '7-8 hours',
   skillLevel: 'Beginner to Intermediate',

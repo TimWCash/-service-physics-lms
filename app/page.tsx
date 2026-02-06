@@ -59,7 +59,7 @@ export default function Home() {
               <div className="text-primary-100">Comprehensive Modules</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="text-4xl font-bold mb-2">25</div>
+              <div className="text-4xl font-bold mb-2">31</div>
               <div className="text-primary-100">Learning Activities</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">

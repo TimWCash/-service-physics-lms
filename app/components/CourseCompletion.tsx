@@ -217,6 +217,49 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
         doc.text('Consider retaking activities and answering the discussion questions!', margin, yPosition)
       }
 
+      // Add Quiz Scores Section
+      checkPageBreak(60)
+      yPosition += 10
+
+      // Quiz Scores Header
+      doc.setFillColor(33, 69, 87)
+      doc.rect(margin, yPosition - 5, pageWidth - margin * 2, 12, 'F')
+      doc.setFontSize(14)
+      doc.setTextColor(255, 255, 255)
+      doc.text('Quiz Scores', margin + 5, yPosition + 3)
+      yPosition += 20
+
+      // Get quiz scores from user progress
+      const quizActivities = courseModules.flatMap(module =>
+        module.activities.filter(a => a.type === 'quiz').map(a => ({
+          ...a,
+          moduleTitle: module.title
+        }))
+      )
+
+      let hasQuizScores = false
+      for (const quiz of quizActivities) {
+        const progress = user.progress[quiz.id]
+        if (progress?.completed && progress?.score !== undefined) {
+          hasQuizScores = true
+          checkPageBreak(15)
+
+          doc.setFontSize(11)
+          doc.setTextColor(60)
+          const scoreColor = progress.score >= 80 ? [34, 197, 94] : progress.score >= 60 ? [245, 158, 11] : [239, 68, 68]
+          doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2])
+          doc.text(`${quiz.moduleTitle}: ${progress.score}%`, margin + 5, yPosition)
+          yPosition += 8
+        }
+      }
+
+      if (!hasQuizScores) {
+        doc.setFontSize(10)
+        doc.setTextColor(100)
+        doc.text('No quiz scores recorded.', margin + 5, yPosition)
+        yPosition += 10
+      }
+
       // Footer on all pages
       const pageCount = doc.getNumberOfPages()
       for (let i = 1; i <= pageCount; i++) {
@@ -287,7 +330,7 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
               <div className="text-sm text-gray-600">Modules</div>
             </div>
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 text-center border border-emerald-100">
-              <div className="text-3xl font-bold text-emerald-700">25</div>
+              <div className="text-3xl font-bold text-emerald-700">31</div>
               <div className="text-sm text-gray-600">Activities</div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 text-center border border-purple-100">

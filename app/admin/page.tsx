@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { courseModules } from '@/data/courseDataV3'
 
+interface QuizScore {
+  activityId: string
+  activityName: string
+  score: number
+  completedAt: string
+}
+
 interface UserProgress {
   id: string
   email: string
@@ -13,6 +20,7 @@ interface UserProgress {
   progressCount: number
   progressPercentage: number
   completedActivities: string[]
+  quizScores: QuizScore[]
 }
 
 export default function AdminDashboard() {
@@ -33,22 +41,44 @@ export default function AdminDashboard() {
 
       if (profilesError) throw profilesError
 
-      // Fetch all course progress
+      // Fetch all course progress including scores
       const { data: progressData, error: progressError } = await supabase
         .from('course_progress')
-        .select('user_id, activity_id, completed')
+        .select('user_id, activity_id, completed, score, completed_at')
         .eq('completed', true)
 
       if (progressError) throw progressError
 
-      // Calculate total activities (25 across 7 modules)
+      // Calculate total activities (31 across 7 modules including quizzes)
       const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
+
+      // Get quiz activity IDs
+      const quizActivityIds = courseModules.flatMap(module =>
+        module.activities.filter(a => a.type === 'quiz').map(a => a.id)
+      )
 
       // Combine data
       const usersWithProgress = profiles?.map(profile => {
         const userProgress = progressData?.filter(p => p.user_id === profile.id) || []
         const completedCount = userProgress.length
         const completedActivities = userProgress.map(p => p.activity_id)
+
+        // Extract quiz scores
+        const quizScores: QuizScore[] = userProgress
+          .filter(p => quizActivityIds.includes(p.activity_id) && p.score !== null)
+          .map(p => {
+            let activityName = p.activity_id
+            courseModules.forEach(module => {
+              const activity = module.activities.find(a => a.id === p.activity_id)
+              if (activity) activityName = activity.title
+            })
+            return {
+              activityId: p.activity_id,
+              activityName,
+              score: p.score,
+              completedAt: p.completed_at
+            }
+          })
 
         return {
           id: profile.id,
@@ -58,7 +88,8 @@ export default function AdminDashboard() {
           updated_at: profile.updated_at,
           progressCount: completedCount,
           progressPercentage: Math.round((completedCount / totalActivities) * 100),
-          completedActivities
+          completedActivities,
+          quizScores
         }
       }) || []
 
@@ -188,6 +219,30 @@ export default function AdminDashboard() {
                   />
                 </div>
 
+                {/* Quiz Scores */}
+                {user.quizScores.length > 0 && (
+                  <div className="mt-4">
+                    <p className="text-xs font-semibold text-gray-700 mb-2">📝 Quiz Scores:</p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {user.quizScores.map((quiz) => (
+                        <div
+                          key={quiz.activityId}
+                          className={`px-3 py-2 rounded-lg text-xs font-medium border ${
+                            quiz.score >= 80
+                              ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                              : quiz.score >= 60
+                              ? 'bg-amber-50 text-amber-800 border-amber-200'
+                              : 'bg-red-50 text-red-800 border-red-200'
+                          }`}
+                        >
+                          <div className="font-semibold">{quiz.activityName.replace('Module ', 'M').replace(' Knowledge Check', '')}</div>
+                          <div className="text-lg font-bold">{quiz.score}%</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {user.completedActivities.length > 0 && (
                   <div className="mt-4">
                     <p className="text-xs font-semibold text-gray-700 mb-2">Completed Activities:</p>
@@ -195,12 +250,17 @@ export default function AdminDashboard() {
                       {user.completedActivities.map((activityId) => {
                         // Find activity name from courseModules
                         let activityName = activityId
+                        let isQuiz = false
                         courseModules.forEach(module => {
                           const activity = module.activities.find(a => a.id === activityId)
                           if (activity) {
                             activityName = activity.title
+                            isQuiz = activity.type === 'quiz'
                           }
                         })
+
+                        // Skip quizzes in the completed list since they're shown above
+                        if (isQuiz) return null
 
                         return (
                           <span
