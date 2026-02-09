@@ -19,6 +19,38 @@ export interface DiscussionQuestion {
   order: number;
 }
 
+// Interactive Practice Form Field Types
+export interface PracticeFormField {
+  id: string;
+  type: 'text' | 'textarea' | 'number' | 'select' | 'table' | 'upload' | 'timing-scale';
+  label: string;
+  placeholder?: string;
+  options?: string[]; // For select fields
+  columns?: TableColumn[]; // For table fields
+  minRows?: number; // For table fields
+  maxRows?: number; // For table fields
+  scaleMin?: number; // For timing-scale
+  scaleMax?: number; // For timing-scale
+  scaleUnit?: string; // For timing-scale (e.g., 'sec')
+  required?: boolean;
+  helpText?: string;
+}
+
+export interface TableColumn {
+  id: string;
+  header: string;
+  type: 'text' | 'number' | 'select';
+  options?: string[]; // For select columns
+  width?: string;
+}
+
+export interface PracticeSection {
+  id: string;
+  title: string;
+  description?: string;
+  fields: PracticeFormField[];
+}
+
 export interface LearningActivity {
   id: string;
   title: string;
@@ -32,6 +64,7 @@ export interface LearningActivity {
   description?: string;
   questions?: QuizQuestion[];
   discussionQuestions?: DiscussionQuestion[];
+  practiceSections?: PracticeSection[]; // For interactive practice worksheets
 }
 
 export interface ModuleSection {
@@ -1061,29 +1094,79 @@ const module3: CourseModule = {
       id: 'activity-03-05',
       title: 'Spaghetti Mapping Practice',
       type: 'practice',
-      duration: '10',
-      description: 'Practice creating a spaghetti diagram to visualize movement waste in a process.',
+      duration: '15',
+      description: 'Practice creating a spaghetti diagram to visualize movement waste in a process. Watch the video, draw your spaghetti map, and analyze the motion.',
       content: `
-        <div class="prose">
-          <h3>Create Your Own Spaghetti Diagram</h3>
-          <p>Choose a process you're familiar with and map the physical movement involved.</p>
+        <div class="prose max-w-none">
+          <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-6 rounded-xl mb-6">
+            <h3 class="text-2xl font-bold mb-2">🍝 Identifying Waste: Spaghetti Mapping</h3>
+            <p class="text-amber-100">One of the best ways to capture motion in a process is Spaghetti Mapping. This practice will help you visualize and quantify motion waste.</p>
+          </div>
 
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
-            <h4 class="font-bold">Instructions:</h4>
-            <ol>
-              <li>Draw a simple floor plan of the area</li>
-              <li>Mark starting and ending points</li>
-              <li>Trace the path of movement with a line</li>
-              <li>Identify opportunities to reduce unnecessary motion</li>
+          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
+            <h4 class="font-bold text-blue-900">📋 Instructions:</h4>
+            <ol class="text-blue-800 mt-2 space-y-2">
+              <li><strong>Step 1:</strong> Grab a piece of paper and draw this diagram - a simple floor plan of a workspace</li>
+              <li><strong>Step 2:</strong> Watch the video of an operation at the beginning of the problem solving process and trace the motion of the barista in the red apron (currently at the register). Don't let your pen leave the paper until the video is over!</li>
+              <li><strong>Step 3:</strong> Compare your results and review the questions below</li>
             </ol>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 my-6">
+            <div class="bg-gray-100 rounded-xl p-4 border-2 border-dashed border-gray-300">
+              <p class="font-bold text-center text-gray-600 mb-2">DRAW THIS</p>
+              <p class="text-sm text-center text-gray-500">Simple floor plan layout</p>
+            </div>
+            <div class="bg-amber-100 rounded-xl p-4 border-2 border-amber-300">
+              <p class="font-bold text-center text-amber-800 mb-2">MOTION = WORK</p>
+              <p class="text-sm text-center text-amber-700">Count in the barista in the red apron. What did you see?</p>
+            </div>
           </div>
         </div>
       `,
+      practiceSections: [
+        {
+          id: 'spaghetti_setup',
+          title: 'Spaghetti Mapping Exercise',
+          description: 'Complete the mapping exercise while watching the video.',
+          fields: [
+            {
+              id: 'spaghetti_map_upload',
+              type: 'upload',
+              label: 'Upload Your Spaghetti Map Drawing',
+              helpText: 'Take a photo of your completed spaghetti diagram and upload it here.'
+            },
+            {
+              id: 'motion_count',
+              type: 'number',
+              label: 'How many times did the barista cross the workspace?',
+              placeholder: '0'
+            },
+            {
+              id: 'motion_observations',
+              type: 'textarea',
+              label: 'What patterns did you observe in the movement?',
+              placeholder: 'Describe what you noticed about the motion waste...'
+            },
+            {
+              id: 'improvement_ideas',
+              type: 'textarea',
+              label: 'What improvements would you suggest to reduce this motion?',
+              placeholder: 'List ideas for reducing unnecessary movement...'
+            }
+          ]
+        }
+      ],
       discussionQuestions: [
         {
           id: 'dq-03-05-01',
           question: 'What did your spaghetti diagram reveal about the process? Where were the biggest opportunities for improvement?',
           order: 1
+        },
+        {
+          id: 'dq-03-05-02',
+          question: 'How much of the motion you observed was value-added vs. waste?',
+          order: 2
         }
       ]
     },
@@ -1726,63 +1809,241 @@ const module5: CourseModule = {
       title: 'ERACS Practice: Point Kaizen at Home',
       type: 'practice',
       duration: '60',
-      description: 'Apply ERACS to improve a process in your own life. Download the worksheet, choose a regular activity (like making coffee or packing lunch), and work through each step to create a measurable improvement.',
-      externalUrl: '/templates/eracs-practice-worksheet.html',
+      description: 'Apply ERACS to improve a process in your own life. Use this interactive worksheet to work through each step and create a measurable improvement.',
       thumbnailUrl: '/images/eracs-practice.jpg',
       content: `
         <div class="prose max-w-none">
-          <h3>Practice ERACS at Home</h3>
-          <p>It's your turn! With this practice exercise, you'll identify a problem to solve with process improvement in your own life and apply the Point Kaizen methodology.</p>
-
-          <div class="bg-green-50 border-l-4 border-green-400 p-4 my-4">
-            <h4 class="font-bold text-green-800">Download the Worksheet</h4>
-            <p class="text-green-700">Use the downloadable PDF worksheet to guide you through this exercise.</p>
-            <a href="/templates/eracs-practice-worksheet.html" class="inline-block mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700" download>
-              📥 Download ERACS Worksheet (PDF)
-            </a>
+          <div class="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6 rounded-xl mb-6">
+            <h3 class="text-2xl font-bold mb-2">🎯 PRACTICING PROBLEM SOLVING WITH ERACS</h3>
+            <p class="text-teal-100">It's your turn! Identify a problem to solve with process improvement within your very own world and apply the Point Kaizen methodology.</p>
           </div>
 
-          <h4>Step 1: Setup & Problem Definition</h4>
-          <p>Choose a regular activity in your life that is:</p>
-          <ul>
-            <li>Relatively frequently repeated</li>
-            <li>Can be broken down into a clear list of tasks</li>
-            <li>Has clear value delivery (a beverage to drink, clean clothes to wear, etc.)</li>
-          </ul>
-
-          <p><strong>Example Ideas:</strong> Brewing coffee, making a toasted sandwich, making a smoothie, morning routine, packing lunch</p>
-
-          <h4>Step 2: Break Down The Job</h4>
-          <p>Video yourself completing this task 1-2 times to capture the current state with data. List each step, noting:</p>
-          <ul>
-            <li>Machine, Hand, or Both?</li>
-            <li>How long does each step take?</li>
-          </ul>
-          <p>Create a spaghetti map of your movement during the process.</p>
-
-          <h4>Step 3: Apply ERACS</h4>
-          <p>Question every detail using the ERACS framework:</p>
-          <ul>
-            <li><strong>E</strong>liminate - Remove unnecessary steps</li>
-            <li><strong>R</strong>earrange - Reorder for better flow</li>
-            <li><strong>A</strong>dd/Subtract - Add missing elements, remove excess</li>
-            <li><strong>C</strong>ombine - Merge steps when practical</li>
-            <li><strong>S</strong>implify - Make each step repeatable and predictable</li>
-          </ul>
-
-          <h4>Step 4: Test & Compare</h4>
-          <p>Video yourself completing the improved process. Compare:</p>
-          <ul>
-            <li>Did you achieve your target improvement?</li>
-            <li>Are quality standards maintained or improved?</li>
-          </ul>
-
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
-            <h4 class="font-bold">Coaching Session</h4>
-            <p>Once complete, schedule time with your coach to share your worksheet and walk through your process improvement.</p>
+          <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-4">
+            <h4 class="font-bold text-amber-900">📋 How to use this worksheet:</h4>
+            <ol class="text-amber-800 mt-2 space-y-1">
+              <li>1. Follow the sections from left to right (Setup → Test & Compare)</li>
+              <li>2. Video yourself completing the task to capture the current state</li>
+              <li>3. Fill in each section below as you work through the exercise</li>
+              <li>4. Schedule time with your coach to review your process improvement</li>
+            </ol>
           </div>
         </div>
       `,
+      practiceSections: [
+        {
+          id: 'setup',
+          title: 'Setup & Problem Definition',
+          description: 'Choose a regular activity in your life that is frequently repeated, can be broken down into tasks, and has clear value delivery.',
+          fields: [
+            {
+              id: 'chosen_process',
+              type: 'text',
+              label: 'Chosen Process to Conduct Point Kaizen',
+              placeholder: 'e.g., Brewing coffee, Making a smoothie, Packing lunch',
+              helpText: 'Choose something you do regularly that can be measured and improved.'
+            },
+            {
+              id: 'context_challenge',
+              type: 'textarea',
+              label: 'Provide Context or Challenge',
+              placeholder: 'What frustrates you about this process? What would you like to improve?',
+              helpText: 'Describe why you selected this process and what challenges you face.'
+            },
+            {
+              id: 'problem_statement',
+              type: 'textarea',
+              label: 'Problem Statement',
+              placeholder: '[Process] is currently taking [X time/steps], which is [Y%] away from my target of [Z], causing [impact]...',
+              helpText: 'Write a clear problem statement using the format: Current Condition + Gap + Target + Impact'
+            },
+            {
+              id: 'quality_standards',
+              type: 'textarea',
+              label: 'Quality Standards',
+              placeholder: 'What quality standards must be maintained? (e.g., taste, cleanliness, completeness)',
+              helpText: 'Define what "good" looks like - these standards must be maintained in your improved process.'
+            }
+          ]
+        },
+        {
+          id: 'step1_breakdown',
+          title: 'Step 1: Break Down The Job',
+          description: 'Video yourself completing this task 1-2 times to capture the current state with data. List each step of your chosen process.',
+          fields: [
+            {
+              id: 'process_steps_before',
+              type: 'table',
+              label: 'Capture Everything - Current Process Steps',
+              helpText: 'List the current steps you take to carry out your chosen process. Use a stopwatch to time each step.',
+              columns: [
+                { id: 'step', header: 'Process Step', type: 'text', width: '50%' },
+                { id: 'machine_hand', header: 'Machine, Hand, Both', type: 'select', options: ['Machine', 'Hand', 'Both'] },
+                { id: 'time_sec', header: 'How Long (Sec)', type: 'number' }
+              ],
+              minRows: 5,
+              maxRows: 15
+            },
+            {
+              id: 'before_total_time',
+              type: 'timing-scale',
+              label: 'Total Time for Current Process',
+              helpText: 'Calculate and enter your total process time',
+              scaleMin: 0,
+              scaleMax: 600,
+              scaleUnit: 'sec'
+            },
+            {
+              id: 'before_spaghetti_map',
+              type: 'upload',
+              label: 'Upload Spaghetti Map Drawing Here',
+              helpText: 'Using paper and pen, draw the basic layout of your workspace and trace the motion as you conduct the process.'
+            },
+            {
+              id: 'before_work_story',
+              type: 'textarea',
+              label: 'Before Work Story',
+              placeholder: 'Describe your current state work story - what you observe happening step by step...',
+              helpText: 'Create a work story using the template: describe what happens at each phase of the process.'
+            }
+          ]
+        },
+        {
+          id: 'step2_question',
+          title: 'Step 2: Question Every Detail',
+          description: 'Record your ideas and questions related to your process experiment. Challenge every step.',
+          fields: [
+            {
+              id: 'questions_findings',
+              type: 'table',
+              label: 'Question / Finding / Decision Table',
+              helpText: 'For each step, ask: Why do we do it this way? Is it necessary? Can it be improved?',
+              columns: [
+                { id: 'question', header: 'Question', type: 'text', width: '35%' },
+                { id: 'finding', header: 'Finding', type: 'text', width: '35%' },
+                { id: 'decision', header: 'Decision', type: 'text', width: '30%' }
+              ],
+              minRows: 5,
+              maxRows: 12
+            }
+          ]
+        },
+        {
+          id: 'step3_eracs',
+          title: 'Step 3: Develop The New Method – Apply ERACS',
+          description: 'Record your ERACS improvement steps to the process.',
+          fields: [
+            {
+              id: 'eracs_eliminate',
+              type: 'textarea',
+              label: 'E - Eliminate the unnecessary',
+              placeholder: 'What steps can be removed entirely without affecting quality?'
+            },
+            {
+              id: 'eracs_rearrange',
+              type: 'textarea',
+              label: 'R - Rearrange process steps for a more efficient sequence',
+              placeholder: 'How can you reorder steps for better flow?'
+            },
+            {
+              id: 'eracs_add_subtract',
+              type: 'textarea',
+              label: 'A - Add/Subtract process elements that are missing or in excess',
+              placeholder: 'What needs to be added? What can be removed?'
+            },
+            {
+              id: 'eracs_combine',
+              type: 'textarea',
+              label: 'C - Combine process steps when practical',
+              placeholder: 'Which steps can be merged or done simultaneously?'
+            },
+            {
+              id: 'eracs_simplify',
+              type: 'textarea',
+              label: 'S - Simplify at each step to create repeatable, predictable, quality work',
+              placeholder: 'How can you make each step easier and more consistent?'
+            }
+          ]
+        },
+        {
+          id: 'step4_test',
+          title: 'Step 4: Test & Compare',
+          description: 'Video yourself completing this task 1-2 times so you can capture the improved process with data.',
+          fields: [
+            {
+              id: 'process_steps_after',
+              type: 'table',
+              label: 'New Work Method - Improved Process Steps',
+              helpText: 'List the process steps for the new improved method.',
+              columns: [
+                { id: 'step', header: 'Process Step', type: 'text', width: '50%' },
+                { id: 'machine_hand', header: 'Machine, Hand, Both', type: 'select', options: ['Machine', 'Hand', 'Both'] },
+                { id: 'time_sec', header: 'How Long (Sec)', type: 'number' }
+              ],
+              minRows: 5,
+              maxRows: 15
+            },
+            {
+              id: 'after_total_time',
+              type: 'timing-scale',
+              label: 'Total Time for Improved Process',
+              helpText: 'Calculate and enter your new total process time',
+              scaleMin: 0,
+              scaleMax: 600,
+              scaleUnit: 'sec'
+            },
+            {
+              id: 'after_spaghetti_map',
+              type: 'upload',
+              label: 'Upload New Method Spaghetti Map',
+              helpText: 'Document the spaghetti map of the improved process.'
+            },
+            {
+              id: 'after_work_story',
+              type: 'textarea',
+              label: 'New Method Work Story',
+              placeholder: 'Create an updated work story for your new method...',
+              helpText: 'Describe what happens in the improved process step by step.'
+            }
+          ]
+        },
+        {
+          id: 'reflection',
+          title: 'Reflection & Results',
+          description: 'Evaluate your improvement and document what you learned.',
+          fields: [
+            {
+              id: 'original_problem_statement',
+              type: 'textarea',
+              label: 'Original Problem Statement',
+              placeholder: 'Copy your original problem statement here for reference...'
+            },
+            {
+              id: 'quality_standards_reflection',
+              type: 'textarea',
+              label: 'Quality Standards - has the new method kept standards in place or improved adherence?',
+              placeholder: 'Note your observations about quality in the improved process...'
+            },
+            {
+              id: 'target_achievement',
+              type: 'textarea',
+              label: 'Target - has the new method achieved the goal you set out to achieve in improving the process?',
+              placeholder: 'Did you hit your target? What was the improvement percentage?'
+            },
+            {
+              id: 'time_improvement',
+              type: 'text',
+              label: 'Time Improvement (Before → After)',
+              placeholder: 'e.g., 180 sec → 120 sec = 33% improvement'
+            },
+            {
+              id: 'key_learnings',
+              type: 'textarea',
+              label: 'Key Learnings',
+              placeholder: 'What did you learn from this exercise? What surprised you?'
+            }
+          ]
+        }
+      ],
       discussionQuestions: [
         {
           id: 'dq-05-04-01',

@@ -114,7 +114,10 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
           const additionalNotes = user.notes?.[activity.id] || ''
 
           // Check if activity has any content (answers or notes)
-          const hasAnswers = activity.discussionQuestions?.some(q => activityAnswers[q.id]?.trim())
+          const hasAnswers = activity.discussionQuestions?.some(q => {
+            const answer = activityAnswers[q.id]
+            return typeof answer === 'string' && answer.trim()
+          })
           const hasNotes = additionalNotes.trim()
 
           if (hasAnswers || hasNotes) {
@@ -124,11 +127,12 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
             // Collect questions and answers
             if (activity.discussionQuestions) {
               for (const q of activity.discussionQuestions.sort((a, b) => a.order - b.order)) {
-                const answer = activityAnswers[q.id] || ''
-                if (answer.trim()) {
+                const answer = activityAnswers[q.id]
+                const answerStr = typeof answer === 'string' ? answer : ''
+                if (answerStr.trim()) {
                   questions.push({
                     question: q.question,
-                    answer: answer
+                    answer: answerStr
                   })
                 }
               }

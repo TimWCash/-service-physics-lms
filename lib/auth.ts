@@ -16,9 +16,7 @@ export interface User {
     [activityId: string]: string;
   };
   answers?: {
-    [activityId: string]: {
-      [questionId: string]: string;
-    };
+    [activityId: string]: Record<string, unknown>;
   };
 }
 
@@ -237,7 +235,7 @@ export class AuthService {
     return user?.notes?.[activityId] || '';
   }
 
-  static saveAnswers(activityId: string, answers: { [questionId: string]: string }): void {
+  static saveAnswers(activityId: string, answers: Record<string, unknown>): void {
     const user = this.getUser();
     if (!user) return;
 
@@ -252,12 +250,12 @@ export class AuthService {
     this.saveNoteToSupabase(activityId, user.notes?.[activityId] || '', answers);
   }
 
-  static getAnswers(activityId: string): { [questionId: string]: string } {
+  static getAnswers(activityId: string): Record<string, unknown> {
     const user = this.getUser();
     return user?.answers?.[activityId] || {};
   }
 
-  static getAllAnswers(): { [activityId: string]: { [questionId: string]: string } } {
+  static getAllAnswers(): { [activityId: string]: Record<string, unknown> } {
     const user = this.getUser();
     return user?.answers || {};
   }
@@ -266,7 +264,7 @@ export class AuthService {
   private static async saveNoteToSupabase(
     activityId: string,
     notes: string,
-    answers: { [questionId: string]: string }
+    answers: Record<string, unknown>
   ): Promise<void> {
     const user = this.getUser();
     if (!user) return;

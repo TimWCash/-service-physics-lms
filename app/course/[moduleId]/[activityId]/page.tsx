@@ -110,6 +110,8 @@ export default function ActivityPage() {
               description={activity.description}
               onComplete={handleComplete}
               isCompleted={isCompleted}
+              activityId={activity.id}
+              practiceSections={activity.practiceSections}
             />
           )}
         </div>

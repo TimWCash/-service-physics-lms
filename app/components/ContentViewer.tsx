@@ -1,6 +1,8 @@
 'use client'
 
 import ReactMarkdown from 'react-markdown'
+import { PracticeSection } from '@/data/courseDataV3'
+import PracticeWorksheet from './PracticeWorksheet'
 
 interface ContentViewerProps {
   content: string;
@@ -9,9 +11,11 @@ interface ContentViewerProps {
   description?: string;
   onComplete: () => void;
   isCompleted: boolean;
+  activityId?: string;
+  practiceSections?: PracticeSection[];
 }
 
-export default function ContentViewer({ content, externalUrl, audioUrl, description, onComplete, isCompleted }: ContentViewerProps) {
+export default function ContentViewer({ content, externalUrl, audioUrl, description, onComplete, isCompleted, activityId, practiceSections }: ContentViewerProps) {
   // If there's an audio URL, show the audio player
   if (audioUrl) {
     return (
@@ -95,7 +99,7 @@ export default function ContentViewer({ content, externalUrl, audioUrl, descript
   // Check if content contains HTML tags
   const isHtmlContent = content && (content.includes('<div') || content.includes('<p>') || content.includes('<h3>') || content.includes('<ul>'))
 
-  // If content is HTML, render it directly
+  // If content is HTML, render it directly (with optional practice sections below)
   if (isHtmlContent) {
     return (
       <div className="p-8">
@@ -103,6 +107,16 @@ export default function ContentViewer({ content, externalUrl, audioUrl, descript
           className="prose prose-lg max-w-none"
           dangerouslySetInnerHTML={{ __html: content }}
         />
+
+        {/* Render interactive practice worksheet if available */}
+        {practiceSections && practiceSections.length > 0 && activityId && (
+          <div className="mt-8">
+            <PracticeWorksheet
+              sections={practiceSections}
+              activityId={activityId}
+            />
+          </div>
+        )}
       </div>
     )
   }

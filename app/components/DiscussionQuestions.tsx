@@ -25,7 +25,14 @@ export default function DiscussionQuestions({ questions, activityId }: Props) {
     setNotes(savedNotes)
 
     const savedAnswers = AuthService.getAnswers(activityId)
-    setAnswers(savedAnswers)
+    // Convert Record<string, unknown> to { [questionId: string]: string }
+    const stringAnswers: { [questionId: string]: string } = {}
+    for (const [key, value] of Object.entries(savedAnswers)) {
+      if (typeof value === 'string') {
+        stringAnswers[key] = value
+      }
+    }
+    setAnswers(stringAnswers)
   }, [activityId])
 
   // Cleanup all timeouts on unmount
