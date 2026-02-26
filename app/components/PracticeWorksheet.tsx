@@ -117,7 +117,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
             value={(data[field.id] as string) || ''}
             onChange={(e) => handleFieldChange(field.id, e.target.value)}
             placeholder={field.placeholder}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+            className="w-full p-3 border border-surface-200 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none"
           />
         )
 
@@ -128,7 +128,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
             onChange={(e) => handleFieldChange(field.id, e.target.value)}
             placeholder={field.placeholder}
             rows={4}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none resize-y"
+            className="w-full p-3 border border-surface-200 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none resize-y"
           />
         )
 
@@ -139,7 +139,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
             value={(data[field.id] as number) || 0}
             onChange={(e) => handleFieldChange(field.id, parseFloat(e.target.value) || 0)}
             placeholder={field.placeholder}
-            className="w-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+            className="w-32 p-3 border border-surface-200 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none"
           />
         )
 
@@ -148,7 +148,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
           <select
             value={(data[field.id] as string) || ''}
             onChange={(e) => handleFieldChange(field.id, e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none bg-white"
+            className="w-full p-3 border border-surface-200 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none bg-white"
           >
             <option value="">Select...</option>
             {field.options?.map(opt => (
@@ -162,12 +162,12 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
 
       case 'upload':
         return (
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-teal-500 transition-colors">
-            <svg className="w-12 h-12 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="border-2 border-dashed border-surface-200 rounded-lg p-6 text-center hover:border-primary-400 transition-colors">
+            <svg className="w-12 h-12 mx-auto text-surface-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <p className="text-gray-600 mb-2">Drag & drop your image here, or click to browse</p>
-            <p className="text-sm text-gray-500">{field.helpText || 'PNG, JPG up to 5MB'}</p>
+            <p className="text-surface-600 mb-2">Drag & drop your image here, or click to browse</p>
+            <p className="text-sm text-surface-500">{field.helpText || 'PNG, JPG up to 5MB'}</p>
             <input
               type="file"
               accept="image/*"
@@ -183,12 +183,12 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
             />
             <label
               htmlFor={`upload-${field.id}`}
-              className="inline-block mt-3 px-4 py-2 bg-teal-600 text-white rounded-lg cursor-pointer hover:bg-teal-700 transition-colors"
+              className="inline-block mt-3 px-4 py-2 bg-primary-600 text-white rounded-lg cursor-pointer hover:bg-primary-700 transition-colors"
             >
               Choose File
             </label>
             {data[field.id] && (
-              <p className="mt-2 text-sm text-teal-700">Selected: {data[field.id] as string}</p>
+              <p className="mt-2 text-sm text-primary-600">Selected: {data[field.id] as string}</p>
             )}
           </div>
         )
@@ -203,12 +203,12 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                 onChange={(e) => handleFieldChange(field.id, parseFloat(e.target.value) || 0)}
                 min={field.scaleMin}
                 max={field.scaleMax}
-                className="w-24 p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-center"
+                className="w-24 p-2 border border-surface-200 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none text-center"
               />
-              <span className="text-gray-600">{field.scaleUnit || 'sec'}</span>
+              <span className="text-surface-600">{field.scaleUnit || 'sec'}</span>
             </div>
             <div className="relative pt-1">
-              <div className="flex justify-between text-xs text-gray-500 mb-1">
+              <div className="flex justify-between text-xs text-surface-500 mb-1">
                 <span>{field.scaleMin || 0}{field.scaleUnit}</span>
                 <span>{field.scaleMax || 600}{field.scaleUnit}</span>
               </div>
@@ -218,7 +218,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                 max={field.scaleMax || 600}
                 value={(data[field.id] as number) || field.scaleMin || 0}
                 onChange={(e) => handleFieldChange(field.id, parseFloat(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-teal-600"
+                className="w-full h-2 bg-surface-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-teal-600 text-white">
+            <tr className="bg-primary-600 text-white">
               <th className="p-3 text-left font-semibold w-12">#</th>
               {columns.map(col => (
                 <th key={col.id} className="p-3 text-left font-semibold" style={{ width: col.width }}>
@@ -250,17 +250,17 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
           </thead>
           <tbody>
             {tableData.map((row, rowIndex) => (
-              <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                <td className="p-2 border border-gray-200 text-center text-gray-500 font-medium">
+              <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-surface-50' : 'bg-white'}>
+                <td className="p-2 border border-surface-200 text-center text-surface-500 font-medium">
                   {rowIndex + 1}
                 </td>
                 {columns.map(col => (
-                  <td key={col.id} className="p-2 border border-gray-200">
+                  <td key={col.id} className="p-2 border border-surface-200">
                     {col.type === 'select' ? (
                       <select
                         value={(row[col.id] as string) || ''}
                         onChange={(e) => handleTableRowChange(field.id, rowIndex, col.id, e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none bg-white"
+                        className="w-full p-2 border border-surface-200 rounded focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none bg-white"
                       >
                         <option value="">Select...</option>
                         {col.options?.map(opt => (
@@ -272,7 +272,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                         type="number"
                         value={(row[col.id] as number) || ''}
                         onChange={(e) => handleTableRowChange(field.id, rowIndex, col.id, parseFloat(e.target.value) || 0)}
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none text-center"
+                        className="w-full p-2 border border-surface-200 rounded focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none text-center"
                       />
                     ) : (
                       <input
@@ -280,12 +280,12 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                         value={(row[col.id] as string) || ''}
                         onChange={(e) => handleTableRowChange(field.id, rowIndex, col.id, e.target.value)}
                         placeholder="Enter text..."
-                        className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+                        className="w-full p-2 border border-surface-200 rounded focus:ring-2 focus:ring-primary-400 focus:border-primary-400 outline-none"
                       />
                     )}
                   </td>
                 ))}
-                <td className="p-2 border border-gray-200 text-center">
+                <td className="p-2 border border-surface-200 text-center">
                   {tableData.length > minRows && (
                     <button
                       onClick={() => removeTableRow(field.id, rowIndex, minRows)}
@@ -305,7 +305,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
         <button
           onClick={() => addTableRow(field)}
           disabled={field.maxRows ? tableData.length >= field.maxRows : false}
-          className="mt-3 flex items-center gap-2 px-4 py-2 text-teal-600 border border-teal-600 rounded-lg hover:bg-teal-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="mt-3 flex items-center gap-2 px-4 py-2 text-primary-600 border border-primary-500 rounded-lg hover:bg-primary-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -321,7 +321,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
       {/* Save Status Indicator */}
       <div className="flex justify-end">
         {saveStatus === 'saved' && (
-          <span className="text-sm text-green-700 flex items-center gap-1 bg-green-50 px-3 py-1 rounded-full">
+          <span className="text-sm text-success-700 flex items-center gap-1 bg-success-50 px-3 py-1 rounded-full font-sans">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
@@ -329,28 +329,28 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
           </span>
         )}
         {saveStatus === 'saving' && (
-          <span className="text-sm text-gray-600 bg-gray-50 px-3 py-1 rounded-full">Saving...</span>
+          <span className="text-sm text-surface-600 bg-surface-50 px-3 py-1 rounded-full">Saving...</span>
         )}
       </div>
 
       {/* Render each section */}
       {sections.map((section) => (
-        <div key={section.id} className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-teal-600 to-teal-700 px-6 py-4">
-            <h3 className="text-xl font-bold text-white">{section.title}</h3>
+        <div key={section.id} className="bg-white rounded-lg border border-surface-200 overflow-hidden">
+          <div className="bg-primary-700 px-6 py-4">
+            <h3 className="text-xl font-display text-white">{section.title}</h3>
             {section.description && (
-              <p className="text-teal-100 text-sm mt-1">{section.description}</p>
+              <p className="text-primary-200 text-sm mt-1 font-sans">{section.description}</p>
             )}
           </div>
           <div className="p-6 space-y-6">
             {section.fields.map((field) => (
               <div key={field.id} className="space-y-2">
-                <label className="block font-semibold text-gray-800">
+                <label className="block font-semibold text-surface-700 font-sans text-sm">
                   {field.label}
                   {field.required && <span className="text-red-500 ml-1">*</span>}
                 </label>
                 {field.helpText && (
-                  <p className="text-sm text-gray-500 mb-2">{field.helpText}</p>
+                  <p className="text-sm text-surface-500 mb-2">{field.helpText}</p>
                 )}
                 {renderField(field)}
               </div>
@@ -360,13 +360,15 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
       ))}
 
       {/* Completion Note */}
-      <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+      <div className="bg-accent-50 border-l-4 border-accent-400 p-4 rounded-r-lg">
         <div className="flex items-start gap-3">
-          <span className="text-2xl">💡</span>
+          <svg className="w-6 h-6 text-accent-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+          </svg>
           <div>
-            <h4 className="font-bold text-amber-900">Next Steps</h4>
-            <p className="text-amber-800 text-sm">
-              Once you&apos;ve completed this worksheet, schedule time with your coach to review your process improvement and discuss what you learned.
+            <h4 className="font-display text-accent-900">Next Steps</h4>
+            <p className="text-accent-800 text-sm font-sans">
+              Once you&apos;ve completed this worksheet, schedule time with your principal to review your process improvement and discuss what you learned.
             </p>
           </div>
         </div>

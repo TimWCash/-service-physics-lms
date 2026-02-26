@@ -52,30 +52,30 @@ export default function ActivityPage() {
   if (!activity || !module) return null
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-50">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <header className="bg-white border-b border-surface-200 sticky top-0 z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link
                 href="/dashboard"
-                className="text-gray-600 hover:text-gray-900"
+                className="text-surface-400 hover:text-surface-700 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </Link>
               <div>
-                <p className="text-sm text-gray-500">{module.title}</p>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <p className="text-sm text-surface-500 font-sans">{module.title}</p>
+                <h1 className="text-xl font-display text-surface-800">
                   {activity.title}
                 </h1>
               </div>
             </div>
             {isCompleted && (
-              <span className="flex items-center space-x-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="flex items-center space-x-2 px-4 py-2 bg-success-50 text-success-700 rounded-full text-sm font-medium font-sans">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Completed</span>
@@ -87,7 +87,7 @@ export default function ActivityPage() {
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white rounded-lg border border-surface-200 overflow-hidden">
           {activity.type === 'video' ? (
             <VideoPlayer
               videoUrl={activity.videoUrl || ''}
@@ -129,15 +129,15 @@ export default function ActivityPage() {
         {/* Navigation */}
         <div className="mt-6 flex justify-between">
           <Link
-            href="/dashboard"
-            className="px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+            href={`/module/${module.id}?tab=dive_in`}
+            className="btn-secondary"
           >
-            Back to Course
+            Back to Module
           </Link>
           {!isCompleted && (activity.type === 'ebook' || activity.type === 'reading' || activity.type === 'audio' || activity.type === 'practice') && (
             <button
               onClick={() => handleComplete()}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              className="btn-primary"
             >
               Mark as Complete
             </button>

@@ -111,7 +111,7 @@ export interface CourseModule {
 const module1: CourseModule = {
   id: 'module-01',
   title: 'Our Problem Solving Approach',
-  colorHex: '#214557', // Service Physics brand teal
+  colorHex: '#1e4d5e', // Brand teal
   timeEstimateMinutes: 105, // 1h 45m
   order: 1,
   accessLevel: 'free',
@@ -123,47 +123,9 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'A scientific approach to improvement',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Our problem-solving approach is built on the <span class="font-semibold text-teal-700">Improvement Kata</span> — a systematic method for achieving challenging goals through iterative learning and experimentation.</p>
-
-          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 p-8 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
-
-            <h4 class="text-xl font-bold mb-6 flex items-center">
-              <span class="text-3xl mr-3">🎯</span> THE IMPROVEMENT KATA
-            </h4>
-            <div class="space-y-4 relative z-10">
-              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
-                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">1</span>
-                <div>
-                  <span class="font-semibold text-lg">Understand the Direction</span>
-                  <p class="text-teal-100 text-sm">Know where you're headed</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
-                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">2</span>
-                <div>
-                  <span class="font-semibold text-lg">Grasp the Current Condition</span>
-                  <p class="text-teal-100 text-sm">Understand where you are now</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
-                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">3</span>
-                <div>
-                  <span class="font-semibold text-lg">Establish Next Target</span>
-                  <p class="text-teal-100 text-sm">Set your next milestone</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white/20 backdrop-blur rounded-xl p-4 transform hover:scale-102 transition-transform">
-                <span class="w-10 h-10 bg-white text-teal-700 rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">4</span>
-                <div>
-                  <span class="font-semibold text-lg">Experiment to Learn</span>
-                  <p class="text-teal-100 text-sm">Test, learn, and adapt</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Our problem-solving approach is built on the <strong>Improvement Kata</strong> — a four-step approach to scientific thinking.</p>
+          <img src="/images/improvement-kata.png" alt="The Improvement Kata - A four-step approach to scientific thinking" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -173,48 +135,9 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Why Plan, Do, Check, Act',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-blue-700">PDCA cycle</span> is the foundation of scientific problem-solving. It provides a structured approach to testing ideas and learning from results.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-gray-800 to-gray-900 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🔄</span> PDCA FOR PROBLEM SOLVING
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="grid grid-cols-2 gap-4">
-                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">P</div>
-                  <div class="relative z-10">
-                    <div class="text-3xl font-black mb-2">PLAN</div>
-                    <p class="text-blue-100 text-sm">Define the problem & set targets</p>
-                  </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">D</div>
-                  <div class="relative z-10">
-                    <div class="text-3xl font-black mb-2">DO</div>
-                    <p class="text-emerald-100 text-sm">Execute your experiment</p>
-                  </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">C</div>
-                  <div class="relative z-10">
-                    <div class="text-3xl font-black mb-2">CHECK</div>
-                    <p class="text-amber-100 text-sm">Measure & analyze results</p>
-                  </div>
-                </div>
-                <div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-500 to-red-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">A</div>
-                  <div class="relative z-10">
-                    <div class="text-3xl font-black mb-2">ACT</div>
-                    <p class="text-rose-100 text-sm">Standardize or iterate</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">The <strong>PDCA cycle</strong> is the foundation of scientific problem-solving. It provides a structured approach to testing ideas and learning from results.</p>
+          <img src="/images/pdca-problem-solving.png" alt="PDCA for Problem Solving - Plan, Do, Check, Act cycle" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
@@ -224,56 +147,9 @@ const module1: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Using Cynefin to light the way',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-purple-700">Cynefin Framework</span> helps us understand the nature of problems and choose appropriate responses.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🧭</span> CYNEFIN FRAMEWORK
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="grid grid-cols-2 gap-3">
-                <div class="rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 p-4 border-2 border-blue-200 hover:border-blue-400 transition-colors">
-                  <div class="flex items-center mb-2">
-                    <span class="text-2xl mr-2">🔬</span>
-                    <h5 class="font-bold text-blue-900">Complex</h5>
-                  </div>
-                  <p class="text-sm text-blue-700 font-medium">Probe → Sense → Respond</p>
-                  <p class="text-xs text-blue-600 mt-1">Emergent practice</p>
-                </div>
-                <div class="rounded-xl bg-gradient-to-br from-green-50 to-green-100 p-4 border-2 border-green-200 hover:border-green-400 transition-colors">
-                  <div class="flex items-center mb-2">
-                    <span class="text-2xl mr-2">🔧</span>
-                    <h5 class="font-bold text-green-900">Complicated</h5>
-                  </div>
-                  <p class="text-sm text-green-700 font-medium">Sense → Analyze → Respond</p>
-                  <p class="text-xs text-green-600 mt-1">Expert practice</p>
-                </div>
-                <div class="rounded-xl bg-gradient-to-br from-red-50 to-red-100 p-4 border-2 border-red-200 hover:border-red-400 transition-colors">
-                  <div class="flex items-center mb-2">
-                    <span class="text-2xl mr-2">🚨</span>
-                    <h5 class="font-bold text-red-900">Chaotic</h5>
-                  </div>
-                  <p class="text-sm text-red-700 font-medium">Act → Sense → Respond</p>
-                  <p class="text-xs text-red-600 mt-1">Novel practice</p>
-                </div>
-                <div class="rounded-xl bg-gradient-to-br from-amber-50 to-amber-100 p-4 border-2 border-amber-200 hover:border-amber-400 transition-colors">
-                  <div class="flex items-center mb-2">
-                    <span class="text-2xl mr-2">✅</span>
-                    <h5 class="font-bold text-amber-900">Clear</h5>
-                  </div>
-                  <p class="text-sm text-amber-700 font-medium">Sense → Categorize → Respond</p>
-                  <p class="text-xs text-amber-600 mt-1">Best practice</p>
-                </div>
-              </div>
-              <div class="mt-4 p-3 bg-gray-100 rounded-xl text-center border-2 border-dashed border-gray-300">
-                <p class="font-bold text-gray-700">❓ Disorder</p>
-                <p class="text-xs text-gray-500">When you don't know which domain you're in</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">The <strong>Cynefin Framework</strong> helps us understand the nature of problems and choose appropriate responses. Problem solving moves us towards clarity, but not everything can be made clear.</p>
+          <img src="/images/cynefin-framework.png" alt="Cynefin Framework - Complex, Complicated, Chaotic, Clear quadrants" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 3
@@ -285,22 +161,22 @@ const module1: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">1 hour 45 minutes</p>
-              <p class="text-indigo-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">1 hour 45 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Watch the videos, listen to the audio, or read the case studies below. Use the discussion questions to guide your thinking and prepare for coaching sessions.</p>
+          <p class="text-surface-600 leading-relaxed">Watch the videos, listen to the audio, or read the case studies below. Use the discussion questions to guide your thinking and prepare for discussions with your principal.</p>
 
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 p-5 text-white shadow-lg">
-            <div class="absolute right-4 top-1/2 -translate-y-1/2 text-6xl opacity-20">💡</div>
-            <div class="relative z-10">
-              <p class="font-bold text-lg mb-1">📝 Pro Tip</p>
-              <p class="text-amber-50">Take notes as you go and answer the discussion questions. Plan to review your answers with your coach.</p>
+          <div class="flex items-start gap-3 p-4 bg-accent-50 border border-accent-200 rounded-lg">
+            <svg class="w-5 h-5 text-accent-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+            <div>
+              <p class="font-semibold text-accent-800 text-sm mb-1">Pro Tip</p>
+              <p class="text-sm text-accent-700">Take notes as you go and answer the discussion questions. Plan to review your answers with your principal.</p>
             </div>
           </div>
         </div>
@@ -314,63 +190,96 @@ const module1: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 p-6 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="flex items-start gap-4 relative z-10">
-              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="text-3xl">🎓</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-blue-100">Stop here and make notes to answer the discussion questions below. When you next meet with your coach, discuss your responses and any follow-up questions.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-xl bg-gray-50 border-2 border-gray-200 p-5">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-2xl">❓</span>
-              <h5 class="font-bold text-gray-800">Questions for Your Coach</h5>
-            </div>
-            <p class="text-sm text-gray-600 mb-4">Use this space to document any additional questions:</p>
-            <div class="space-y-2">
-              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
-                <span class="text-gray-400">•</span>
-                <span class="text-gray-400 italic">Your question here...</span>
-              </div>
-              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
-                <span class="text-gray-400">•</span>
-                <span class="text-gray-400 italic">Your question here...</span>
-              </div>
-              <div class="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200">
-                <span class="text-gray-400">•</span>
-                <span class="text-gray-400 italic">Your question here...</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Stop here and make notes to answer the discussion questions below. When you next meet with your principal, discuss your responses and any follow-up questions.</p>
       `,
       order: 1
-    },
-    {
-      id: 'section-01-recap-02',
-      columnType: 'recap',
-      sectionTitle: 'Glossary Reference',
-      contentHtml: `
-        <div class="rounded-xl bg-gradient-to-r from-purple-100 to-pink-100 border-2 border-purple-200 p-5 flex items-center gap-4">
-          <span class="text-3xl">📖</span>
-          <div>
-            <p class="text-gray-700">Seeing unfamiliar terms?</p>
-            <a href="/glossary" class="font-bold text-purple-700 hover:text-purple-900 transition-colors">Check out the Service Physics Glossary →</a>
-          </div>
-        </div>
-      `,
-      order: 2
     }
   ],
 
   activities: [
+    {
+      id: 'activity-01-intro',
+      title: 'Module Overview: Our Problem Solving Approach',
+      type: 'reading',
+      duration: '10',
+      description: 'Learn about the Improvement Kata, PDCA cycle, and Cynefin Framework that form the foundation of our problem-solving approach.',
+      content: `
+        <div class="space-y-10">
+          <!-- Section 1: Improvement Kata -->
+          <div>
+            <h2 class="text-2xl font-bold text-surface-800 mb-4">A Scientific Approach to Improvement</h2>
+            <p class="text-base text-surface-600 leading-relaxed mb-6">Our approach to problem solving begins with the Lean concept of the <strong>Improvement Kata</strong>, a framework focused on iterative learning, continuous improvement, and data-driven decision making. It was used to develop the scientific problem-solving method of PDCA (Plan - Do - Check - Act) and designed to be embedded in an organization's work processes.</p>
+            <p class="text-surface-500 italic mb-6"><strong>Kata</strong> is a Japanese word meaning "form."</p>
+
+            <img src="/images/improvement-kata.png" alt="The Improvement Kata - A four-step approach to scientific thinking" class="w-full rounded-xl shadow-md mb-6" />
+
+            <div class="bg-primary-50 border-l-4 border-primary-400 rounded-r-xl p-6">
+              <p class="text-surface-600 leading-relaxed">Think of the Improvement Kata like <strong>training for a marathon</strong>. You don't wake up one day and run 26.2 miles — you set a <em>challenge</em> (complete a marathon), assess your <em>current condition</em> (how far can you run today?), establish <em>target conditions</em> (increase distance to 5 miles, then 10, then 20), and run controlled <em>experiments</em> (try new pacing strategies, adjust hydration, test different shoes) to continuously improve.</p>
+            </div>
+          </div>
+
+          <!-- Section 2: PDCA -->
+          <div>
+            <h2 class="text-2xl font-bold text-surface-800 mb-4">Why Plan, Do, Check, Act</h2>
+
+            <img src="/images/pdca-problem-solving.png" alt="PDCA for Problem Solving - Plan, Do, Check, Act cycle" class="w-full rounded-xl shadow-md mb-6" />
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-primary-50 rounded-xl p-5 border border-primary-200">
+                <h4 class="font-bold text-primary-800 mb-2">Systematic Problem Solving</h4>
+                <p class="text-sm text-primary-700">This approach minimizes guesswork and helps ensure that solutions address the root cause of an issue in a structured way.</p>
+              </div>
+              <div class="bg-success-50 rounded-lg p-5 border border-success-200">
+                <h4 class="font-bold text-success-800 mb-2">Continuous Improvement</h4>
+                <p class="text-sm text-success-700">PDCA is iterative — once you finish a cycle, you use what you learned to refine and improve further.</p>
+              </div>
+              <div class="bg-info-50 rounded-lg p-5 border border-info-200">
+                <h4 class="font-bold text-info-800 mb-2">Data-Driven Decisions</h4>
+                <p class="text-sm text-info-700">The CHECK step ensures that decisions are based on evidence rather than assumptions.</p>
+              </div>
+              <div class="bg-accent-50 rounded-lg p-5 border border-accent-200">
+                <h4 class="font-bold text-accent-800 mb-2">Risk Management</h4>
+                <p class="text-sm text-accent-700">By starting on a small scale (DO), teams can test changes without committing significant resources.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Cynefin -->
+          <div>
+            <h2 class="text-2xl font-bold text-surface-800 mb-4">Using Cynefin to Light the Way</h2>
+            <p class="text-base text-surface-600 leading-relaxed mb-6">Throughout our Improvement Kata, it is important to understand what type of problem(s) you are facing and the strategies that can be applied to the approach. This can provide clear direction and reduce spin.</p>
+            <p class="text-surface-600 leading-relaxed mb-6">We use The <strong>Cynefin</strong> (kuh-nev-in) Framework as a useful tool to help us identify the nature of problems and guide us in choosing the right approach for solving them.</p>
+
+            <img src="/images/cynefin-framework-2.png" alt="Cynefin Framework - Complex, Complicated, Chaotic, Clear quadrants" class="w-full rounded-xl shadow-md mb-6" />
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-3 bg-surface-50 rounded-lg p-4">
+                <span class="w-7 h-7 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">1</span>
+                <div>
+                  <h4 class="font-semibold text-surface-800">Classify Problems</h4>
+                  <p class="text-surface-500 text-sm">It divides problems into five domains — Clear, Complicated, Complex, Chaos, and Disorder.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 bg-surface-50 rounded-lg p-4">
+                <span class="w-7 h-7 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">2</span>
+                <div>
+                  <h4 class="font-semibold text-surface-800">Improve Decision-Making</h4>
+                  <p class="text-surface-500 text-sm">By recognizing the type of problem, you can apply the appropriate method (e.g., creating standard work for clear problems, applying experts for complicated ones, establishing a committee for complex issues).</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 bg-surface-50 rounded-lg p-4">
+                <span class="w-7 h-7 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">3</span>
+                <div>
+                  <h4 class="font-semibold text-surface-800">Alignment</h4>
+                  <p class="text-surface-500 text-sm">It provides a shared language for teams, improving collaboration and clarity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      discussionQuestions: []
+    },
     {
       id: 'activity-01-00',
       title: 'Introduction to Service Physics',
@@ -378,7 +287,7 @@ const module1: CourseModule = {
       duration: '2',
       description: 'A quick introduction to the Service Physics approach and what you\'ll learn in this course.',
       videoUrl: 'https://www.youtube.com/watch?v=DvSWcxSJvmo',
-      thumbnailUrl: '/images/sp-intro.jpg',
+      thumbnailUrl: '/images/sp-logo-full.png',
       discussionQuestions: [
         {
           id: 'dq-01-00-01',
@@ -393,7 +302,6 @@ const module1: CourseModule = {
       type: 'reading',
       duration: '45',
       description: 'Read this article by John Shook, chairman and CEO of the Lean Enterprise Institute, about adding meaning to work through problem-solving.',
-      thumbnailUrl: '/images/john-shook.jpg',
       externalUrl: '/pdfs/Shook - Redefining Work.pdf',
       discussionQuestions: [
         {
@@ -415,7 +323,7 @@ const module1: CourseModule = {
       duration: '18',
       description: 'Watch this video by Dave Snowden, a management consultant and researcher, and the creator of the Cynefin Framework.',
       videoUrl: 'https://www.youtube.com/watch?v=N7oz366X0-8',
-      thumbnailUrl: '/images/dave-snowden.jpg',
+      thumbnailUrl: '/images/cynefin-framework.png',
       discussionQuestions: [
         {
           id: 'dq-01-02-01',
@@ -436,7 +344,6 @@ const module1: CourseModule = {
       duration: '18',
       description: 'An experiment done in the Harvard Business School about the effects of getting stuck solutioning.',
       externalUrl: '/pdfs/The Solution Fixation Trap.pdf',
-      thumbnailUrl: '/images/solution-fixation.jpg',
       discussionQuestions: [
         {
           id: 'dq-01-03-01',
@@ -504,8 +411,8 @@ const module1: CourseModule = {
       'What is a personal goal you have set for yourself? How have you / might you grasp your current condition using a data-driven approach?',
       'Think about a problem you are facing in your daily life and apply the Cynefin Framework. What type of problem do you have? What is your approach to solving the problem?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-1',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -514,7 +421,7 @@ const module1: CourseModule = {
       type: 'read',
       title: 'The Improvement Kata',
       description: 'By Mike Rother',
-      thumbnailUrl: '/images/books/improvement-kata.jpg',
+      thumbnailUrl: '/images/improvement-kata.png',
       resourceUrl: 'https://www.lean.org/improvement-kata/',
       order: 1
     },
@@ -523,7 +430,7 @@ const module1: CourseModule = {
       type: 'watch',
       title: 'Introduction to Cynefin',
       description: 'Dave Snowden explains the framework',
-      thumbnailUrl: '/images/videos/cynefin-intro.jpg',
+      thumbnailUrl: '/images/cynefin-framework-2.png',
       resourceUrl: 'https://www.youtube.com/watch?v=N7oz366X0-8',
       order: 1
     }
@@ -537,7 +444,7 @@ const module1: CourseModule = {
 const module2: CourseModule = {
   id: 'module-02',
   title: 'Our Problem Solving Tools',
-  colorHex: '#2a5667', // Slightly lighter teal
+  colorHex: '#2d5a7b', // Deep slate blue
   timeEstimateMinutes: 110,
   order: 2,
   accessLevel: 'free',
@@ -547,69 +454,12 @@ const module2: CourseModule = {
     {
       id: 'section-02-overview-01',
       columnType: 'overview',
-      sectionTitle: 'The A3 Problem Solving Process',
+      sectionTitle: 'Effort Impact Matrix',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-cyan-700">A3</span> is a structured approach to problem-solving that fits on a single sheet of A3 paper. It guides you through a systematic process of understanding, analyzing, and solving problems.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-cyan-600 to-teal-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">📋</span> A3 STRUCTURE
-              </h4>
-            </div>
-            <div class="p-6 space-y-3">
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">1</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Background</p>
-                  <p class="text-sm text-gray-500">Why is this important?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">2</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Current Condition</p>
-                  <p class="text-sm text-gray-500">What is happening now?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">3</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Goal/Target</p>
-                  <p class="text-sm text-gray-500">What do we want to achieve?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">4</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Root Cause Analysis</p>
-                  <p class="text-sm text-gray-500">Why is this happening?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">5</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Countermeasures</p>
-                  <p class="text-sm text-gray-500">What will we try?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">6</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Implementation Plan</p>
-                  <p class="text-sm text-gray-500">How and when?</p>
-                </div>
-              </div>
-              <div class="flex items-center p-3 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold mr-4 shadow-md">7</span>
-                <div>
-                  <p class="font-semibold text-gray-900">Follow-up</p>
-                  <p class="text-sm text-gray-500">What were the results?</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Problem prioritization is the structured process of evaluating, ranking, and selecting which problems to address first. The <strong>Effort Impact Matrix</strong> helps us focus time and resources on the issues that will drive the greatest value.</p>
+          <p class="text-base text-surface-600 leading-relaxed">Effective prioritization is not just about solving problems — it's about solving the <strong>right problems</strong>, in the right order, with the right level of effort.</p>
+          <img src="/images/effort-impact-matrix.png" alt="Effort Impact Matrix - High/Low Impact vs Hard/Easy to Implement" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -617,56 +467,41 @@ const module2: CourseModule = {
     {
       id: 'section-02-overview-02',
       columnType: 'overview',
-      sectionTitle: 'The 5 Whys Technique',
+      sectionTitle: 'Problem Funnel & Five Whys',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">The <span class="font-semibold text-orange-700">5 Whys</span> is a simple but powerful technique for getting to the root cause of a problem by asking "Why?" repeatedly.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🔍</span> EXAMPLE: 5 WHYS IN ACTION
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500 to-rose-600 p-4 text-white mb-4 shadow-lg">
-                <div class="absolute right-2 top-2 text-4xl opacity-20">❌</div>
-                <p class="font-bold text-lg">Problem: Customer received wrong order</p>
-              </div>
-
-              <div class="space-y-2 mb-4 pl-4 border-l-2 border-orange-300">
-                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
-                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 1:</span>
-                  <span class="text-gray-700">Packer selected wrong item</span>
-                </div>
-                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
-                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 2:</span>
-                  <span class="text-gray-700">Barcode scanner wasn't working</span>
-                </div>
-                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
-                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 3:</span>
-                  <span class="text-gray-700">Battery was dead</span>
-                </div>
-                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
-                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 4:</span>
-                  <span class="text-gray-700">No charging schedule exists</span>
-                </div>
-                <div class="flex items-start gap-2 p-2 rounded-lg hover:bg-orange-50 transition-colors">
-                  <span class="font-bold text-orange-600 whitespace-nowrap">Why 5:</span>
-                  <span class="text-gray-700">Process wasn't designed with equipment maintenance</span>
-                </div>
-              </div>
-
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 p-4 text-white shadow-lg">
-                <div class="absolute right-2 top-2 text-4xl opacity-20">✅</div>
-                <p class="text-emerald-100 text-sm font-medium">ROOT CAUSE IDENTIFIED</p>
-                <p class="font-bold text-lg">No equipment maintenance process</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">The <strong>Problem Funnel</strong> and <strong>Five Whys</strong> are helpful tools in the Plan phase of the PDCA, helping to define problems clearly and identify their root causes.</p>
+          <p class="text-base text-surface-600 leading-relaxed">The Problem Funnel ensures teams focus on the right issue by progressively narrowing broad or vague concerns into a specific, actionable problem statement. The Five Whys further support root cause analysis by repeatedly asking "why" to uncover the fundamental reason behind a problem.</p>
+          <img src="/images/problem-funnel.png" alt="Problem Funnel - Narrowing from perception to root cause" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
+    },
+    {
+      id: 'section-02-overview-03',
+      columnType: 'overview',
+      sectionTitle: 'A3 Overview',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">An <strong>A3 Report</strong> is a Toyota-pioneered practice of getting the problem, the analysis, the corrective actions, and the action plan down on a single sheet of large (A3) paper, often with the use of graphics.</p>
+          <p class="text-base text-surface-600 leading-relaxed">At Toyota, A3 reports have evolved into a standard method for summarizing problem-solving exercises, status reports, and planning exercises like value-stream mapping. Consider the left side of the A3 a tool for <strong>Plan</strong> and the right side a tool for <strong>Do, Check, and Act</strong>.</p>
+          <img src="/images/a3-template.png" alt="A3 Report Template" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 3
+    },
+    {
+      id: 'section-02-overview-04',
+      columnType: 'overview',
+      sectionTitle: 'Experiment Plan Overview',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Experiment plans</strong> are used at Service Physics to provide structure and visualization to improvement building work. Starting with the problem statements we gathered from grasping the situation and baseline data, we develop hypotheses to be tested and align on the KPIs and supporting metrics that will provide clarity.</p>
+          <p class="text-base text-surface-600 leading-relaxed">Similar to the A3, the majority of this tool is used for planning: Problem Statement, Hypothesis, Learning Goals, KPI & Supporting Measures of Success, and Action Items. The Results section is used for <strong>Check</strong> and Next Steps can be used for <strong>Act</strong>.</p>
+          <img src="/images/experiment-plan-template.png" alt="Experiment Plan Template" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 4
     },
 
     // DIVE IN COLUMN
@@ -675,16 +510,16 @@ const module2: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-500 to-teal-600 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">1 hour 50 minutes</p>
-              <p class="text-cyan-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">1 hour 50 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Learn about the A3 and 5 Whys through role-play videos and real-world case studies.</p>
+          <p class="text-surface-600 leading-relaxed">Learn about the A3 and 5 Whys through role-play videos and real-world case studies.</p>
         </div>
       `,
       order: 1
@@ -696,19 +531,7 @@ const module2: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Stop here and reflect on the A3 and 5 Whys tools. When you next meet with your coach, discuss your responses to the questions below.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Stop here and reflect on the A3 and 5 Whys tools. When you next meet with your principal, discuss your responses to the questions below.</p>
       `,
       order: 1
     }
@@ -722,7 +545,7 @@ const module2: CourseModule = {
       duration: '30',
       description: 'Watch this role-play demonstration showing effective and ineffective coaching approaches when working through an A3 problem-solving process.',
       videoUrl: 'https://www.youtube.com/watch?v=rJ5qI7ox3mw',
-      thumbnailUrl: '/images/good-bad-coach.jpg',
+      thumbnailUrl: '/images/a3-template.png',
       discussionQuestions: [
         {
           id: 'dq-02-01-01',
@@ -743,7 +566,7 @@ const module2: CourseModule = {
       duration: '5',
       description: 'Learn how to use the 5 Whys technique to get to the root cause of a problem.',
       videoUrl: 'https://www.youtube.com/watch?v=SrlYkx41wEE',
-      thumbnailUrl: '/images/five-whys.jpg',
+      thumbnailUrl: '/images/problem-funnel.png',
       discussionQuestions: [
         {
           id: 'dq-02-02-01',
@@ -764,7 +587,6 @@ const module2: CourseModule = {
       duration: '16',
       description: 'Listen to this audio case study about applying structured problem-solving at a food manufacturing facility.',
       audioUrl: '/audio/Hot Dog Plant.wav',
-      thumbnailUrl: '/images/hot-dog-plant.jpg',
       discussionQuestions: [
         {
           id: 'dq-02-03-01',
@@ -841,8 +663,8 @@ const module2: CourseModule = {
       'Think about a problem you\'re currently facing. Walk through how you would apply the 5 Whys to find the root cause.',
       'What challenges do you anticipate in using these structured problem-solving tools in your work?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-2',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -851,7 +673,7 @@ const module2: CourseModule = {
       type: 'read',
       title: 'Managing to Learn',
       description: 'Using the A3 management process by John Shook',
-      thumbnailUrl: '/images/books/managing-to-learn.jpg',
+      thumbnailUrl: '/images/a3-template.png',
       resourceUrl: 'https://www.lean.org/managing-to-learn/',
       order: 1
     },
@@ -860,7 +682,7 @@ const module2: CourseModule = {
       type: 'read',
       title: 'Understanding A3 Thinking',
       description: 'A critical component of Toyota\'s PDCA management system',
-      thumbnailUrl: '/images/books/understanding-a3.jpg',
+      thumbnailUrl: '/images/a3-template.png',
       resourceUrl: 'https://www.lean.org/understanding-a3-thinking/',
       order: 2
     }
@@ -874,7 +696,7 @@ const module2: CourseModule = {
 const module3: CourseModule = {
   id: 'module-03',
   title: 'Identifying Problems',
-  colorHex: '#3397af', // Brighter teal
+  colorHex: '#3d6b8c', // Steel blue
   timeEstimateMinutes: 105,
   order: 3,
   accessLevel: 'free',
@@ -884,48 +706,12 @@ const module3: CourseModule = {
     {
       id: 'section-03-overview-01',
       columnType: 'overview',
-      sectionTitle: 'The 7 Types of Waste',
+      sectionTitle: 'The Value of Going to See',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Understanding waste is fundamental to improvement. The <span class="font-semibold text-red-600">7 types of waste</span> help us identify opportunities for improvement in any process.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🗑️</span> THE 7 WASTES (TIMWOOD)
-              </h4>
-            </div>
-            <div class="p-4 space-y-2">
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-red-50 to-transparent border-l-4 border-red-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">T</span>
-                <div><span class="font-bold text-gray-900">Transportation</span><span class="text-gray-600"> — Unnecessary movement of materials</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-orange-50 to-transparent border-l-4 border-orange-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">I</span>
-                <div><span class="font-bold text-gray-900">Inventory</span><span class="text-gray-600"> — Excess products/materials</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-amber-50 to-transparent border-l-4 border-amber-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">M</span>
-                <div><span class="font-bold text-gray-900">Motion</span><span class="text-gray-600"> — Unnecessary movement of people</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-yellow-50 to-transparent border-l-4 border-yellow-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">W</span>
-                <div><span class="font-bold text-gray-900">Waiting</span><span class="text-gray-600"> — Idle time</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-lime-50 to-transparent border-l-4 border-lime-500 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-lime-500 to-lime-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">O</span>
-                <div><span class="font-bold text-gray-900">Overproduction</span><span class="text-gray-600"> — Making more than needed</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-teal-50 to-transparent border-l-4 border-teal-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">O</span>
-                <div><span class="font-bold text-gray-900">Overprocessing</span><span class="text-gray-600"> — Doing more than required</span></div>
-              </div>
-              <div class="flex items-center p-3 rounded-xl bg-gradient-to-r from-rose-50 to-transparent border-l-4 border-rose-400 hover:shadow-md transition-shadow">
-                <span class="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-600 text-white rounded-lg flex items-center justify-center font-black text-lg mr-4 shadow">D</span>
-                <div><span class="font-bold text-gray-900">Defects</span><span class="text-gray-600"> — Errors requiring rework</span></div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Before we can identify problems, we must go and see for ourselves. <strong>The Three Reals</strong> — Real Facts, Real Place, Real Product — ensure we base our understanding on direct observation, not assumptions.</p>
+          <p class="text-base text-surface-600 leading-relaxed">Understanding the difference between <strong>lagging indicators</strong> (the water bill is high) and <strong>leading indicators</strong> (equipment is broken) is critical to identifying the actual problem.</p>
+          <img src="/images/three-reals.png" alt="The Three Reals - Real Facts, Real Place, Real Product" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -935,42 +721,26 @@ const module3: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Work vs Waste',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Not all activity is valuable. Learn to distinguish between <span class="font-semibold text-emerald-600">work that creates value</span> and <span class="font-semibold text-red-600">waste that doesn't</span>.</p>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 p-6 text-white shadow-xl">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-              <div class="relative z-10">
-                <div class="flex items-center gap-2 mb-4">
-                  <span class="text-3xl">✅</span>
-                  <h5 class="font-bold text-xl">Value-Added</h5>
-                </div>
-                <ul class="space-y-2 text-emerald-50">
-                  <li class="flex items-start gap-2"><span>•</span> Transforms the product/service</li>
-                  <li class="flex items-start gap-2"><span>•</span> Customer willing to pay for it</li>
-                  <li class="flex items-start gap-2"><span>•</span> Done right the first time</li>
-                </ul>
-              </div>
-            </div>
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 p-6 text-white shadow-xl">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-              <div class="relative z-10">
-                <div class="flex items-center gap-2 mb-4">
-                  <span class="text-3xl">❌</span>
-                  <h5 class="font-bold text-xl">Non-Value (Waste)</h5>
-                </div>
-                <ul class="space-y-2 text-rose-50">
-                  <li class="flex items-start gap-2"><span>•</span> Doesn't transform product</li>
-                  <li class="flex items-start gap-2"><span>•</span> Customer won't pay for it</li>
-                  <li class="flex items-start gap-2"><span>•</span> Can be eliminated</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Work</strong> creates value for customers. <strong>Waste</strong> destroys value for customers. <strong>Incidental waste</strong> is necessary until we find a better way.</p>
+          <p class="text-base text-surface-600 leading-relaxed">Most business activity is waste. Waste is sneaky — and it looks like work! Waste gets heavier with growth.</p>
+          <img src="/images/work-vs-waste.png" alt="Work vs Waste - Value creation vs value destruction" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
+    },
+    {
+      id: 'section-03-overview-03',
+      columnType: 'overview',
+      sectionTitle: 'The Seven Wastes',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Waste creates no value. The seven wastes are: <strong>Inventory</strong> (too much or too little), <strong>Over-processing</strong> (unnecessary steps), <strong>Defects</strong> (rework), <strong>Transportation</strong> (moving materials), <strong>Overproduction</strong> (excess output), <strong>Motion</strong> (unnecessary movement), and <strong>Waiting</strong> (delays).</p>
+          <p class="text-base text-surface-600 leading-relaxed">Waste is not cost: <strong>Time. Money. Space.</strong></p>
+          <img src="/images/seven-wastes.png" alt="The Seven Wastes" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 3
     },
 
     // DIVE IN COLUMN
@@ -979,9 +749,16 @@ const module3: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Practice',
       contentHtml: `
-        <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 45 minutes</p>
-          <p class="mb-6">Learn to identify waste and problems in real-world scenarios through videos, case studies, and practical exercises.</p>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            <div>
+              <p class="text-lg font-bold text-surface-800">1 hour 45 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
+            </div>
+          </div>
+
+          <p class="text-surface-600 leading-relaxed">Learn to identify waste and problems in real-world scenarios through videos, case studies, and practical exercises.</p>
         </div>
       `,
       order: 1
@@ -993,19 +770,7 @@ const module3: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 mb-6">
-            <div class="flex items-start mb-4">
-              <svg class="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <div>
-                <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-sm">Practice identifying waste in your own work environment and prepare to discuss with your coach.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Practice identifying waste in your own work environment and prepare to discuss with your principal.</p>
       `,
       order: 1
     }
@@ -1019,7 +784,7 @@ const module3: CourseModule = {
       duration: '5',
       description: 'Learn to distinguish between value-added work and waste in any process. Understanding this difference is fundamental to improvement.',
       videoUrl: 'https://www.youtube.com/watch?v=0G515SOjhJA',
-      thumbnailUrl: '/images/work-vs-waste.jpg',
+      thumbnailUrl: '/images/work-vs-waste.png',
       discussionQuestions: [
         {
           id: 'dq-03-01-01',
@@ -1055,7 +820,7 @@ const module3: CourseModule = {
       duration: '1',
       description: 'Watch this short video identifying the 7 wastes in a burger assembly operation. Can you spot all the waste?',
       videoUrl: 'https://www.youtube.com/watch?v=q6-6-X9i9wM',
-      thumbnailUrl: '/images/burger-waste.jpg',
+      thumbnailUrl: '/images/seven-wastes.png',
       discussionQuestions: [
         {
           id: 'dq-03-03-01',
@@ -1076,7 +841,6 @@ const module3: CourseModule = {
       duration: '15',
       description: 'This article outlines a case study done on the problem solving improvement work Service Physics completed at MOD Pizza.',
       externalUrl: 'https://www.moresteam.com/resources/case-studies/pizza-process-challenges',
-      thumbnailUrl: '/images/mod-pizza.jpg',
       discussionQuestions: [
         {
           id: 'dq-03-04-01',
@@ -1098,14 +862,14 @@ const module3: CourseModule = {
       description: 'Practice creating a spaghetti diagram to visualize movement waste in a process. Watch the video, draw your spaghetti map, and analyze the motion.',
       content: `
         <div class="prose max-w-none">
-          <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-6 rounded-xl mb-6">
-            <h3 class="text-2xl font-bold mb-2">🍝 Identifying Waste: Spaghetti Mapping</h3>
-            <p class="text-amber-100">One of the best ways to capture motion in a process is Spaghetti Mapping. This practice will help you visualize and quantify motion waste.</p>
+          <div class="bg-primary-50 border border-primary-200 p-6 rounded-lg mb-6">
+            <h3 class="text-xl font-bold text-surface-800 mb-2">Identifying Waste: Spaghetti Mapping</h3>
+            <p class="text-surface-600">One of the best ways to capture motion in a process is Spaghetti Mapping. This practice will help you visualize and quantify motion waste.</p>
           </div>
 
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4">
-            <h4 class="font-bold text-blue-900">📋 Instructions:</h4>
-            <ol class="text-blue-800 mt-2 space-y-2">
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-4 my-4">
+            <h4 class="font-bold text-surface-800">Instructions</h4>
+            <ol class="text-surface-600 mt-2 space-y-2">
               <li><strong>Step 1:</strong> Grab a piece of paper and draw this diagram - a simple floor plan of a workspace</li>
               <li><strong>Step 2:</strong> Watch the video of an operation at the beginning of the problem solving process and trace the motion of the barista in the red apron (currently at the register). Don't let your pen leave the paper until the video is over!</li>
               <li><strong>Step 3:</strong> Compare your results and review the questions below</li>
@@ -1113,13 +877,13 @@ const module3: CourseModule = {
           </div>
 
           <div class="grid grid-cols-2 gap-4 my-6">
-            <div class="bg-gray-100 rounded-xl p-4 border-2 border-dashed border-gray-300">
-              <p class="font-bold text-center text-gray-600 mb-2">DRAW THIS</p>
-              <p class="text-sm text-center text-gray-500">Simple floor plan layout</p>
+            <div class="bg-surface-100 rounded-xl p-4 border-2 border-dashed border-surface-300">
+              <p class="font-bold text-center text-surface-500 mb-2">DRAW THIS</p>
+              <p class="text-sm text-center text-surface-400">Simple floor plan layout</p>
             </div>
-            <div class="bg-amber-100 rounded-xl p-4 border-2 border-amber-300">
-              <p class="font-bold text-center text-amber-800 mb-2">MOTION = WORK</p>
-              <p class="text-sm text-center text-amber-700">Count in the barista in the red apron. What did you see?</p>
+            <div class="bg-accent-50 rounded-lg p-4 border-2 border-accent-200">
+              <p class="font-bold text-center text-accent-800 mb-2">MOTION = WORK</p>
+              <p class="text-sm text-center text-accent-700">Count in the barista in the red apron. What did you see?</p>
             </div>
           </div>
         </div>
@@ -1237,8 +1001,8 @@ const module3: CourseModule = {
       'Think of a process you\'re involved in. What percentage of the time spent is value-added vs non-value-added?',
       'What barriers might prevent you from eliminating waste in your work environment?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-3',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -1247,7 +1011,6 @@ const module3: CourseModule = {
       type: 'read',
       title: 'Learning to See',
       description: 'Value stream mapping to add value and eliminate muda',
-      thumbnailUrl: '/images/books/learning-to-see.jpg',
       resourceUrl: 'https://www.lean.org/learning-to-see/',
       order: 1
     },
@@ -1256,7 +1019,7 @@ const module3: CourseModule = {
       type: 'watch',
       title: 'The 7 Wastes in Healthcare',
       description: 'Real examples from healthcare operations',
-      thumbnailUrl: '/images/videos/7-wastes-healthcare.jpg',
+      thumbnailUrl: '/images/seven-wastes.png',
       resourceUrl: 'https://www.youtube.com/watch?v=example',
       order: 1
     }
@@ -1270,7 +1033,7 @@ const module3: CourseModule = {
 const module4: CourseModule = {
   id: 'module-04',
   title: 'Defining Problems',
-  colorHex: '#42a5b8', // Lighter blue-teal
+  colorHex: '#4a7c72', // Sage green-teal
   timeEstimateMinutes: 40,
   order: 4,
   accessLevel: 'free',
@@ -1280,39 +1043,11 @@ const module4: CourseModule = {
     {
       id: 'section-04-overview-01',
       columnType: 'overview',
-      sectionTitle: 'The Gap: Current vs Target',
+      sectionTitle: 'Defining the Gap',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">A well-defined problem clearly articulates the <span class="font-semibold text-indigo-600">gap</span> between the current condition and the target condition.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🎯</span> THE PROBLEM DEFINITION GAP
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center justify-between gap-4">
-                <div class="flex-1 relative overflow-hidden rounded-xl bg-gradient-to-br from-red-500 to-rose-600 p-5 text-white shadow-lg">
-                  <div class="absolute top-0 right-0 text-6xl opacity-10">📍</div>
-                  <p class="font-bold text-lg">Current Condition</p>
-                  <p class="text-red-100 text-sm mt-1">What's happening now</p>
-                </div>
-                <div class="flex flex-col items-center px-2">
-                  <div class="text-4xl animate-pulse">➡️</div>
-                  <span class="text-xs text-gray-500 font-bold mt-1">THE GAP</span>
-                </div>
-                <div class="flex-1 relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 p-5 text-white shadow-lg">
-                  <div class="absolute top-0 right-0 text-6xl opacity-10">🏆</div>
-                  <p class="font-bold text-lg">Target Condition</p>
-                  <p class="text-emerald-100 text-sm mt-1">What we want to achieve</p>
-                </div>
-              </div>
-              <div class="mt-6 p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl text-center border-2 border-dashed border-indigo-300">
-                <p class="font-black text-xl text-indigo-800">THE GAP = THE PROBLEM</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Kaizen requires that we define problems in a very specific way — the <strong>gap between our current condition and our target</strong>. There are a lot of things within our problem (pain points, cause points, root causes) which, while important, can distract us from taking that first step in the right direction: measuring the gap.</p>
+          <img src="/images/defining-problems-gap.png" alt="Defining Problems - The gap between current condition and target" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -1320,31 +1055,28 @@ const module4: CourseModule = {
     {
       id: 'section-04-overview-02',
       columnType: 'overview',
-      sectionTitle: 'Problem Statement Template',
+      sectionTitle: 'Writing a Good Problem Statement',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">A good problem statement is <span class="font-semibold text-blue-600">specific</span>, <span class="font-semibold text-blue-600">measurable</span>, and focuses on the gap rather than the solution.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">📝</span> PROBLEM STATEMENT FORMAT
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-5 border-2 border-blue-200 mb-4">
-                <p class="font-mono text-sm text-blue-900 leading-relaxed">[Process/Area] is experiencing <span class="bg-blue-200 px-1 rounded">[Current Condition with data]</span>, which is <span class="bg-blue-200 px-1 rounded">[X%]</span> away from <span class="bg-blue-200 px-1 rounded">[Target Condition with data]</span>, causing <span class="bg-blue-200 px-1 rounded">[Impact]</span>.</p>
-              </div>
-
-              <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                <p class="font-bold text-sm text-gray-700 mb-2 flex items-center"><span class="mr-2">💡</span> Example:</p>
-                <p class="text-sm text-gray-600 italic leading-relaxed">The customer service team is experiencing an average response time of 48 hours, which is 300% away from our target of 12 hours, causing decreased customer satisfaction scores and increased complaints.</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">A good problem statement is observable, measurable, and stated as a gap — not the absence of a solution you have in mind, and not blame.</p>
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Best Practices:</strong> Be Specific, Focus on Facts, Keep it Concise, Use Clear Language, Be Objective. Remember that a problem is not the absence of a potential solution you believe is a good idea.</p>
+          <img src="/images/problem-statement-examples.png" alt="Writing a Good Problem Statement - Is vs Is Not" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
+    },
+    {
+      id: 'section-04-overview-03',
+      columnType: 'overview',
+      sectionTitle: 'Defining the Target',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">When defining the target, consider the challenge and make it <strong>SMART</strong>: Specific, Measurable, Achievable, Relevant, and Timebound.</p>
+          <p class="text-base text-surface-600 leading-relaxed">Ask yourself: What are the business goals? What are the industry benchmarks? What waste exists that can be removed? How can we increase focus on value delivery? What does the customer expect?</p>
+          <img src="/images/smart-targets.png" alt="Defining the Target - SMART goals" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 3
     },
 
     // DIVE IN COLUMN
@@ -1353,16 +1085,16 @@ const module4: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen/Practice',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">40 minutes</p>
-              <p class="text-indigo-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">40 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Learn to write clear, actionable problem statements through examples and practice.</p>
+          <p class="text-surface-600 leading-relaxed">Learn to write clear, actionable problem statements through examples and practice.</p>
         </div>
       `,
       order: 1
@@ -1374,20 +1106,7 @@ const module4: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 p-6 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="flex items-start gap-4 relative z-10">
-              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="text-3xl">🎓</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-blue-100">Write a problem statement for a real issue you're facing and be ready to refine it with your coach.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Write a problem statement for a real issue you're facing and be ready to refine it with your principal.</p>
       `,
       order: 1
     }
@@ -1401,7 +1120,7 @@ const module4: CourseModule = {
       duration: '5',
       description: 'Watch this clip from Moneyball showing how redefining the problem led to a breakthrough solution.',
       videoUrl: 'https://www.youtube.com/watch?v=WlTgg4s1sSg',
-      thumbnailUrl: '/images/moneyball.jpg',
+      thumbnailUrl: '/images/defining-problems-gap.png',
       discussionQuestions: [
         {
           id: 'dq-04-01-01',
@@ -1417,7 +1136,6 @@ const module4: CourseModule = {
       duration: '10',
       description: 'A real-world case study walking through how to define a complex operational problem at Panda Express.',
       videoUrl: 'https://www.youtube.com/watch?v=kUZFDYBSNAY',
-      thumbnailUrl: '/images/panda-case.jpg',
       discussionQuestions: [
         {
           id: 'dq-04-02-01',
@@ -1438,48 +1156,48 @@ const module4: CourseModule = {
       duration: '20',
       description: 'Practice writing a problem statement by observing and analyzing real service delays at Panda Express.',
       videoUrl: 'https://www.youtube.com/watch?v=7WGZ9Pi1YnM',
-      thumbnailUrl: '/images/panda-problem-statement.jpg',
+      thumbnailUrl: '/images/problem-statement-examples.png',
       content: `
         <div class="space-y-6">
-          <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-500 p-6 rounded-r-xl">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">📋 How to Complete This Activity</h3>
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-6 rounded-r-lg">
+            <h3 class="text-xl font-bold text-surface-800 mb-4">How to Complete This Activity</h3>
 
             <div class="space-y-4">
               <div class="flex gap-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
                 <div>
-                  <h4 class="font-semibold text-gray-900">Observe the Work</h4>
-                  <p class="text-gray-700">Imagine you are observing the work at Panda Express where customers are ordering their dishes as they go down the line. You are following the customer in the gray shirt, noting their time in queue. We are trying to understand what is getting in the way of delivering a consistent and timely experience for the customers with no unnecessary waiting.</p>
-                  <p class="text-gray-600 mt-2 italic">Panda Express has a goal of a <strong>3-minute customer service time</strong>. We are watching to see if that plan is in action.</p>
+                  <h4 class="font-semibold text-surface-800">Observe the Work</h4>
+                  <p class="text-surface-600">Imagine you are observing the work at Panda Express where customers are ordering their dishes as they go down the line. You are following the customer in the gray shirt, noting their time in queue. We are trying to understand what is getting in the way of delivering a consistent and timely experience for the customers with no unnecessary waiting.</p>
+                  <p class="text-surface-500 mt-2 italic">Panda Express has a goal of a <strong>3-minute customer service time</strong>. We are watching to see if that plan is in action.</p>
                 </div>
               </div>
 
               <div class="flex gap-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
                 <div>
-                  <h4 class="font-semibold text-gray-900">Review the Time Study Data</h4>
-                  <p class="text-gray-700">Review the time study data taken during these observations that capture the current condition.</p>
+                  <h4 class="font-semibold text-surface-800">Review the Time Study Data</h4>
+                  <p class="text-surface-600">Review the time study data taken during these observations that capture the current condition.</p>
                 </div>
               </div>
 
               <div class="flex gap-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
                 <div>
-                  <h4 class="font-semibold text-gray-900">Practice Writing a Problem Statement</h4>
-                  <p class="text-gray-700">Practice writing a problem statement with the current state observed and potential target.</p>
+                  <h4 class="font-semibold text-surface-800">Practice Writing a Problem Statement</h4>
+                  <p class="text-surface-600">Practice writing a problem statement with the current state observed and potential target.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-4 rounded-r-xl">
-            <h4 class="font-bold text-blue-900">Problem Statement Template:</h4>
-            <p class="font-mono text-sm text-blue-800 mt-2">[Process/Area] is experiencing [Current Condition with data], which is [X%] away from [Target Condition with data], causing [Impact].</p>
+          <div class="bg-primary-50 border-l-4 border-primary-400 p-4 my-4 rounded-r-xl">
+            <h4 class="font-bold text-primary-900">Problem Statement Template:</h4>
+            <p class="font-mono text-sm text-primary-800 mt-2">[Process/Area] is experiencing [Current Condition with data], which is [X%] away from [Target Condition with data], causing [Impact].</p>
           </div>
 
-          <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4 rounded-r-xl">
-            <h4 class="font-bold text-yellow-900">Checklist - Good problem statements are:</h4>
-            <ul class="mt-2 space-y-1 text-yellow-800">
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-4 my-4 rounded-r-lg">
+            <h4 class="font-bold text-surface-800">Checklist - Good problem statements are:</h4>
+            <ul class="mt-2 space-y-1 text-surface-600">
               <li>☐ Specific (not vague)</li>
               <li>☐ Measurable (includes data)</li>
               <li>☐ Focused on the gap (not the solution)</li>
@@ -1554,12 +1272,12 @@ const module4: CourseModule = {
 
   coachingPrep: {
     discussionQuestions: [
-      'Bring a problem you\'re currently facing. Work with your coach to write a clear problem statement using the template.',
+      'Bring a problem you\'re currently facing. Work with your principal to write a clear problem statement using the template.',
       'What\'s the difference between a problem and a solution? Why is it important to distinguish between the two?',
       'How can you gather data to support your problem definition?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-4',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -1568,7 +1286,7 @@ const module4: CourseModule = {
       type: 'read',
       title: 'The Problem-Solving A3',
       description: 'How to define problems effectively',
-      thumbnailUrl: '/images/books/problem-solving-a3.jpg',
+      thumbnailUrl: '/images/a3-template.png',
       resourceUrl: 'https://www.lean.org/problem-solving-a3/',
       order: 1
     },
@@ -1577,7 +1295,7 @@ const module4: CourseModule = {
       type: 'watch',
       title: 'The Power of Problem Definition',
       description: 'TEDx talk on why problem definition matters',
-      thumbnailUrl: '/images/videos/problem-definition.jpg',
+      thumbnailUrl: '/images/defining-problems-gap.png',
       resourceUrl: 'https://www.youtube.com/watch?v=example',
       order: 1
     }
@@ -1591,7 +1309,7 @@ const module4: CourseModule = {
 const module5: CourseModule = {
   id: 'module-05',
   title: 'Experiment to Learn',
-  colorHex: '#22c55e', // Service Physics yellow-green accent
+  colorHex: '#5a7064', // Muted olive
   timeEstimateMinutes: 45,
   order: 5,
   accessLevel: 'free',
@@ -1603,46 +1321,9 @@ const module5: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'The Experiment Plan',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Experiments are how we learn and improve. An <span class="font-semibold text-emerald-600">experiment plan</span> helps us test our ideas systematically.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🧪</span> EXPERIMENT PLAN STRUCTURE
-              </h4>
-            </div>
-            <div class="p-6 space-y-3">
-              <div class="flex items-center p-4 bg-gradient-to-r from-emerald-50 to-transparent rounded-xl border-l-4 border-emerald-400 hover:shadow-md transition-shadow">
-                <span class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">1</span>
-                <div>
-                  <p class="font-bold text-gray-900">What do we expect?</p>
-                  <p class="text-sm text-emerald-600">Hypothesis — What we think will happen</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-green-50 to-transparent rounded-xl border-l-4 border-green-400 hover:shadow-md transition-shadow">
-                <span class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">2</span>
-                <div>
-                  <p class="font-bold text-gray-900">What will we try?</p>
-                  <p class="text-sm text-green-600">Test — The specific change we'll make</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-teal-50 to-transparent rounded-xl border-l-4 border-teal-400 hover:shadow-md transition-shadow">
-                <span class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">3</span>
-                <div>
-                  <p class="font-bold text-gray-900">How will we know?</p>
-                  <p class="text-sm text-teal-600">Measure — How we'll collect data</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-cyan-50 to-transparent rounded-xl border-l-4 border-cyan-400 hover:shadow-md transition-shadow">
-                <span class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4 shadow-lg">4</span>
-                <div>
-                  <p class="font-bold text-gray-900">What did we learn?</p>
-                  <p class="text-sm text-cyan-600">Results — What actually happened</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Experiment plans</strong> are used at Service Physics to provide structure and visualization to improvement work. The key components are: Problem Statement, Hypothesis, Learning Goals, KPI & Supporting Measures of Success, Experiment Design, Action Items, Results, and Next Steps.</p>
+          <img src="/images/experiment-plan.png" alt="Experiment Plan Template" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -1650,43 +1331,26 @@ const module5: CourseModule = {
     {
       id: 'section-05-overview-02',
       columnType: 'overview',
-      sectionTitle: 'Point Kaizen',
+      sectionTitle: 'Kaizen Tools & Methods',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed"><span class="font-semibold text-lime-600">Point Kaizen</span> are small, rapid experiments that can be completed quickly to test ideas and learn.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-lime-500 to-green-500 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">⚡</span> CHARACTERISTICS OF POINT KAIZEN
-              </h4>
-            </div>
-            <div class="p-6 grid grid-cols-2 gap-4">
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-lime-100 to-lime-50 p-4 border-2 border-lime-200 hover:border-lime-400 transition-colors">
-                <div class="text-3xl mb-2">🚀</div>
-                <p class="font-bold text-gray-900">Quick</p>
-                <p class="text-sm text-gray-600">Completed in days or weeks</p>
-              </div>
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-100 to-green-50 p-4 border-2 border-green-200 hover:border-green-400 transition-colors">
-                <div class="text-3xl mb-2">🎯</div>
-                <p class="font-bold text-gray-900">Focused</p>
-                <p class="text-sm text-gray-600">Targets a specific problem</p>
-              </div>
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 p-4 border-2 border-emerald-200 hover:border-emerald-400 transition-colors">
-                <div class="text-3xl mb-2">💰</div>
-                <p class="font-bold text-gray-900">Low-cost</p>
-                <p class="text-sm text-gray-600">Minimal resources required</p>
-              </div>
-              <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-teal-100 to-teal-50 p-4 border-2 border-teal-200 hover:border-teal-400 transition-colors">
-                <div class="text-3xl mb-2">📊</div>
-                <p class="font-bold text-gray-900">Measurable</p>
-                <p class="text-sm text-gray-600">Clear before/after data</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Kaizen asks three key questions: <strong>What is the work?</strong> How does the work get done? <strong>Where does waste exist?</strong> We use tools like Work Stories, Balance Boarding, Value Stream Mapping, Spaghetti Mapping, 5S, ERACS, Pull Based Inventory, Work Routines, and Task Responsibility Tracking.</p>
+          <img src="/images/kaizen-tools.png" alt="Kaizen Tools and Methods" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
+    },
+    {
+      id: 'section-05-overview-03',
+      columnType: 'overview',
+      sectionTitle: 'ERACS Process Improvement',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>ERACS</strong> is a 4-step plan to create a new work method: (1) Break Down the Job — capture the current state, (2) Question Every Detail — why, what, where, when, who, how, (3) Develop the New Method — Eliminate, Rearrange, Add/Subtract, Combine, Simplify, (4) Test the New Method — implement, measure impact, confirm quality and safety.</p>
+          <img src="/images/eracs-process.png" alt="ERACS Process Improvement Approach" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 3
     },
 
     // DIVE IN COLUMN
@@ -1695,16 +1359,16 @@ const module5: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">45 minutes</p>
-              <p class="text-emerald-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">45 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Learn how to design and run effective experiments through real-world examples.</p>
+          <p class="text-surface-600 leading-relaxed">Learn how to design and run effective experiments through real-world examples.</p>
         </div>
       `,
       order: 1
@@ -1716,20 +1380,7 @@ const module5: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-green-700 p-6 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="flex items-start gap-4 relative z-10">
-              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="text-3xl">🎓</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-emerald-100">Design a simple experiment you can run in your work environment and discuss it with your coach.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Design a simple experiment you can run in your work environment and discuss it with your principal.</p>
       `,
       order: 1
     }
@@ -1743,7 +1394,7 @@ const module5: CourseModule = {
       duration: '2',
       description: 'See how ERACS (Eliminate, Reduce, Automate, Combine, Simplify) is applied to improve the Panda Express drive-thru experience.',
       videoUrl: 'https://www.youtube.com/watch?v=DvSWcxSJvmo',
-      thumbnailUrl: '/images/eracs-panda.jpg',
+      thumbnailUrl: '/images/eracs-process.png',
       discussionQuestions: [
         {
           id: 'dq-05-01-01',
@@ -1764,7 +1415,7 @@ const module5: CourseModule = {
       duration: '3',
       description: 'Watch a quick experiment in action at the Panda Express drive-thru.',
       videoUrl: 'https://www.youtube.com/watch?v=dvX21ltUCg8',
-      thumbnailUrl: '/images/panda-drivethru.jpg',
+      thumbnailUrl: '/images/experiment-plan-template.png',
       discussionQuestions: [
         {
           id: 'dq-05-02-01',
@@ -1790,7 +1441,7 @@ const module5: CourseModule = {
       duration: '5',
       description: 'A detailed walkthrough of how to create and execute an experiment plan.',
       videoUrl: 'https://www.youtube.com/watch?v=DYpC9o-HTas',
-      thumbnailUrl: '/images/experiment-plan.jpg',
+      thumbnailUrl: '/images/experiment-plan.png',
       discussionQuestions: [
         {
           id: 'dq-05-03-01',
@@ -1810,21 +1461,21 @@ const module5: CourseModule = {
       type: 'practice',
       duration: '60',
       description: 'Apply ERACS to improve a process in your own life. Use this interactive worksheet to work through each step and create a measurable improvement.',
-      thumbnailUrl: '/images/eracs-practice.jpg',
+      thumbnailUrl: '/images/kaizen-tools.png',
       content: `
         <div class="prose max-w-none">
-          <div class="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-6 rounded-xl mb-6">
-            <h3 class="text-2xl font-bold mb-2">🎯 PRACTICING PROBLEM SOLVING WITH ERACS</h3>
-            <p class="text-teal-100">It's your turn! Identify a problem to solve with process improvement within your very own world and apply the Point Kaizen methodology.</p>
+          <div class="bg-primary-50 border border-primary-200 p-6 rounded-lg mb-6">
+            <h3 class="text-xl font-bold text-surface-800 mb-2">Practicing Problem Solving with ERACS</h3>
+            <p class="text-surface-600">It's your turn! Identify a problem to solve with process improvement within your very own world and apply the Point Kaizen methodology.</p>
           </div>
 
-          <div class="bg-amber-50 border-l-4 border-amber-400 p-4 my-4">
-            <h4 class="font-bold text-amber-900">📋 How to use this worksheet:</h4>
-            <ol class="text-amber-800 mt-2 space-y-1">
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-4 my-4">
+            <h4 class="font-bold text-surface-800">How to use this worksheet</h4>
+            <ol class="text-surface-600 mt-2 space-y-1">
               <li>1. Follow the sections from left to right (Setup → Test & Compare)</li>
               <li>2. Video yourself completing the task to capture the current state</li>
               <li>3. Fill in each section below as you work through the exercise</li>
-              <li>4. Schedule time with your coach to review your process improvement</li>
+              <li>4. Schedule time with your principal to review your process improvement</li>
             </ol>
           </div>
         </div>
@@ -2115,8 +1766,8 @@ const module5: CourseModule = {
       'Think of a small change you could test in your work. What would you measure to know if it worked?',
       'What barriers might prevent you from running quick experiments in your organization?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-5',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -2125,7 +1776,6 @@ const module5: CourseModule = {
       type: 'read',
       title: 'The Lean Startup',
       description: 'Build-Measure-Learn approach to experimentation',
-      thumbnailUrl: '/images/books/lean-startup.jpg',
       resourceUrl: 'https://www.amazon.com/Lean-Startup-Eric-Ries/dp/0307887898',
       order: 1
     },
@@ -2134,7 +1784,7 @@ const module5: CourseModule = {
       type: 'read',
       title: 'Kaizen Express',
       description: 'Fundamentals of kaizen and continuous improvement',
-      thumbnailUrl: '/images/books/kaizen-express.jpg',
+      thumbnailUrl: '/images/kaizen-tools.png',
       resourceUrl: 'https://www.lean.org/kaizen-express/',
       order: 2
     }
@@ -2148,7 +1798,7 @@ const module5: CourseModule = {
 const module6: CourseModule = {
   id: 'module-06',
   title: 'Measure',
-  colorHex: '#16a34a', // Deeper green accent
+  colorHex: '#6b5e7a', // Muted plum
   timeEstimateMinutes: 45,
   order: 6,
   accessLevel: 'free',
@@ -2160,46 +1810,9 @@ const module6: CourseModule = {
       columnType: 'overview',
       sectionTitle: 'Reviewing Experiment Results',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Measuring and reviewing results helps us <span class="font-semibold text-amber-600">learn from our experiments</span> and decide on next steps.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">📊</span> RESULTS REVIEW QUESTIONS
-              </h4>
-            </div>
-            <div class="p-6 space-y-3">
-              <div class="flex items-center p-4 bg-gradient-to-r from-amber-50 to-transparent rounded-xl border-l-4 border-amber-400 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">🎯</span>
-                <div>
-                  <p class="font-bold text-gray-900">Did we achieve our target?</p>
-                  <p class="text-sm text-amber-600">Compare results to hypothesis</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-orange-50 to-transparent rounded-xl border-l-4 border-orange-400 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">💡</span>
-                <div>
-                  <p class="font-bold text-gray-900">What did we learn?</p>
-                  <p class="text-sm text-orange-600">Insights from the data</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-yellow-50 to-transparent rounded-xl border-l-4 border-yellow-400 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">😮</span>
-                <div>
-                  <p class="font-bold text-gray-900">What surprised us?</p>
-                  <p class="text-sm text-yellow-600">Unexpected findings</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-lime-50 to-transparent rounded-xl border-l-4 border-lime-400 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">🔄</span>
-                <div>
-                  <p class="font-bold text-gray-900">What's our next experiment?</p>
-                  <p class="text-sm text-lime-600">How do we build on what we learned?</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">The <strong>Check</strong> phase of PDCA is where we measure: What does the data say? Did we achieve the target condition? Why or why not? Identify any gaps and unexpected outcomes. Recap using data and metrics showing planned vs actual outcomes.</p>
+          <img src="/images/experiment-results.png" alt="Reviewing Experiment Results" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -2207,43 +1820,11 @@ const module6: CourseModule = {
     {
       id: 'section-06-overview-02',
       columnType: 'overview',
-      sectionTitle: 'Capturing Feedback',
+      sectionTitle: 'Feedback from the Field',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Effective measurement includes both <span class="font-semibold text-blue-600">quantitative data</span> and <span class="font-semibold text-green-600">qualitative feedback</span> from people affected by the change.</p>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 p-6 text-white shadow-xl">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-              <div class="relative z-10">
-                <div class="flex items-center gap-2 mb-4">
-                  <span class="text-3xl">📈</span>
-                  <h5 class="font-bold text-xl">Quantitative</h5>
-                </div>
-                <ul class="space-y-2 text-blue-100">
-                  <li class="flex items-start gap-2"><span>•</span> Numbers & metrics</li>
-                  <li class="flex items-start gap-2"><span>•</span> Time studies</li>
-                  <li class="flex items-start gap-2"><span>•</span> Error rates</li>
-                  <li class="flex items-start gap-2"><span>•</span> Satisfaction scores</li>
-                </ul>
-              </div>
-            </div>
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 p-6 text-white shadow-xl">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12"></div>
-              <div class="relative z-10">
-                <div class="flex items-center gap-2 mb-4">
-                  <span class="text-3xl">💬</span>
-                  <h5 class="font-bold text-xl">Qualitative</h5>
-                </div>
-                <ul class="space-y-2 text-green-100">
-                  <li class="flex items-start gap-2"><span>•</span> Observations</li>
-                  <li class="flex items-start gap-2"><span>•</span> Interviews</li>
-                  <li class="flex items-start gap-2"><span>•</span> Open-ended surveys</li>
-                  <li class="flex items-start gap-2"><span>•</span> Team discussions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Effective measurement includes both quantitative data and <strong>qualitative feedback</strong> from people affected by the change. Go to the gemba, talk to the people doing the work, and listen to what they're experiencing.</p>
+          <img src="/images/feedback-from-field.png" alt="Feedback from the Field" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
@@ -2255,16 +1836,16 @@ const module6: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Listen',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">45 minutes</p>
-              <p class="text-amber-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">45 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Learn how to effectively measure results and gather meaningful feedback.</p>
+          <p class="text-surface-600 leading-relaxed">Learn how to effectively measure results and gather meaningful feedback.</p>
         </div>
       `,
       order: 1
@@ -2276,20 +1857,7 @@ const module6: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 p-6 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="flex items-start gap-4 relative z-10">
-              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="text-3xl">🎓</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-amber-100">Think about how you currently measure success in your work and what you might be missing.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Think about how you currently measure success in your work and what you might be missing.</p>
       `,
       order: 1
     }
@@ -2303,7 +1871,7 @@ const module6: CourseModule = {
       duration: '5',
       description: 'Learn how to review experiment results and determine next steps using the experiment plan framework.',
       videoUrl: 'https://www.youtube.com/watch?v=DYpC9o-HTas',
-      thumbnailUrl: '/images/experiment-review.jpg',
+      thumbnailUrl: '/images/experiment-results.png',
       discussionQuestions: [
         {
           id: 'dq-06-01-01',
@@ -2324,7 +1892,7 @@ const module6: CourseModule = {
       duration: '20',
       description: 'Read this excerpt from the book How to Talk to Humans for a deeper dive on asking the right questions before and during experiments to capture the stories that will make the work better.',
       externalUrl: '/pdfs/Talking-to-Humans-Excerpt.pdf',
-      thumbnailUrl: '/images/talking-to-humans.jpg',
+      thumbnailUrl: '/images/feedback-from-field.png',
       discussionQuestions: [
         {
           id: 'dq-06-02-01',
@@ -2345,7 +1913,7 @@ const module6: CourseModule = {
       duration: '25',
       description: 'Learn effective techniques for gathering qualitative feedback through interviews and observations.',
       externalUrl: 'https://www.lean.org/the-lean-post/articles/go-and-see/',
-      thumbnailUrl: '/images/go-and-see.jpg',
+      thumbnailUrl: '/images/three-reals.png',
       discussionQuestions: [
         {
           id: 'dq-06-03-01',
@@ -2412,8 +1980,8 @@ const module6: CourseModule = {
       'How do you currently gather feedback from people affected by changes? What could you improve?',
       'Share an example where data revealed something unexpected. How did you respond?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-6',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -2422,7 +1990,6 @@ const module6: CourseModule = {
       type: 'read',
       title: 'Measuring What Matters',
       description: 'OKRs and the art of setting objectives',
-      thumbnailUrl: '/images/books/measure-what-matters.jpg',
       resourceUrl: 'https://www.whatmatters.com/',
       order: 1
     },
@@ -2431,7 +1998,7 @@ const module6: CourseModule = {
       type: 'read',
       title: 'The Mom Test',
       description: 'How to talk to customers and learn if your business is a good idea',
-      thumbnailUrl: '/images/books/mom-test.jpg',
+      thumbnailUrl: '/images/feedback-from-field.png',
       resourceUrl: 'https://www.momtestbook.com/',
       order: 2
     }
@@ -2445,7 +2012,7 @@ const module6: CourseModule = {
 const module7: CourseModule = {
   id: 'module-07',
   title: 'Evaluation & Continuous Improvement',
-  colorHex: '#15803d', // Dark green accent
+  colorHex: '#4a6b5a', // Forest teal
   timeEstimateMinutes: 35,
   order: 7,
   accessLevel: 'free',
@@ -2455,53 +2022,11 @@ const module7: CourseModule = {
     {
       id: 'section-07-overview-01',
       columnType: 'overview',
-      sectionTitle: 'The PDCA Cycle',
+      sectionTitle: 'The Anatomy of Improvement',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Continuous improvement means repeating the <span class="font-semibold text-green-600">PDCA cycle</span> over and over, learning and improving with each iteration.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🔄</span> CONTINUOUS IMPROVEMENT CYCLE
-              </h4>
-            </div>
-            <div class="p-6">
-              <div class="grid grid-cols-2 gap-3">
-                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">P</div>
-                  <div class="relative z-10">
-                    <div class="text-2xl font-black mb-1">PLAN</div>
-                    <p class="text-blue-100 text-sm">Define & set targets</p>
-                  </div>
-                </div>
-                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">D</div>
-                  <div class="relative z-10">
-                    <div class="text-2xl font-black mb-1">DO</div>
-                    <p class="text-emerald-100 text-sm">Execute & experiment</p>
-                  </div>
-                </div>
-                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">C</div>
-                  <div class="relative z-10">
-                    <div class="text-2xl font-black mb-1">CHECK</div>
-                    <p class="text-amber-100 text-sm">Measure & analyze</p>
-                  </div>
-                </div>
-                <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-rose-500 to-red-600 p-5 text-white shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                  <div class="absolute top-0 right-0 text-6xl font-black text-white/20">A</div>
-                  <div class="relative z-10">
-                    <div class="text-2xl font-black mb-1">ACT</div>
-                    <p class="text-rose-100 text-sm">Standardize or iterate</p>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-4 p-3 bg-gradient-to-r from-gray-100 to-gray-50 rounded-xl text-center">
-                <p class="text-gray-600 text-sm">Each cycle builds on learning from the previous one ♻️</p>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Kaizen PDCA</strong> is the problem-solving fuel for operational transformation across a system. Through leader-led cascades, it drives improvements in cycle time, team experience, production capacity, labor, and guest satisfaction — supported by coaching, training, company culture, leadership, mission & vision, and strategy.</p>
+          <img src="/images/anatomy-of-improvement.png" alt="The Anatomy of Improvement - Kaizen PDCA as fuel for operational transformation" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 1
@@ -2509,48 +2034,11 @@ const module7: CourseModule = {
     {
       id: 'section-07-overview-02',
       columnType: 'overview',
-      sectionTitle: 'Anatomy of Improvement',
+      sectionTitle: 'Improvement Approach',
       contentHtml: `
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">Sustainable improvement requires both <span class="font-semibold text-purple-600">technical changes</span> and <span class="font-semibold text-purple-600">behavioral changes</span> in how we work.</p>
-
-          <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-            <div class="bg-gradient-to-r from-purple-600 to-violet-600 px-6 py-4">
-              <h4 class="text-white font-bold text-lg flex items-center">
-                <span class="text-2xl mr-2">🌳</span> ELEMENTS OF LASTING CHANGE
-              </h4>
-            </div>
-            <div class="p-6 space-y-3">
-              <div class="flex items-center p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-xl border-l-4 border-blue-500 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">🔧</span>
-                <div>
-                  <p class="font-bold text-gray-900">Technical System</p>
-                  <p class="text-sm text-blue-600">Tools, processes, and methods</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-green-50 to-transparent rounded-xl border-l-4 border-green-500 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">👥</span>
-                <div>
-                  <p class="font-bold text-gray-900">Social System</p>
-                  <p class="text-sm text-green-600">People, relationships, and culture</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-amber-50 to-transparent rounded-xl border-l-4 border-amber-500 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">📚</span>
-                <div>
-                  <p class="font-bold text-gray-900">Knowledge System</p>
-                  <p class="text-sm text-amber-600">Training, coaching, and learning</p>
-                </div>
-              </div>
-              <div class="flex items-center p-4 bg-gradient-to-r from-purple-50 to-transparent rounded-xl border-l-4 border-purple-500 hover:shadow-md transition-shadow">
-                <span class="text-3xl mr-4">🎯</span>
-                <div>
-                  <p class="font-bold text-gray-900">Management System</p>
-                  <p class="text-sm text-purple-600">Metrics, reviews, and accountability</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed"><strong>Troubleshooting</strong> closes the gap to our current standard; <strong>data-driven innovation</strong> raises the bar. Both are essential — troubleshooting restores performance to baseline, while innovation pushes the standard higher.</p>
+          <img src="/images/improvement-approach.png" alt="Improvement Approach - Troubleshooting vs data-driven innovation" class="w-full rounded-xl shadow-md" />
         </div>
       `,
       order: 2
@@ -2562,16 +2050,16 @@ const module7: CourseModule = {
       columnType: 'dive_in',
       sectionTitle: 'Watch/Read',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl text-white shadow-lg">
-            <span class="text-4xl">⏱️</span>
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
             <div>
-              <p class="text-2xl font-bold">35 minutes</p>
-              <p class="text-green-100">Total learning time</p>
+              <p class="text-lg font-bold text-surface-800">35 minutes</p>
+              <p class="text-sm text-surface-500">Total learning time</p>
             </div>
           </div>
 
-          <p class="text-gray-700 leading-relaxed">Learn what makes improvement sustainable and how to build a culture of continuous improvement.</p>
+          <p class="text-surface-600 leading-relaxed">Learn what makes improvement sustainable and how to build a culture of continuous improvement.</p>
         </div>
       `,
       order: 1
@@ -2583,50 +2071,7 @@ const module7: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-green-500 to-emerald-700 p-6 text-white shadow-xl">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div class="flex items-start gap-4 relative z-10">
-              <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center flex-shrink-0">
-                <span class="text-3xl">🎓</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-xl mb-2">Prepare for Your Coaching Session</h4>
-                <p class="text-green-100">Reflect on your improvement journey through this course and plan your next steps with your coach.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-400 via-yellow-400 to-orange-400 p-6 shadow-xl">
-            <div class="absolute top-2 right-4 text-6xl opacity-30">🏆</div>
-            <div class="relative z-10">
-              <h4 class="font-black text-2xl text-gray-900 mb-3">🎉 Congratulations!</h4>
-              <p class="text-gray-800 mb-4">You've completed Problem Solving 101! You now have the foundations to:</p>
-              <div class="grid grid-cols-1 gap-2">
-                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
-                  <span class="text-green-600">✓</span>
-                  <span class="text-sm text-gray-800">Identify and define problems systematically</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
-                  <span class="text-green-600">✓</span>
-                  <span class="text-sm text-gray-800">Use structured problem-solving tools</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
-                  <span class="text-green-600">✓</span>
-                  <span class="text-sm text-gray-800">Design and run improvement experiments</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
-                  <span class="text-green-600">✓</span>
-                  <span class="text-sm text-gray-800">Measure and evaluate results</span>
-                </div>
-                <div class="flex items-center gap-2 bg-white/50 rounded-lg p-2">
-                  <span class="text-green-600">✓</span>
-                  <span class="text-sm text-gray-800">Build continuous improvement into your work</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-sm">Reflect on your improvement journey through this course and plan your next steps with your principal.</p>
       `,
       order: 1
     }
@@ -2640,7 +2085,7 @@ const module7: CourseModule = {
       duration: '5',
       description: 'See how F1 teams use continuous improvement to shave milliseconds off pit stop times.',
       videoUrl: 'https://www.youtube.com/watch?v=3jrjBwm1Y68',
-      thumbnailUrl: '/images/f1-pitstop.jpg',
+      thumbnailUrl: '/images/improvement-approach.png',
       discussionQuestions: [
         {
           id: 'dq-07-01-01',
@@ -2661,7 +2106,6 @@ const module7: CourseModule = {
       duration: '30',
       description: 'Listen to this Wall Street Journal podcast about what happens when continuous improvement culture breaks down inside Boeing\'s 737 factory.',
       externalUrl: 'https://www.wsj.com/podcasts/the-journal/the-failures-inside-boeing-737-factory/82e42092-0815-41f6-8543-144daea416df',
-      thumbnailUrl: '/images/boeing-wsj.jpg',
       discussionQuestions: [
         {
           id: 'dq-07-02-01',
@@ -2684,8 +2128,8 @@ const module7: CourseModule = {
       'How can you help build a culture of continuous improvement in your organization?',
       'What barriers to continuous improvement do you see in your workplace? How might you address them?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-7',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -2694,7 +2138,7 @@ const module7: CourseModule = {
       type: 'read',
       title: 'The Toyota Way',
       description: '14 Management Principles from the World\'s Greatest Manufacturer',
-      thumbnailUrl: '/images/books/toyota-way.jpg',
+      thumbnailUrl: '/images/anatomy-of-improvement.png',
       resourceUrl: 'https://www.amazon.com/Toyota-Way-Management-Principles-Manufacturer/dp/0071392319',
       order: 1
     },
@@ -2703,7 +2147,7 @@ const module7: CourseModule = {
       type: 'read',
       title: 'The High-Velocity Edge',
       description: 'How the leading organizations use operational excellence to beat the competition',
-      thumbnailUrl: '/images/books/high-velocity-edge.jpg',
+      thumbnailUrl: '/images/improvement-approach.png',
       resourceUrl: 'https://www.amazon.com/High-Velocity-Edge-Operational-Excellence-Competition/dp/1259860906',
       order: 2
     },
@@ -2712,7 +2156,7 @@ const module7: CourseModule = {
       type: 'watch',
       title: 'Building a Culture of Continuous Improvement',
       description: 'TEDx talk on creating lasting organizational change',
-      thumbnailUrl: '/images/videos/culture-improvement.jpg',
+      thumbnailUrl: '/images/anatomy-of-improvement.png',
       resourceUrl: 'https://www.youtube.com/watch?v=example',
       order: 1
     }

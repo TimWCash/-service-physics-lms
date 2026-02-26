@@ -24,15 +24,12 @@ export default function Dashboard() {
         return
       }
 
-      // Sync progress from Supabase to ensure localStorage matches database
       await AuthService.syncFromSupabase()
 
-      // Reload user after sync
       const syncedUser = AuthService.getUser()
       setUser(syncedUser)
       setProgress(AuthService.getCourseProgress())
 
-      // Check if user is admin
       if (syncedUser?.email) {
         setIsAdmin(ADMIN_EMAILS.includes(syncedUser.email.toLowerCase()))
       }
@@ -48,49 +45,51 @@ export default function Dashboard() {
 
   if (!user) return null
 
+  const totalActivities = courseModules.reduce((acc, module) => acc + module.activities.length, 0)
+
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-soft border-b border-white/60 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <header className="bg-white border-b border-surface-200 sticky top-0 z-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <div>
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/images/sp-logo.png"
-                  alt="Service Physics"
-                  width={48}
-                  height={48}
-                  className="rounded-xl shadow-lg"
-                />
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
-                    {courseMetadata.title}
-                  </h1>
-                  <p className="text-sm text-gray-600 mt-0.5">
-                    Welcome back, <span className="font-semibold text-primary-600">{user.name}</span>!
-                    {isAdmin && (
-                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">
-                        👑 Admin
-                      </span>
-                    )}
-                  </p>
-                </div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/sp-logo.png"
+                alt="Service Physics"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
+              <div>
+                <h1 className="text-xl text-surface-800 font-display">
+                  {courseMetadata.title}
+                </h1>
+                <p className="text-sm text-surface-500 font-sans">
+                  Welcome back, <span className="font-semibold text-primary-600">{user.name}</span>
+                  {isAdmin && (
+                    <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent-100 text-accent-700">
+                      Admin
+                    </span>
+                  )}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               {isAdmin && (
                 <Link
                   href="/admin"
-                  className="px-4 py-2 bg-amber-100 text-amber-800 rounded-lg hover:bg-amber-200 transition-colors font-medium text-sm flex items-center gap-2"
+                  className="px-3 py-2 bg-accent-50 text-accent-700 rounded-lg hover:bg-accent-100 transition-colors font-medium text-sm font-sans flex items-center gap-2"
                 >
-                  <span>📊</span>
-                  Admin Dashboard
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                  </svg>
+                  Admin
                 </Link>
               )}
               <button
                 onClick={handleLogout}
-                className="btn-secondary"
+                className="btn-secondary font-sans"
               >
                 Logout
               </button>
@@ -100,77 +99,73 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-fade-in">
         {/* Welcome Banner */}
         <Link
           href="/welcome"
-          className="block mb-8 bg-gradient-to-r from-primary-500 to-primary-700 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all group"
+          className="block mb-8 card p-5 hover:border-primary-300 group"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="text-4xl">🎓</div>
+              <div className="w-11 h-11 rounded-lg bg-primary-100 flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                </svg>
+              </div>
               <div>
-                <h3 className="text-xl font-bold mb-1">Welcome to Problem Solving</h3>
-                <p className="text-primary-100">Learn course objectives and tips to succeed</p>
+                <h3 className="text-lg font-display text-surface-800">Welcome to Problem Solving</h3>
+                <p className="text-surface-500 text-sm font-sans">Learn course objectives and tips to succeed</p>
               </div>
             </div>
-            <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 text-surface-400 group-hover:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </div>
         </Link>
 
         {/* Progress Card */}
-        <div className="card p-8 mb-8 hover:shadow-soft-lg">
-          <div className="flex items-center justify-between mb-6">
+        <div className="card p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-1">Your Progress</h2>
-              <p className="text-gray-600">Keep learning to unlock more content</p>
+              <h2 className="text-xl font-display text-surface-800 mb-1">Your Progress</h2>
+              <div className="flex items-center gap-4 text-sm text-surface-500 font-sans">
+                <span>{courseModules.length} modules</span>
+                <span className="w-px h-3.5 bg-surface-200" />
+                <span>{totalActivities} activities</span>
+                <span className="w-px h-3.5 bg-surface-200" />
+                <span>7-8 hours</span>
+              </div>
             </div>
             <div className="text-right">
-              <div className="text-5xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+              <div className="text-3xl font-sans font-bold text-primary-600">
                 {progress}%
               </div>
-              <p className="text-sm text-gray-500 mt-1">Complete</p>
+              <p className="text-xs text-surface-400 font-sans mt-0.5">Complete</p>
             </div>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+          <div className="w-full bg-surface-100 rounded-full h-2 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-primary-600 to-primary-700 h-4 rounded-full transition-all duration-500 ease-out shadow-md"
+              className="bg-primary-600 h-2 rounded-full transition-[width] duration-700 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="mt-6 grid grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
-              <div className="text-2xl font-bold text-primary-700">{courseModules.length}</div>
-              <div className="text-sm text-gray-600 mt-1">Modules</div>
-            </div>
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 border border-emerald-100">
-              <div className="text-2xl font-bold text-emerald-700">
-                {courseModules.reduce((acc, module) => acc + module.activities.length, 0)}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">Activities</div>
-            </div>
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 border border-amber-100">
-              <div className="text-2xl font-bold text-amber-700">7-8h</div>
-              <div className="text-sm text-gray-600 mt-1">Duration</div>
-            </div>
-          </div>
 
-          {/* Course Complete Button - show at 100% or 80%+ (for users who completed before quizzes were added) */}
+          {/* Course Complete Button */}
           {progress >= 80 && (
-            <div className="mt-6">
+            <div className="mt-5">
               <Link
                 href="/complete"
-                className={`w-full flex items-center justify-center gap-3 px-6 py-4 ${
+                className={`w-full flex items-center justify-center gap-3 px-5 py-3.5 ${
                   progress >= 100
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 animate-pulse'
-                    : 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700'
-                } text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl`}
+                    ? 'bg-success-500 hover:bg-success-700'
+                    : 'bg-accent-500 hover:bg-accent-600'
+                } text-white font-semibold rounded-lg transition-colors font-sans text-sm`}
               >
-                <span className="text-2xl">{progress >= 100 ? '🎉' : '📋'}</span>
-                <span>{progress >= 100 ? 'Celebrate Your Completion & Schedule Coaching!' : 'View Your Progress Summary & Schedule Coaching'}</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .982-3.172M12 3.75a3 3 0 0 0-3 3v.75h6v-.75a3 3 0 0 0-3-3Z" />
+                </svg>
+                <span>{progress >= 100 ? 'Celebrate Your Completion & Schedule Session' : 'View Progress Summary & Schedule Session'}</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -179,110 +174,70 @@ export default function Dashboard() {
         </div>
 
         {/* Course Modules */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {courseModules.map((module, moduleIndex) => (
-            <div key={module.id} className="card overflow-hidden hover:shadow-soft-lg animate-slide-in" style={{ animationDelay: `${moduleIndex * 0.1}s` }}>
-              <Link href={`/module/${module.id}`}>
-                <div
-                  className="section-header cursor-pointer hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: module.colorHex }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-white/80 text-sm font-semibold tracking-wide uppercase">
-                        Module {moduleIndex + 1}
-                      </span>
-                      <h3 className="text-2xl font-bold text-white mt-1.5">
-                        {module.title}
-                      </h3>
-                      <div className="flex items-center gap-3 mt-2 text-white/80 text-sm">
-                        <span>{module.timeEstimateMinutes} minutes</span>
-                        <span>•</span>
-                        <span>{module.activities.length} activities</span>
-                      </div>
-                    </div>
-                    {module.accessLevel === 'free' ? (
-                      <span className="badge badge-free">
-                        Free
-                      </span>
-                    ) : (
-                      <span className="badge badge-premium">
-                        Premium
-                      </span>
-                    )}
+            <div key={module.id} className="card overflow-hidden animate-slide-in" style={{ animationDelay: `${moduleIndex * 0.05}s` }}>
+              <Link href={`/module/${module.id}`} className="block">
+                <div className="p-5 flex items-start gap-4">
+                  {/* Module number badge */}
+                  <div
+                    className="w-11 h-11 rounded-lg flex items-center justify-center text-white font-sans font-bold text-sm flex-shrink-0"
+                    style={{ backgroundColor: module.colorHex }}
+                  >
+                    {moduleIndex + 1}
                   </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-surface-400 mb-0.5 font-sans">
+                      Module {moduleIndex + 1}
+                    </p>
+                    <h3 className="text-lg font-display text-surface-800 mb-1">{module.title}</h3>
+                    <div className="flex items-center gap-3 text-sm text-surface-500 font-sans">
+                      <span>{module.timeEstimateMinutes} min</span>
+                      <span className="text-surface-300">|</span>
+                      <span>{module.activities.length} activities</span>
+                    </div>
+                  </div>
+                  {module.accessLevel === 'free' ? (
+                    <span className="badge badge-free font-sans flex-shrink-0">Free</span>
+                  ) : (
+                    <span className="badge badge-premium font-sans flex-shrink-0">Premium</span>
+                  )}
                 </div>
               </Link>
 
-              <div className="p-6">
-                {module.activities.length === 0 ? (
-                  <p className="text-gray-500 italic text-center py-8">
-                    No activities available yet. Check back soon!
-                  </p>
-                ) : (
-                  <div className="space-y-3">
-                    {module.activities.map((activity, activityIndex) => {
-                      const activityProgress = AuthService.getProgress(activity.id)
-                      const isCompleted = activityProgress?.completed || false
+              <div className="px-5 pb-5">
+                {(() => {
+                  const completedCount = module.activities.filter(a => {
+                    const p = AuthService.getProgress(a.id)
+                    return p?.completed || false
+                  }).length
+                  const totalCount = module.activities.length
+                  const moduleProgress = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
 
-                      return (
-                        <Link
-                          key={activity.id}
-                          href={`/course/${module.id}/${activity.id}`}
-                          className="activity-card"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
-                              isCompleted
-                                ? 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md'
-                                : 'bg-gray-100 text-gray-500 group-hover:bg-primary-50 group-hover:text-primary-600'
-                            }`}>
-                              {isCompleted ? (
-                                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                </svg>
-                              ) : (
-                                <span className="font-bold text-lg">{activityIndex + 1}</span>
-                              )}
-                            </div>
-                            <div className="flex-1">
-                              <h4 className="font-semibold text-gray-900 group-hover:text-primary-700 transition-colors text-lg">
-                                {activity.title}
-                              </h4>
-                              <div className="flex items-center space-x-4 mt-1.5">
-                                <span className="text-sm text-gray-600 font-medium">
-                                  {activity.type === 'ebook' && '📚 E-book'}
-                                  {activity.type === 'video' && '🎥 Video'}
-                                  {activity.type === 'audio' && '🎧 Audio'}
-                                  {activity.type === 'reading' && '📖 Reading'}
-                                  {activity.type === 'quiz' && '✏️ Quiz'}
-                                  {activity.type === 'practice' && '✍️ Practice'}
-                                  {activity.type === 'coaching' && '💡 Coaching'}
-                                </span>
-                                {activity.duration && (
-                                  <>
-                                    <span className="text-gray-300">•</span>
-                                    <span className="text-sm text-gray-500">
-                                      {activity.duration} min
-                                    </span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                          <svg
-                            className="w-6 h-6 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-                      )
-                    })}
-                  </div>
-                )}
+                  return (
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-sm font-sans">
+                        <span className="text-surface-500">{completedCount} of {totalCount} completed</span>
+                        <span className="font-semibold text-surface-600">{moduleProgress}%</span>
+                      </div>
+                      <div className="w-full bg-surface-100 rounded-full h-1.5 overflow-hidden">
+                        <div
+                          className="bg-primary-500 h-1.5 rounded-full transition-[width] duration-500"
+                          style={{ width: `${moduleProgress}%` }}
+                        />
+                      </div>
+                      <Link
+                        href={`/module/${module.id}`}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors font-sans"
+                      >
+                        <span>{completedCount === 0 ? 'Start Module' : completedCount === totalCount ? 'Review Module' : 'Continue Module'}</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </Link>
+                    </div>
+                  )
+                })()}
               </div>
             </div>
           ))}

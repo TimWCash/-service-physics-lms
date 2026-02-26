@@ -102,12 +102,7 @@ export const module2: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-            <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-            <p class="text-sm">Review the tools and prepare to discuss how you might apply them.</p>
-          </div>
-        </div>
+        <p class="text-sm">Review the tools and prepare to discuss how you might apply them.</p>
       `,
       order: 1
     }
@@ -187,8 +182,8 @@ export const module2: CourseModule = {
       'Have you worked with A3s or Experiment Plans before? If so, how did the structure guide you to effectively solve the problem at hand?',
       'Think about a problem you are facing in your daily life and apply the 5 Whys to identify the root cause. What did you learn?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-2',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [
@@ -285,12 +280,7 @@ export const module3: CourseModule = {
       columnType: 'recap',
       sectionTitle: 'Coaching Prep!',
       contentHtml: `
-        <div class="prose">
-          <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-            <h4 class="font-bold text-lg mb-2">Prepare for Your Coaching Session</h4>
-            <p class="text-sm">Think about waste you've experienced in your work.</p>
-          </div>
-        </div>
+        <p class="text-sm">Think about waste you've experienced in your work.</p>
       `,
       order: 1
     }
@@ -396,8 +386,8 @@ export const module3: CourseModule = {
       'Have you worked in the service industry? Where, and what was your role? What did you love about it? What frustrated you about it?',
       'Thinking about your work experience or experience as a customer of service businesses, which wastes have you seen or experienced?'
     ],
-    knowledgeCheckUrl: '/knowledge-check/module-3',
-    glossaryNote: 'Seeing terms or words in here that you are unfamiliar with? Check out the Service Physics Glossary for definitions.'
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
   },
 
   deepDiveResources: [

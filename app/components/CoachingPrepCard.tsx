@@ -1,7 +1,6 @@
 'use client'
 
 import { CoachingPrep } from '@/data/courseDataV3'
-import Link from 'next/link'
 
 interface Props {
   coachingPrep: CoachingPrep
@@ -9,43 +8,28 @@ interface Props {
 
 export default function CoachingPrepCard({ coachingPrep }: Props) {
   return (
-    <div className="card p-6 bg-blue-50 border-2 border-blue-200">
-      <div className="flex items-center gap-2 mb-4">
-        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-        <h3 className="text-lg font-bold text-blue-900">Discussion Questions for Your Coach</h3>
-      </div>
-
-      <div className="space-y-3 mb-6">
-        {coachingPrep.discussionQuestions.map((question, index) => (
-          <div key={index} className="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
-            <p className="text-gray-900">{question}</p>
-          </div>
-        ))}
-      </div>
-
-      {coachingPrep.knowledgeCheckUrl && (
-        <div className="mt-6">
-          <Link href={coachingPrep.knowledgeCheckUrl}>
-            <button className="btn-primary w-full text-center flex items-center justify-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Complete Post-Module Knowledge Check →
-            </button>
-          </Link>
+    <div className="bg-white rounded-lg border border-surface-200 overflow-hidden">
+      <div className="bg-primary-700 px-6 py-4">
+        <div className="flex items-center gap-3">
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+          </svg>
+          <h3 className="font-display text-white text-lg">Discussion Questions for Your Principal</h3>
         </div>
-      )}
-
-      {coachingPrep.glossaryNote && (
-        <div className="mt-4 text-sm text-blue-700 bg-blue-100 p-3 rounded">
-          <p>{coachingPrep.glossaryNote}</p>
-          <Link href="/glossary" className="text-blue-600 font-semibold hover:underline">
-            View Glossary →
-          </Link>
+      </div>
+      <div className="p-6">
+        <div className="space-y-3">
+          {coachingPrep.discussionQuestions.map((question, index) => (
+            <div key={index} className="flex gap-3 p-4 bg-surface-50 rounded-lg">
+              <span className="w-6 h-6 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5 font-sans">
+                {index + 1}
+              </span>
+              <p className="text-surface-700 font-sans text-sm leading-relaxed">{question}</p>
+            </div>
+          ))}
         </div>
-      )}
+
+      </div>
     </div>
   )
 }
