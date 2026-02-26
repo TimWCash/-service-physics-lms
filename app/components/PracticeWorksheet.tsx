@@ -289,7 +289,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                   {tableData.length > minRows && (
                     <button
                       onClick={() => removeTableRow(field.id, rowIndex, minRows)}
-                      className="text-red-500 hover:text-red-700 transition-colors"
+                      className="text-danger-500 hover:text-danger-700 transition-colors"
                       title="Remove row"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -347,7 +347,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
               <div key={field.id} className="space-y-2">
                 <label className="block font-semibold text-surface-700 font-sans text-sm">
                   {field.label}
-                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                  {field.required && <span className="text-danger-500 ml-1">*</span>}
                 </label>
                 {field.helpText && (
                   <p className="text-sm text-surface-500 mb-2">{field.helpText}</p>

@@ -215,15 +215,15 @@ export default function AdminDashboard() {
 
   if (!isAuthorized) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-surface-50">
         <div className="card p-8 max-w-md text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
-            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-16 h-16 mx-auto mb-4 bg-danger-100 rounded-full flex items-center justify-center">
+            <svg className="w-8 h-8 text-danger-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Access Denied</h2>
-          <p className="text-gray-600 mb-4">You don&apos;t have permission to view this page.</p>
+          <h2 className="text-xl font-bold text-surface-800 mb-2">Access Denied</h2>
+          <p className="text-surface-500 mb-4">You don&apos;t have permission to view this page.</p>
           <a href="/dashboard" className="btn-primary inline-block">
             Return to Dashboard
           </a>
@@ -237,7 +237,7 @@ export default function AdminDashboard() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading user progress...</p>
+          <p className="text-surface-500">Loading user progress...</p>
         </div>
       </div>
     )
@@ -246,14 +246,14 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm shadow-soft border-b border-white/60 sticky top-0 z-50">
+      <header className="bg-white border-b border-surface-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <a
                   href="/dashboard"
-                  className="text-gray-500 hover:text-primary-600 transition-colors flex items-center gap-1"
+                  className="text-surface-400 hover:text-primary-600 transition-colors flex items-center gap-1"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -261,11 +261,11 @@ export default function AdminDashboard() {
                   <span className="text-sm font-medium">Back to Course</span>
                 </a>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <span className="text-2xl">📊</span>
+              <h1 className="text-3xl font-bold text-surface-800 flex items-center gap-3">
+                <svg className="w-7 h-7 text-primary-600" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
                 Admin Dashboard
               </h1>
-              <p className="text-sm text-gray-600 mt-1">
+              <p className="text-sm text-surface-500 mt-1">
                 Track user progress across the course
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function AdminDashboard() {
               <div className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
                 {users.length}
               </div>
-              <p className="text-sm text-gray-500 mt-1">Total Users</p>
+              <p className="text-sm text-surface-400 mt-1">Total Users</p>
             </div>
           </div>
         </div>
@@ -293,8 +293,8 @@ export default function AdminDashboard() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">Content Management</h3>
-                <p className="text-sm text-gray-600">Edit activity content, URLs, and metadata</p>
+                <h3 className="text-lg font-semibold text-surface-800">Content Management</h3>
+                <p className="text-sm text-surface-500">Edit activity content, URLs, and metadata</p>
               </div>
             </div>
           </a>
@@ -310,8 +310,8 @@ export default function AdminDashboard() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900">URL Management</h3>
-                <p className="text-sm text-gray-600">Update external links and media URLs</p>
+                <h3 className="text-lg font-semibold text-surface-800">URL Management</h3>
+                <p className="text-sm text-surface-500">Update external links and media URLs</p>
               </div>
             </div>
           </a>
@@ -319,7 +319,7 @@ export default function AdminDashboard() {
 
         {/* Search and Title */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">User Progress</h2>
+          <h2 className="text-2xl font-bold text-surface-800">User Progress</h2>
           {users.length > 0 && (
             <div className="relative w-full sm:w-64">
               <input
@@ -327,9 +327,9 @@ export default function AdminDashboard() {
                 placeholder="Search users..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 pl-10 border border-surface-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
               />
-              <svg className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-surface-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
@@ -341,19 +341,19 @@ export default function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         {users.length === 0 ? (
           <div className="card p-12 text-center">
-            <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-surface-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No users yet</h3>
-            <p className="text-gray-600">Users will appear here once they sign up and start learning.</p>
+            <h3 className="text-xl font-semibold text-surface-800 mb-2">No users yet</h3>
+            <p className="text-surface-500">Users will appear here once they sign up and start learning.</p>
           </div>
         ) : filteredUsers.length === 0 ? (
           <div className="card p-12 text-center">
-            <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-16 h-16 text-surface-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No matching users</h3>
-            <p className="text-gray-600">Try a different search term.</p>
+            <h3 className="text-xl font-semibold text-surface-800 mb-2">No matching users</h3>
+            <p className="text-surface-500">Try a different search term.</p>
           </div>
         ) : (
           <>
@@ -362,12 +362,12 @@ export default function AdminDashboard() {
                 <div key={user.id} className="card p-6 hover:shadow-soft-lg">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900">{user.full_name}</h3>
-                      <p className="text-sm text-gray-600">{user.email}</p>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <h3 className="text-lg font-semibold text-surface-800">{user.full_name}</h3>
+                      <p className="text-sm text-surface-500">{user.email}</p>
+                      <p className="text-xs text-surface-400 mt-1">
                         Joined {new Date(user.created_at).toLocaleDateString()}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-surface-400">
                         Last active {new Date(user.updated_at).toLocaleDateString()} at {new Date(user.updated_at).toLocaleTimeString()}
                       </p>
                     </div>
@@ -375,13 +375,13 @@ export default function AdminDashboard() {
                       <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
                         {user.progressPercentage}%
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-surface-400 mt-1">
                         {user.progressCount} activities completed
                       </p>
                     </div>
                   </div>
 
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
+                  <div className="w-full bg-surface-200 rounded-full h-3 overflow-hidden shadow-inner">
                     <div
                       className="bg-gradient-to-r from-primary-600 to-primary-700 h-3 rounded-full transition-all duration-500 ease-out shadow-md"
                       style={{ width: `${user.progressPercentage}%` }}
@@ -391,17 +391,17 @@ export default function AdminDashboard() {
                   {/* Quiz Scores */}
                   {user.quizScores.length > 0 && (
                     <div className="mt-4">
-                      <p className="text-xs font-semibold text-gray-700 mb-2">📝 Quiz Scores:</p>
+                      <p className="text-xs font-semibold text-surface-600 mb-2">Quiz Scores:</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                         {user.quizScores.map((quiz) => (
                           <div
                             key={quiz.activityId}
                             className={`px-3 py-2 rounded-lg text-xs font-medium border ${
                               quiz.score >= 80
-                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                                ? 'bg-success-50 text-success-800 border-success-200'
                                 : quiz.score >= 60
-                                ? 'bg-amber-50 text-amber-800 border-amber-200'
-                                : 'bg-red-50 text-red-800 border-red-200'
+                                ? 'bg-accent-50 text-accent-800 border-accent-200'
+                                : 'bg-danger-50 text-danger-800 border-danger-200'
                             }`}
                           >
                             <div className="font-semibold">{quiz.activityName.replace('Module ', 'M').replace(' Knowledge Check', '')}</div>
@@ -414,7 +414,7 @@ export default function AdminDashboard() {
 
                   {user.completedActivities.length > 0 && (
                     <div className="mt-4">
-                      <p className="text-xs font-semibold text-gray-700 mb-2">Completed Activities:</p>
+                      <p className="text-xs font-semibold text-surface-600 mb-2">Completed Activities:</p>
                       <div className="flex flex-wrap gap-2">
                         {user.completedActivities.map((activityId) => {
                           const activity = activityLookup.get(activityId)
@@ -424,7 +424,7 @@ export default function AdminDashboard() {
                           return (
                             <span
                               key={activityId}
-                              className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-200"
+                              className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-success-100 text-success-800 border border-success-200"
                             >
                               ✓ {activity?.title || activityId}
                             </span>
@@ -443,17 +443,17 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 rounded-lg border border-surface-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-50 transition-colors"
                 >
                   Previous
                 </button>
-                <span className="px-4 py-2 text-gray-600">
+                <span className="px-4 py-2 text-surface-500">
                   Page {currentPage} of {totalPages}
                 </span>
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                  className="px-4 py-2 rounded-lg border border-surface-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-50 transition-colors"
                 >
                   Next
                 </button>
@@ -461,7 +461,7 @@ export default function AdminDashboard() {
             )}
 
             {/* Results info */}
-            <p className="text-center text-sm text-gray-500 mt-4">
+            <p className="text-center text-sm text-surface-400 mt-4">
               Showing {((currentPage - 1) * USERS_PER_PAGE) + 1} - {Math.min(currentPage * USERS_PER_PAGE, filteredUsers.length)} of {filteredUsers.length} users
             </p>
           </>

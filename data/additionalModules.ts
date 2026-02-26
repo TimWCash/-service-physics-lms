@@ -23,8 +23,8 @@ export const module2: CourseModule = {
       contentHtml: `
         <div class="prose">
           <p>Problem-solving tools help us visualize and structure our thinking through the PDCA cycle.</p>
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4">PROBLEM VISUALIZATION TOOLS</h4>
+          <div class="my-6 p-6 bg-primary-50 rounded-lg border-2 border-primary-200">
+            <h4 class="text-surface-800 font-bold mb-4">PROBLEM VISUALIZATION TOOLS</h4>
             <div class="grid grid-cols-3 gap-4">
               <div class="text-center p-3 bg-white rounded shadow">
                 <p class="font-bold">Experiment Plan</p>
@@ -48,16 +48,16 @@ export const module2: CourseModule = {
       contentHtml: `
         <div class="prose">
           <p><strong>An A3 Report</strong> is a Toyota-pioneered practice of getting the problem, the analysis, the corrective actions, and the action plan on a single sheet of paper.</p>
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">A3 PROBLEM SOLVING TEMPLATE</h4>
+          <div class="my-6 p-6 bg-surface-50 rounded-lg border-2 border-surface-200">
+            <h4 class="text-surface-800 font-bold mb-4">A3 PROBLEM SOLVING TEMPLATE</h4>
             <div class="space-y-2 text-sm">
-              <div class="p-2 bg-blue-100 rounded">1. Background</div>
-              <div class="p-2 bg-green-100 rounded">2. Current Condition</div>
-              <div class="p-2 bg-yellow-100 rounded">3. Goal/Target</div>
-              <div class="p-2 bg-orange-100 rounded">4. Root Cause Analysis</div>
-              <div class="p-2 bg-red-100 rounded">5. Countermeasures</div>
-              <div class="p-2 bg-purple-100 rounded">6. Implementation Plan</div>
-              <div class="p-2 bg-pink-100 rounded">7. Follow-up</div>
+              <div class="p-2 bg-primary-100 rounded">1. Background</div>
+              <div class="p-2 bg-success-100 rounded">2. Current Condition</div>
+              <div class="p-2 bg-accent-100 rounded">3. Goal/Target</div>
+              <div class="p-2 bg-warning-100 rounded">4. Root Cause Analysis</div>
+              <div class="p-2 bg-danger-100 rounded">5. Countermeasures</div>
+              <div class="p-2 bg-info-100 rounded">6. Implementation Plan</div>
+              <div class="p-2 bg-primary-100 rounded">7. Follow-up</div>
             </div>
           </div>
         </div>
@@ -71,14 +71,14 @@ export const module2: CourseModule = {
       contentHtml: `
         <div class="prose">
           <p>The <strong>Five Whys</strong> technique helps narrow down from symptoms to root causes.</p>
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4 text-center">PROBLEM FUNNEL</h4>
+          <div class="my-6 p-6 bg-surface-50 rounded-lg border-2 border-surface-200">
+            <h4 class="text-surface-800 font-bold mb-4 text-center">PROBLEM FUNNEL</h4>
             <div class="flex flex-col items-center space-y-3">
-              <div class="w-full p-3 bg-red-100 rounded text-center">Problem Symptom</div>
-              <div class="w-5/6 p-3 bg-orange-100 rounded text-center">Why? Layer 1</div>
-              <div class="w-4/6 p-3 bg-yellow-100 rounded text-center">Why? Layer 2</div>
-              <div class="w-3/6 p-3 bg-green-100 rounded text-center">Why? Layer 3</div>
-              <div class="w-2/6 p-3 bg-blue-100 rounded text-center">Root Cause</div>
+              <div class="w-full p-3 bg-danger-100 rounded text-center">Problem Symptom</div>
+              <div class="w-5/6 p-3 bg-warning-100 rounded text-center">Why? Layer 1</div>
+              <div class="w-4/6 p-3 bg-accent-100 rounded text-center">Why? Layer 2</div>
+              <div class="w-3/6 p-3 bg-success-100 rounded text-center">Why? Layer 3</div>
+              <div class="w-2/6 p-3 bg-primary-100 rounded text-center">Root Cause</div>
             </div>
           </div>
         </div>
@@ -91,7 +91,10 @@ export const module2: CourseModule = {
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
         <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 50 minutes</p>
+          <div class="p-4 bg-primary-50 border border-primary-200 rounded-lg mb-6 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            <p class="font-semibold text-surface-800">Total time: 1 hour 50 minutes</p>
+          </div>
           <p class="mb-6">Explore the fundamental problem-solving tools used in Lean thinking.</p>
         </div>
       `,
@@ -192,7 +195,7 @@ export const module2: CourseModule = {
       type: 'read',
       title: 'A3 Problem Solving: A Resource Guide',
       description: 'Lean Enterprise Institute',
-      thumbnailUrl: '/images/books/a3-guide.jpg',
+      thumbnailUrl: '',
       resourceUrl: 'https://www.lean.org/a3-problem-solving/',
       order: 1
     }
@@ -219,19 +222,19 @@ export const module3: CourseModule = {
       contentHtml: `
         <div class="prose">
           <p>Problem-solving starts with understanding the <strong>three reals</strong>: Real Place, Real Facts, Real Product.</p>
-          <div class="my-6 p-6 bg-teal-50 rounded-lg border-2 border-teal-200">
-            <h4 class="text-teal-900 font-bold mb-4">THE VALUE OF GOING TO SEE</h4>
+          <div class="my-6 p-6 bg-primary-50 rounded-lg border-2 border-primary-200">
+            <h4 class="text-surface-800 font-bold mb-4">THE VALUE OF GOING TO SEE</h4>
             <div class="grid grid-cols-3 gap-4">
               <div class="text-center p-4 bg-white rounded shadow">
-                <p class="text-3xl mb-2">📍</p>
+                <svg class="w-8 h-8 mx-auto mb-2 text-primary-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
                 <p class="font-bold">REAL PLACE</p>
               </div>
               <div class="text-center p-4 bg-white rounded shadow">
-                <p class="text-3xl mb-2">📊</p>
+                <svg class="w-8 h-8 mx-auto mb-2 text-primary-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
                 <p class="font-bold">REAL FACTS</p>
               </div>
               <div class="text-center p-4 bg-white rounded shadow">
-                <p class="text-3xl mb-2">📦</p>
+                <svg class="w-8 h-8 mx-auto mb-2 text-primary-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
                 <p class="font-bold">REAL PRODUCT</p>
               </div>
             </div>
@@ -247,16 +250,16 @@ export const module3: CourseModule = {
       contentHtml: `
         <div class="prose">
           <p>Waste is any activity that consumes resources but creates no value for the customer.</p>
-          <div class="my-6 p-6 bg-gray-50 rounded-lg border-2 border-gray-200">
-            <h4 class="text-gray-900 font-bold mb-4">THE SEVEN WASTES (TIMWOOD)</h4>
+          <div class="my-6 p-6 bg-surface-50 rounded-lg border-2 border-surface-200">
+            <h4 class="text-surface-800 font-bold mb-4">THE SEVEN WASTES (TIMWOOD)</h4>
             <div class="grid grid-cols-2 gap-3 text-sm">
-              <div class="p-3 bg-red-100 rounded"><strong>T</strong>ransportation</div>
-              <div class="p-3 bg-orange-100 rounded"><strong>I</strong>nventory</div>
-              <div class="p-3 bg-yellow-100 rounded"><strong>M</strong>otion</div>
-              <div class="p-3 bg-green-100 rounded"><strong>W</strong>aiting</div>
-              <div class="p-3 bg-blue-100 rounded"><strong>O</strong>verproduction</div>
-              <div class="p-3 bg-indigo-100 rounded"><strong>O</strong>verprocessing</div>
-              <div class="p-3 bg-purple-100 rounded"><strong>D</strong>efects</div>
+              <div class="p-3 bg-danger-100 rounded"><strong>T</strong>ransportation</div>
+              <div class="p-3 bg-warning-100 rounded"><strong>I</strong>nventory</div>
+              <div class="p-3 bg-accent-100 rounded"><strong>M</strong>otion</div>
+              <div class="p-3 bg-success-100 rounded"><strong>W</strong>aiting</div>
+              <div class="p-3 bg-primary-100 rounded"><strong>O</strong>verproduction</div>
+              <div class="p-3 bg-info-100 rounded"><strong>O</strong>verprocessing</div>
+              <div class="p-3 bg-info-100 rounded"><strong>D</strong>efects</div>
             </div>
           </div>
         </div>
@@ -269,7 +272,10 @@ export const module3: CourseModule = {
       sectionTitle: 'Watch/Listen/Read',
       contentHtml: `
         <div class="prose">
-          <p class="text-lg font-semibold mb-4">⏱️ Total time: 1 hour 45 minutes</p>
+          <div class="p-4 bg-primary-50 border border-primary-200 rounded-lg mb-6 flex items-center gap-3">
+            <svg class="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            <p class="font-semibold text-surface-800">Total time: 1 hour 45 minutes</p>
+          </div>
           <p class="mb-6">Learn to identify waste and problems by going to see the real work.</p>
         </div>
       `,
@@ -396,7 +402,7 @@ export const module3: CourseModule = {
       type: 'read',
       title: 'Understanding the 7 Wastes',
       description: 'Comprehensive guide',
-      thumbnailUrl: '/images/books/seven-wastes.jpg',
+      thumbnailUrl: '',
       resourceUrl: 'https://www.lean.org/seven-wastes/',
       order: 1
     }

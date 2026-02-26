@@ -97,8 +97,8 @@ export default function DeepDiveResourcesCard({ resources }: Props) {
                         className="w-24 h-16 object-cover rounded border border-surface-200"
                       />
                     ) : (
-                      <div className="w-24 h-16 bg-red-50 rounded border border-red-100 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <div className="w-24 h-16 bg-primary-50 rounded border border-primary-100 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m15.75 10.5 4.72-4.72a.75.75 0 0 1 1.28.53v11.38a.75.75 0 0 1-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25h-9A2.25 2.25 0 0 0 2.25 7.5v9a2.25 2.25 0 0 0 2.25 2.25Z" />
                         </svg>
                       </div>

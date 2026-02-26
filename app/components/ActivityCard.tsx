@@ -60,13 +60,13 @@ const getTypeIcon = (type: string) => {
 
 const getTypeColorBg = (type: string) => {
   const colors: Record<string, string> = {
-    video:    'bg-red-50 text-red-600',
-    audio:    'bg-purple-50 text-purple-600',
-    reading:  'bg-blue-50 text-blue-600',
-    ebook:    'bg-indigo-50 text-indigo-600',
-    practice: 'bg-emerald-50 text-emerald-600',
-    quiz:     'bg-amber-50 text-amber-600',
-    coaching: 'bg-pink-50 text-pink-600',
+    video:    'bg-primary-50 text-primary-700',
+    audio:    'bg-accent-50 text-accent-700',
+    reading:  'bg-primary-50 text-primary-600',
+    ebook:    'bg-primary-50 text-primary-600',
+    practice: 'bg-success-50 text-success-700',
+    quiz:     'bg-accent-50 text-accent-700',
+    coaching: 'bg-info-50 text-info-700',
   }
   return colors[type] || 'bg-surface-100 text-surface-600'
 }

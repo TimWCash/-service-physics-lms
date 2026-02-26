@@ -5,18 +5,18 @@ import Link from 'next/link'
 
 export default function ContentManagementPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-surface-50">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Content Management</h1>
-              <p className="text-sm text-gray-500">View all activities and their content</p>
+              <h1 className="text-2xl font-bold text-surface-800">Content Management</h1>
+              <p className="text-sm text-surface-400">View all activities and their content</p>
             </div>
             <Link
               href="/admin"
-              className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+              className="px-4 py-2 text-surface-600 bg-white border border-surface-300 rounded-lg hover:bg-surface-50"
             >
               ← Back
             </Link>
@@ -25,9 +25,9 @@ export default function ContentManagementPage() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-          <p className="text-sm text-yellow-800">
-            <strong>Note:</strong> To edit content, update the <code className="bg-yellow-100 px-1 rounded">data/courseDataV3.ts</code> file and redeploy.
+        <div className="bg-accent-50 border-l-4 border-accent-400 p-4 mb-6">
+          <p className="text-sm text-accent-800">
+            <strong>Note:</strong> To edit content, update the <code className="bg-accent-100 px-1 rounded">data/courseDataV3.ts</code> file and redeploy.
           </p>
         </div>
 
@@ -44,29 +44,29 @@ export default function ContentManagementPage() {
 
               <div className="divide-y">
                 {module.activities.map((activity) => (
-                  <div key={activity.id} className="p-4 hover:bg-gray-50">
+                  <div key={activity.id} className="p-4 hover:bg-surface-50">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
                           <span className={`px-2 py-0.5 text-xs rounded-full font-medium ${
-                            activity.type === 'video' ? 'bg-red-100 text-red-700' :
-                            activity.type === 'reading' ? 'bg-blue-100 text-blue-700' :
-                            activity.type === 'audio' ? 'bg-purple-100 text-purple-700' :
-                            activity.type === 'practice' ? 'bg-green-100 text-green-700' :
-                            'bg-gray-100 text-gray-700'
+                            activity.type === 'video' ? 'bg-danger-100 text-danger-700' :
+                            activity.type === 'reading' ? 'bg-primary-100 text-primary-700' :
+                            activity.type === 'audio' ? 'bg-info-100 text-info-700' :
+                            activity.type === 'practice' ? 'bg-success-100 text-success-700' :
+                            'bg-surface-100 text-surface-600'
                           }`}>
                             {activity.type}
                           </span>
-                          <span className="text-xs text-gray-500">{activity.duration} min</span>
+                          <span className="text-xs text-surface-400">{activity.duration} min</span>
                         </div>
-                        <h3 className="font-semibold text-gray-900 mt-1">{activity.title}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{activity.description}</p>
+                        <h3 className="font-semibold text-surface-800 mt-1">{activity.title}</h3>
+                        <p className="text-sm text-surface-500 mt-1">{activity.description}</p>
 
                         {/* URLs */}
                         <div className="mt-2 space-y-1">
                           {activity.videoUrl && (
                             <p className="text-xs">
-                              <span className="font-medium text-gray-500">Video:</span>{' '}
+                              <span className="font-medium text-surface-400">Video:</span>{' '}
                               <a href={activity.videoUrl} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
                                 {activity.videoUrl}
                               </a>
@@ -74,7 +74,7 @@ export default function ContentManagementPage() {
                           )}
                           {activity.externalUrl && (
                             <p className="text-xs">
-                              <span className="font-medium text-gray-500">External:</span>{' '}
+                              <span className="font-medium text-surface-400">External:</span>{' '}
                               <a href={activity.externalUrl} target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">
                                 {activity.externalUrl}
                               </a>
@@ -82,8 +82,8 @@ export default function ContentManagementPage() {
                           )}
                           {activity.audioUrl && (
                             <p className="text-xs">
-                              <span className="font-medium text-gray-500">Audio:</span>{' '}
-                              <span className="text-gray-600">{activity.audioUrl}</span>
+                              <span className="font-medium text-surface-400">Audio:</span>{' '}
+                              <span className="text-surface-500">{activity.audioUrl}</span>
                             </p>
                           )}
                         </div>
@@ -91,10 +91,10 @@ export default function ContentManagementPage() {
                         {/* Discussion Questions */}
                         {activity.discussionQuestions && activity.discussionQuestions.length > 0 && (
                           <div className="mt-3">
-                            <p className="text-xs font-medium text-gray-500 mb-1">Discussion Questions:</p>
-                            <ul className="text-xs text-gray-600 space-y-1">
+                            <p className="text-xs font-medium text-surface-400 mb-1">Discussion Questions:</p>
+                            <ul className="text-xs text-surface-500 space-y-1">
                               {activity.discussionQuestions.map((q) => (
-                                <li key={q.id} className="pl-3 border-l-2 border-gray-200">
+                                <li key={q.id} className="pl-3 border-l-2 border-surface-200">
                                   {q.question}
                                 </li>
                               ))}
@@ -102,7 +102,7 @@ export default function ContentManagementPage() {
                           </div>
                         )}
                       </div>
-                      <div className="text-xs text-gray-400 ml-4">
+                      <div className="text-xs text-surface-400 ml-4">
                         {activity.id}
                       </div>
                     </div>
