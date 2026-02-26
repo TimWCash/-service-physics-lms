@@ -14,6 +14,7 @@ interface CourseCompletionProps {
 export default function CourseCompletion({ user }: CourseCompletionProps) {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
   const [showCalendly, setShowCalendly] = useState(false)
+  const [showPotatoHead, setShowPotatoHead] = useState(false)
 
   // Calculate actual progress
   const completedCount = Object.values(user.progress).filter(p => p.completed).length
@@ -53,6 +54,12 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
     }, 250)
 
     return () => clearInterval(interval)
+  }, [])
+
+  // Mr. Potato Head walks on after confetti settles
+  useEffect(() => {
+    const timer = setTimeout(() => setShowPotatoHead(true), 2000)
+    return () => clearTimeout(timer)
   }, [])
 
   const generateNotesPDF = async () => {
@@ -507,6 +514,101 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
           </a>
         </div>
       </div>
+
+      {/* Mr. Potato Head walks across the screen */}
+      {showPotatoHead && (
+        <div
+          className="fixed bottom-8 left-0 z-50 pointer-events-none animate-potato-walk"
+          aria-hidden="true"
+        >
+          <div className="animate-potato-waddle">
+            <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Sign - "Good Job!" on a stick */}
+              <g className="animate-sign-bounce" style={{ transformOrigin: '105px 70px' }}>
+                <rect x="80" y="8" width="58" height="36" rx="4" fill="#FFFFFF" stroke="#1e4d5e" strokeWidth="2.5"/>
+                <text x="109" y="24" textAnchor="middle" fill="#1e4d5e" fontSize="11" fontWeight="bold" fontFamily="DM Sans, sans-serif">Good</text>
+                <text x="109" y="38" textAnchor="middle" fill="#1e4d5e" fontSize="11" fontWeight="bold" fontFamily="DM Sans, sans-serif">Job!</text>
+                <line x1="105" y1="44" x2="105" y2="68" stroke="#8B7355" strokeWidth="3" strokeLinecap="round"/>
+              </g>
+
+              {/* Hat - classic black derby/bowler */}
+              <ellipse cx="62" cy="42" rx="30" ry="6" fill="#2C2C2C"/>
+              <rect x="42" y="16" width="40" height="28" rx="4" fill="#2C2C2C"/>
+              <rect x="38" y="38" width="48" height="8" rx="2" fill="#2C2C2C"/>
+              {/* Hat band */}
+              <rect x="42" y="34" width="40" height="5" rx="1" fill="#C41E3A"/>
+
+              {/* Potato body */}
+              <ellipse cx="62" cy="98" rx="38" ry="48" fill="#C4935A"/>
+              {/* Body highlight */}
+              <ellipse cx="52" cy="85" rx="18" ry="25" fill="#D4A56A" opacity="0.5"/>
+
+              {/* Left ear */}
+              <ellipse cx="24" cy="78" rx="8" ry="12" fill="#E8C170"/>
+              <ellipse cx="24" cy="78" rx="5" ry="8" fill="#C4935A"/>
+
+              {/* Right ear */}
+              <ellipse cx="100" cy="78" rx="8" ry="12" fill="#E8C170"/>
+              <ellipse cx="100" cy="78" rx="5" ry="8" fill="#C4935A"/>
+
+              {/* Eyes - big white with black pupils */}
+              <ellipse cx="48" cy="78" rx="11" ry="13" fill="white" stroke="#2C2C2C" strokeWidth="1.5"/>
+              <ellipse cx="76" cy="78" rx="11" ry="13" fill="white" stroke="#2C2C2C" strokeWidth="1.5"/>
+              {/* Pupils */}
+              <circle cx="51" cy="79" r="5.5" fill="#2C2C2C"/>
+              <circle cx="79" cy="79" r="5.5" fill="#2C2C2C"/>
+              {/* Eye shine */}
+              <circle cx="53" cy="77" r="2" fill="white"/>
+              <circle cx="81" cy="77" r="2" fill="white"/>
+              {/* Eyelids/brows */}
+              <path d="M37 70 Q48 64 59 70" stroke="#2C2C2C" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+              <path d="M65 70 Q76 64 87 70" stroke="#2C2C2C" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+
+              {/* Big red nose */}
+              <ellipse cx="62" cy="94" rx="8" ry="7" fill="#E85454"/>
+              <ellipse cx="60" cy="92" rx="3" ry="2.5" fill="#F08080" opacity="0.6"/>
+
+              {/* Mustache */}
+              <path d="M42 103 Q52 112 62 103 Q72 112 82 103" stroke="#2C2C2C" strokeWidth="3" fill="none" strokeLinecap="round"/>
+
+              {/* Big smile */}
+              <path d="M44 112 Q62 128 80 112" stroke="#2C2C2C" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+              {/* Smile teeth hint */}
+              <path d="M50 113 Q62 122 74 113" fill="white" stroke="none"/>
+
+              {/* Left arm holding sign */}
+              <path d="M96 88 Q108 78 105 68" stroke="#C4935A" strokeWidth="6" fill="none" strokeLinecap="round"/>
+              {/* Left hand */}
+              <circle cx="105" cy="68" r="5" fill="white" stroke="#2C2C2C" strokeWidth="1"/>
+
+              {/* Right arm waving */}
+              <g style={{ transformOrigin: '24px 88px' }}>
+                <path d="M28 88 Q10 72 8 58" stroke="#C4935A" strokeWidth="6" fill="none" strokeLinecap="round"/>
+                {/* Right hand */}
+                <circle cx="8" cy="58" r="5" fill="white" stroke="#2C2C2C" strokeWidth="1"/>
+                {/* Wave fingers */}
+                <path d="M4 54 L2 50" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M8 53 L8 48" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                <path d="M12 54 L14 50" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+              </g>
+
+              {/* Left leg */}
+              <g className="animate-leg-left" style={{ transformOrigin: '48px 140px' }}>
+                <path d="M48 140 L42 162" stroke="#C4935A" strokeWidth="5" strokeLinecap="round"/>
+                {/* Left shoe */}
+                <ellipse cx="38" cy="165" rx="10" ry="5" fill="#2C2C2C"/>
+              </g>
+
+              {/* Right leg */}
+              <g className="animate-leg-right" style={{ transformOrigin: '76px 140px' }}>
+                <path d="M76 140 L82 162" stroke="#C4935A" strokeWidth="5" strokeLinecap="round"/>
+                {/* Right shoe */}
+                <ellipse cx="86" cy="165" rx="10" ry="5" fill="#2C2C2C"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

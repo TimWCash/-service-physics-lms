@@ -84,6 +84,11 @@ const config: Config = {
         'fade-in': 'fadeIn 0.3s ease-out',
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-in': 'slideIn 0.2s ease-out',
+        'potato-walk': 'potatoWalk 8s linear forwards',
+        'potato-waddle': 'potatoWaddle 0.4s ease-in-out infinite',
+        'sign-bounce': 'signBounce 0.6s ease-in-out infinite',
+        'leg-left': 'legLeft 0.4s ease-in-out infinite',
+        'leg-right': 'legRight 0.4s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -97,6 +102,26 @@ const config: Config = {
         slideIn: {
           '0%': { transform: 'translateX(-6px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        potatoWalk: {
+          '0%': { transform: 'translateX(-180px)' },
+          '100%': { transform: 'translateX(calc(100vw + 180px))' },
+        },
+        potatoWaddle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        signBounce: {
+          '0%, 100%': { transform: 'rotate(-5deg)' },
+          '50%': { transform: 'rotate(5deg)' },
+        },
+        legLeft: {
+          '0%, 100%': { transform: 'rotate(15deg)' },
+          '50%': { transform: 'rotate(-15deg)' },
+        },
+        legRight: {
+          '0%, 100%': { transform: 'rotate(-15deg)' },
+          '50%': { transform: 'rotate(15deg)' },
         },
       },
       typography: {
