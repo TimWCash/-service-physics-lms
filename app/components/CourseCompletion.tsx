@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { jsPDF } from 'jspdf'
 import Image from 'next/image'
 import { AuthService, User } from '@/lib/auth'
@@ -14,6 +14,25 @@ interface CourseCompletionProps {
 export default function CourseCompletion({ user }: CourseCompletionProps) {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false)
   const [showCalendly, setShowCalendly] = useState(false)
+  const [showCharacters, setShowCharacters] = useState(false)
+  const sessionCardRef = useRef<HTMLDivElement>(null)
+
+  // Trigger character pop-up when card scrolls into view
+  useEffect(() => {
+    const el = sessionCardRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowCharacters(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.4 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   // Calculate actual progress
   const completedCount = Object.values(user.progress).filter(p => p.completed).length
@@ -328,64 +347,109 @@ export default function CourseCompletion({ user }: CourseCompletionProps) {
         </div>
 
         {/* Schedule Session with Principal - TOP CTA */}
-        <div className="bg-primary-700 rounded-lg border border-primary-600 p-8 mb-8 text-white">
-          <div className="flex items-start gap-4 mb-6">
-            <div className="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center flex-shrink-0">
-              <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-              </svg>
+        <div ref={sessionCardRef} className="relative mb-8">
+          <div className="bg-primary-700 rounded-lg border border-primary-600 p-8 text-white relative z-10">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-14 h-14 bg-white/15 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-2xl font-display mb-2">Schedule Your Session</h2>
+                <p className="text-primary-200 font-sans">
+                  Connect with Brian or Steve to discuss what you&apos;ve learned and how to apply it in your work.
+                </p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl font-display mb-2">Schedule Your Session</h2>
-              <p className="text-primary-200 font-sans">
-                Connect with Brian or Steve to discuss what you&apos;ve learned and how to apply it in your work.
+
+            <div className="bg-white/10 rounded-lg p-6 mb-6">
+              <h3 className="font-semibold mb-3 font-sans">In your session, you&apos;ll:</h3>
+              <ul className="space-y-2 text-primary-200 font-sans text-sm">
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  Review your key learnings and notes
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  Discuss how to apply these concepts to real problems
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  Get personalized guidance on your next steps
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                  </svg>
+                  Ask questions and deepen your understanding
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 text-center">
+              <p className="text-surface-700 mb-4 font-sans">
+                Contact <span className="font-semibold text-primary-700">Maria</span> to schedule time with Brian or Steve to discuss your progress.
               </p>
+              <a
+                href="mailto:maria@servicephysics.com?subject=Problem%20Solving%20101%20Complete%20-%20Request%20Coaching%20Session&body=Hi%20Maria%2C%0A%0AI%20have%20completed%20the%20Problem%20Solving%20101%20course%20and%20would%20like%20to%20schedule%20a%20coaching%20session%20with%20Brian%20or%20Steve.%0A%0APlease%20let%20me%20know%20the%20available%20times.%0A%0AThank%20you!"
+                className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-lg"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Email Maria to Schedule</span>
+              </a>
             </div>
           </div>
 
-          <div className="bg-white/10 rounded-lg p-6 mb-6">
-            <h3 className="font-semibold mb-3 font-sans">In your session, you&apos;ll:</h3>
-            <ul className="space-y-2 text-primary-200 font-sans text-sm">
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                Review your key learnings and notes
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                Discuss how to apply these concepts to real problems
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                Get personalized guidance on your next steps
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-white flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                Ask questions and deepen your understanding
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-white rounded-lg p-6 text-center">
-            <p className="text-surface-700 mb-4 font-sans">
-              Contact <span className="font-semibold text-primary-700">Maria</span> to schedule time with Brian or Steve to discuss your progress.
-            </p>
-            <a
-              href="mailto:maria@servicephysics.com?subject=Problem%20Solving%20101%20Complete%20-%20Request%20Coaching%20Session&body=Hi%20Maria%2C%0A%0AI%20have%20completed%20the%20Problem%20Solving%20101%20course%20and%20would%20like%20to%20schedule%20a%20coaching%20session%20with%20Brian%20or%20Steve.%0A%0APlease%20let%20me%20know%20the%20available%20times.%0A%0AThank%20you!"
-              className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-lg"
+          {/* Brian & Steve pop-up from behind the card */}
+          <div className="hidden md:block">
+            {/* Brian - left side */}
+            <div
+              className={`absolute -bottom-6 left-4 z-20 flex flex-col items-center opacity-0 ${
+                showCharacters ? 'animate-pop-up-left' : ''
+              }`}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              <span>Email Maria to Schedule</span>
-            </a>
+              <div className="w-20 h-20 rounded-full ring-4 ring-white shadow-soft-lg overflow-hidden">
+                <Image
+                  src="/images/brian.png"
+                  alt="Brian"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="mt-1 px-3 py-0.5 bg-primary-700 text-white text-xs font-semibold rounded-full shadow-soft">
+                Brian
+              </span>
+            </div>
+
+            {/* Steve - right side */}
+            <div
+              className={`absolute -bottom-6 right-4 z-20 flex flex-col items-center opacity-0 ${
+                showCharacters ? 'animate-pop-up-right' : ''
+              }`}
+            >
+              <div className="w-20 h-20 rounded-full ring-4 ring-white shadow-soft-lg overflow-hidden">
+                <Image
+                  src="/images/steve.png"
+                  alt="Steve"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="mt-1 px-3 py-0.5 bg-primary-700 text-white text-xs font-semibold rounded-full shadow-soft">
+                Steve
+              </span>
+            </div>
           </div>
         </div>
 

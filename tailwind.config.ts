@@ -84,6 +84,8 @@ const config: Config = {
         'fade-in': 'fadeIn 0.3s ease-out',
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-in': 'slideIn 0.2s ease-out',
+        'pop-up-left': 'popUpLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        'pop-up-right': 'popUpRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards',
       },
       keyframes: {
         fadeIn: {
@@ -97,6 +99,16 @@ const config: Config = {
         slideIn: {
           '0%': { transform: 'translateX(-6px)', opacity: '0' },
           '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        popUpLeft: {
+          '0%': { transform: 'translateY(100%) rotate(-5deg)', opacity: '0' },
+          '70%': { transform: 'translateY(-10%) rotate(2deg)', opacity: '1' },
+          '100%': { transform: 'translateY(0) rotate(-3deg)', opacity: '1' },
+        },
+        popUpRight: {
+          '0%': { transform: 'translateY(100%) rotate(5deg)', opacity: '0' },
+          '70%': { transform: 'translateY(-10%) rotate(-2deg)', opacity: '1' },
+          '100%': { transform: 'translateY(0) rotate(3deg)', opacity: '1' },
         },
       },
       typography: {
