@@ -24,7 +24,7 @@ interface UserProgress {
 }
 
 const USERS_PER_PAGE = 20
-const ADMIN_EMAILS = ['tim@servicephysics.com', 'maria@servicephysics.com', 'brian@servicephysics.com', 'steve@servicephysics.com', 'timothy.cashman@gmail.com']
+const ADMIN_EMAILS = ['tim@servicephysics.com', 'brian@servicephysics.com', 'steve@servicephysics.com', 'timothy.cashman@gmail.com']
 
 export default function AdminDashboard() {
   const [users, setUsers] = useState<UserProgress[]>([])
@@ -178,6 +178,29 @@ export default function AdminDashboard() {
       console.error('Error fetching user progress:', error)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const deleteUser = async (userId: string, userName: string) => {
+    if (!window.confirm(`Remove ${userName} and all their progress? This cannot be undone.`)) {
+      return
+    }
+
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .delete()
+        .eq('id', userId)
+
+      if (error) {
+        alert(`Failed to remove user: ${error.message}`)
+        return
+      }
+
+      // Remove from local state
+      setUsers(prev => prev.filter(u => u.id !== userId))
+    } catch (err) {
+      alert(`Failed to remove user: ${err}`)
     }
   }
 
@@ -371,13 +394,24 @@ export default function AdminDashboard() {
                         Last active {new Date(user.updated_at).toLocaleDateString()} at {new Date(user.updated_at).toLocaleTimeString()}
                       </p>
                     </div>
-                    <div className="text-right">
-                      <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
-                        {user.progressPercentage}%
+                    <div className="flex items-start gap-3">
+                      <div className="text-right">
+                        <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">
+                          {user.progressPercentage}%
+                        </div>
+                        <p className="text-xs text-surface-400 mt-1">
+                          {user.progressCount} activities completed
+                        </p>
                       </div>
-                      <p className="text-xs text-surface-400 mt-1">
-                        {user.progressCount} activities completed
-                      </p>
+                      <button
+                        onClick={() => deleteUser(user.id, user.full_name || user.email)}
+                        className="p-1.5 rounded-lg text-surface-300 hover:text-danger-600 hover:bg-danger-50 transition-colors"
+                        title={`Remove ${user.full_name || user.email}`}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
 
