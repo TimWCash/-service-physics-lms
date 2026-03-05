@@ -350,7 +350,7 @@ export default function PracticeWorksheet({ sections, activityId }: Props) {
                   {field.required && <span className="text-danger-500 ml-1">*</span>}
                 </label>
                 {field.helpText && (
-                  <p className="text-sm text-surface-500 mb-2">{field.helpText}</p>
+                  <p className="text-sm text-surface-500 mb-2" dangerouslySetInnerHTML={{ __html: field.helpText }} />
                 )}
                 {renderField(field)}
               </div>
