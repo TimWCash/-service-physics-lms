@@ -2551,15 +2551,7 @@ const module8: CourseModule = {
       type: 'reading',
       duration: '5',
       description: 'Download the tEaRACS reference deck to follow along as you complete your ERACS @ Home exercise.',
-      externalUrl: '/pdfs/ERACS-Practice-Worksheet.html',
-      content: `
-        <div class="prose max-w-none">
-          <div class="bg-primary-50 border border-primary-200 p-6 rounded-lg">
-            <h3 class="text-xl font-bold text-surface-800 mb-2">📋 ERACS Reference Worksheet</h3>
-            <p class="text-surface-600 mb-4">Use this reference alongside the interactive worksheet above. Click below to open or download.</p>
-          </div>
-        </div>
-      `
+      externalUrl: '/pdfs/ERACS-Practice-Worksheet.html'
     }
   ],
 
