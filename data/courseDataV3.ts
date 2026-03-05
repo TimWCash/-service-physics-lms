@@ -2183,6 +2183,9 @@ const module8: CourseModule = {
       sectionTitle: 'It\'s Your Turn!',
       contentHtml: `
         <div class="space-y-4">
+          <div class="bg-accent-50 border border-accent-300 rounded-lg p-4 mb-2">
+            <p class="text-base text-surface-700 leading-relaxed font-semibold">📣 Heads up — you'll be presenting this to the team at an upcoming CI meeting! Keep that in mind as you work through each step.</p>
+          </div>
           <p class="text-base text-surface-600 leading-relaxed">With this practice exercise, you'll have an opportunity to <strong>identify a problem to solve with process improvement</strong> within your very own world and apply the <strong>Point Kaizen methodology</strong> to generate the improvement.</p>
           <p class="text-base text-surface-600 leading-relaxed">This is your chance to bring together everything you've learned throughout the course — problem identification, ERACS, experiment planning, and measurement — into one complete improvement story.</p>
           <img src="/images/eracs-process.png" alt="ERACS Process Improvement - Eliminate, Rearrange, Add/Subtract, Combine, Simplify" class="w-full rounded-xl shadow-md" />
@@ -2371,9 +2374,10 @@ const module8: CourseModule = {
             },
             {
               id: 'capstone_before_spaghetti_map',
-              type: 'upload',
-              label: 'Upload Spaghetti Map Drawing Here',
-              helpText: 'Using paper and pen, draw the basic layout of your workspace and trace the motion as you conduct the process.'
+              type: 'textarea',
+              label: 'Spaghetti Map — Before',
+              placeholder: 'Describe your spaghetti map drawing, then upload a photo/video of it to the SharePoint folder linked below.',
+              helpText: 'Using paper and pen, draw the basic layout of your workspace and trace the motion as you conduct the process. Upload your photo/video to the <a href="https://servicephysicscom.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FINTERNAL%20Service%20Physics%2FProfessional%20Development%2FMODULE%208%20UPLOAD&viewid=8bd24667%2Dea1f%2D41d3%2Da728%2D50a5300f3dae" target="_blank" class="text-primary-600 underline font-semibold">MODULE 8 UPLOAD folder on SharePoint</a>.'
             },
             {
               id: 'capstone_before_work_story',
@@ -2470,9 +2474,10 @@ const module8: CourseModule = {
             },
             {
               id: 'capstone_after_spaghetti_map',
-              type: 'upload',
-              label: 'Upload New Method Spaghetti Map',
-              helpText: 'Document the spaghetti map of the improved process.'
+              type: 'textarea',
+              label: 'Spaghetti Map — After (New Method)',
+              placeholder: 'Describe your improved spaghetti map, then upload a photo/video of it to the SharePoint folder linked below.',
+              helpText: 'Draw a new spaghetti map showing the improved process. Upload your photo/video to the <a href="https://servicephysicscom.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FINTERNAL%20Service%20Physics%2FProfessional%20Development%2FMODULE%208%20UPLOAD&viewid=8bd24667%2Dea1f%2D41d3%2Da728%2D50a5300f3dae" target="_blank" class="text-primary-600 underline font-semibold">MODULE 8 UPLOAD folder on SharePoint</a>.'
             },
             {
               id: 'capstone_after_work_story',
