@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { AuthService } from '@/lib/auth'
+import NeuralBackground from '@/components/ui/flow-field-background'
 
 export default function Home() {
   const [email, setEmail] = useState('')
@@ -27,8 +28,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row">
-      {/* Left Side - Hero Section */}
-      <div className="flex-1 flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-primary-700 to-primary-800 text-white">
+      {/* Left Side - Hero Section with Flow Field */}
+      <div className="flex-1 relative overflow-hidden text-white">
+        {/* Animated particle background */}
+        <NeuralBackground
+          color="#7c8aff"
+          trailOpacity={0.08}
+          particleCount={500}
+          speed={0.8}
+          className="absolute inset-0"
+        />
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-800/80 to-primary-900/60 pointer-events-none" />
+        {/* Content */}
+        <div className="relative z-10 flex items-center justify-center p-8 lg:p-16 min-h-screen">
         <div className="max-w-2xl animate-fade-in">
           <div className="flex items-center gap-4 mb-8">
             <Image
@@ -73,6 +86,7 @@ export default function Home() {
             <span className="text-sm text-primary-200 bg-white/5 border border-white/10 rounded-full px-4 py-1.5">Lean Principles</span>
             <span className="text-sm text-primary-200 bg-white/5 border border-white/10 rounded-full px-4 py-1.5">Visual Management</span>
           </div>
+        </div>
         </div>
       </div>
 
