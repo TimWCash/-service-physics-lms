@@ -1,5 +1,5 @@
 // Service Physics LMS - Course Data v3
-// 7-Module Structure with 3-Column Layout
+// 8-Module Structure with 3-Column Layout
 
 // ============================================
 // TYPE DEFINITIONS
@@ -2164,6 +2164,434 @@ const module7: CourseModule = {
 };
 
 // ============================================
+// MODULE 8: PUTTING IT ALL TOGETHER
+// ============================================
+
+const module8: CourseModule = {
+  id: 'module-08',
+  title: 'Putting It All Together',
+  colorHex: '#c45a2c', // Warm orange (matches ERACS brand accent)
+  timeEstimateMinutes: 60,
+  order: 8,
+  accessLevel: 'free',
+
+  sections: [
+    // OVERVIEW COLUMN
+    {
+      id: 'section-08-overview-01',
+      columnType: 'overview',
+      sectionTitle: 'It\'s Your Turn!',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">With this practice exercise, you'll have an opportunity to <strong>identify a problem to solve with process improvement</strong> within your very own world and apply the <strong>Point Kaizen methodology</strong> to generate the improvement.</p>
+          <p class="text-base text-surface-600 leading-relaxed">This is your chance to bring together everything you've learned throughout the course — problem identification, ERACS, experiment planning, and measurement — into one complete improvement story.</p>
+          <img src="/images/eracs-process.png" alt="ERACS Process Improvement - Eliminate, Rearrange, Add/Subtract, Combine, Simplify" class="w-full rounded-xl shadow-md" />
+        </div>
+      `,
+      order: 1
+    },
+    {
+      id: 'section-08-overview-02',
+      columnType: 'overview',
+      sectionTitle: 'How It Works',
+      contentHtml: `
+        <div class="space-y-4">
+          <div class="bg-primary-50 border border-primary-200 rounded-lg p-5">
+            <h4 class="font-bold text-surface-800 mb-3">How to use the worksheet:</h4>
+            <ol class="text-surface-600 space-y-2 list-decimal list-inside">
+              <li>Follow the boxes from left to right (<strong>Setup → Test & Compare</strong>) filling in each prompt to complete your ERACS @ Home activity.</li>
+              <li>Follow along with the <strong>tEaRACS deck</strong> as a reference as needed.</li>
+              <li>Once complete, <strong>schedule time on an upcoming CI meeting</strong> to share your worksheet and walk us through your process improvement.</li>
+              <li><strong>Make it your own and have fun with it!</strong></li>
+            </ol>
+          </div>
+        </div>
+      `,
+      order: 2
+    },
+
+    // DIVE IN COLUMN
+    {
+      id: 'section-08-dive-in-01',
+      columnType: 'dive_in',
+      sectionTitle: 'Your Assignment',
+      contentHtml: `
+        <div class="space-y-5">
+          <div class="flex items-center gap-4 p-4 bg-primary-50 border border-primary-200 rounded-lg">
+            <svg class="w-6 h-6 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+            <div>
+              <p class="text-lg font-bold text-surface-800">~60 minutes</p>
+              <p class="text-sm text-surface-500">Total exercise time</p>
+            </div>
+          </div>
+
+          <p class="text-surface-600 leading-relaxed">Start by watching the example video of using ERACS at home to improve a tea brewing process, then complete the worksheet below to create your own improvement story.</p>
+
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-4">
+            <p class="font-semibold text-surface-800 mb-1">Remember:</p>
+            <p class="text-surface-600 text-sm">This is about applying everything you've learned. Use your problem-solving skills, ERACS methodology, and measurement techniques to create a real improvement in your world.</p>
+          </div>
+        </div>
+      `,
+      order: 1
+    },
+
+    // RECAP COLUMN
+    {
+      id: 'section-08-recap-01',
+      columnType: 'recap',
+      sectionTitle: 'Share Your Story',
+      contentHtml: `
+        <div class="space-y-4">
+          <p class="text-base text-surface-600 leading-relaxed">Once you've completed your ERACS @ Home exercise:</p>
+          <ol class="text-surface-600 space-y-2 list-decimal list-inside">
+            <li><strong>Schedule time</strong> on an upcoming CI meeting to share your worksheet.</li>
+            <li><strong>Walk the team through</strong> your process improvement — current state, ERACS analysis, new method, and results.</li>
+            <li><strong>Celebrate your improvement!</strong> Every kaizen counts.</li>
+          </ol>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
+            <p class="text-green-800 font-semibold">🎉 Congratulations!</p>
+            <p class="text-green-700 text-sm mt-1">Completing this exercise marks the end of Problem Solving 101. You now have the tools and mindset to drive continuous improvement everywhere you go.</p>
+          </div>
+        </div>
+      `,
+      order: 1
+    }
+  ],
+
+  activities: [
+    {
+      id: 'activity-08-01',
+      title: 'tEaRACS: ERACS at Home Example',
+      type: 'video',
+      duration: '5',
+      description: 'Watch this example of using ERACS at home to improve a tea brewing process. This will serve as your guide for the practice exercise.',
+      videoUrl: 'https://www.youtube.com/watch?v=Im5MV50QXRM',
+      thumbnailUrl: '/images/eracs-process.png',
+      discussionQuestions: [
+        {
+          id: 'dq-08-01-01',
+          question: 'How was each element of ERACS (Eliminate, Rearrange, Add/Subtract, Combine, Simplify) applied in the tea brewing example?',
+          order: 1
+        },
+        {
+          id: 'dq-08-01-02',
+          question: 'What process in your own life could you apply this same approach to?',
+          order: 2
+        }
+      ]
+    },
+    {
+      id: 'activity-08-02',
+      title: 'ERACS @ Home: Your Improvement Story',
+      type: 'practice',
+      duration: '45',
+      description: 'Apply everything you\'ve learned! Use this worksheet to identify a problem, apply ERACS, and create your own improvement story to share with the team.',
+      thumbnailUrl: '/images/eracs-process.png',
+      content: `
+        <div class="prose max-w-none">
+          <div class="bg-primary-50 border border-primary-200 p-6 rounded-lg mb-6">
+            <h3 class="text-xl font-bold text-surface-800 mb-2">🎯 Putting It All Together: ERACS @ Home</h3>
+            <p class="text-surface-600">It's your turn! Identify a problem to solve with process improvement within your very own world and apply the Point Kaizen methodology to generate the improvement.</p>
+          </div>
+
+          <div class="bg-accent-50 border-l-4 border-accent-400 p-4 my-4">
+            <h4 class="font-bold text-surface-800">How to use this worksheet:</h4>
+            <ol class="text-surface-600 mt-2 space-y-1">
+              <li>1. Follow the boxes from left to right (Setup → Test & Compare) filling in each prompt</li>
+              <li>2. Follow along with the tEaRACS deck as a reference as needed</li>
+              <li>3. Once complete, schedule time on an upcoming CI meeting to share your worksheet</li>
+              <li>4. Make it your own and have fun with it!</li>
+            </ol>
+          </div>
+        </div>
+      `,
+      practiceSections: [
+        {
+          id: 'capstone-setup',
+          title: 'Setup & Problem Definition',
+          description: 'Choose a regular activity in your life that is frequently repeated, can be broken down into tasks, and has clear value delivery.',
+          fields: [
+            {
+              id: 'capstone_chosen_process',
+              type: 'text',
+              label: 'Chosen Process to Conduct Point Kaizen',
+              placeholder: 'e.g., Brewing coffee, Making a smoothie, Packing lunch, Morning routine',
+              helpText: 'Choose something you do regularly that can be measured and improved.'
+            },
+            {
+              id: 'capstone_context_challenge',
+              type: 'textarea',
+              label: 'Provide Context or Challenge',
+              placeholder: 'What frustrates you about this process? What would you like to improve?',
+              helpText: 'Describe why you selected this process and what challenges you face.'
+            },
+            {
+              id: 'capstone_problem_statement',
+              type: 'textarea',
+              label: 'Problem Statement',
+              placeholder: '[Process] is currently taking [X time/steps], which is [Y%] away from my target of [Z], causing [impact]...',
+              helpText: 'Write a clear problem statement using the format: Current Condition + Gap + Target + Impact'
+            },
+            {
+              id: 'capstone_quality_standards',
+              type: 'textarea',
+              label: 'Quality Standards',
+              placeholder: 'What quality standards must be maintained? (e.g., taste, cleanliness, completeness)',
+              helpText: 'Define what "good" looks like — these standards must be maintained in your improved process.'
+            }
+          ]
+        },
+        {
+          id: 'capstone-breakdown',
+          title: 'Step 1: Break Down The Job',
+          description: 'Video yourself completing this task 1-2 times to capture the current state with data. List each step of your chosen process.',
+          fields: [
+            {
+              id: 'capstone_process_steps_before',
+              type: 'table',
+              label: 'Capture Everything — Current Process Steps',
+              helpText: 'List the current steps you take to carry out your chosen process. Use a stopwatch to time each step.',
+              columns: [
+                { id: 'step', header: 'Process Step', type: 'text', width: '50%' },
+                { id: 'machine_hand', header: 'Machine, Hand, Both', type: 'select', options: ['Machine', 'Hand', 'Both'] },
+                { id: 'time_sec', header: 'How Long (Sec)', type: 'number' }
+              ],
+              minRows: 5,
+              maxRows: 15
+            },
+            {
+              id: 'capstone_before_total_time',
+              type: 'timing-scale',
+              label: 'Total Time for Current Process',
+              helpText: 'Calculate and enter your total process time',
+              scaleMin: 0,
+              scaleMax: 600,
+              scaleUnit: 'sec'
+            },
+            {
+              id: 'capstone_before_spaghetti_map',
+              type: 'upload',
+              label: 'Upload Spaghetti Map Drawing Here',
+              helpText: 'Using paper and pen, draw the basic layout of your workspace and trace the motion as you conduct the process.'
+            },
+            {
+              id: 'capstone_before_work_story',
+              type: 'textarea',
+              label: 'Before Work Story',
+              placeholder: 'Describe your current state work story — what you observe happening step by step...',
+              helpText: 'Create a work story describing what happens at each phase of the process.'
+            }
+          ]
+        },
+        {
+          id: 'capstone-question',
+          title: 'Step 2: Question Every Detail',
+          description: 'Record your ideas and questions related to your process experiment. Challenge every step.',
+          fields: [
+            {
+              id: 'capstone_questions_findings',
+              type: 'table',
+              label: 'Question / Finding / Decision Table',
+              helpText: 'For each step, ask: Why do we do it this way? Is it necessary? Can it be improved?',
+              columns: [
+                { id: 'question', header: 'Question', type: 'text', width: '35%' },
+                { id: 'finding', header: 'Finding', type: 'text', width: '35%' },
+                { id: 'decision', header: 'Decision', type: 'text', width: '30%' }
+              ],
+              minRows: 5,
+              maxRows: 12
+            }
+          ]
+        },
+        {
+          id: 'capstone-eracs',
+          title: 'Step 3: Develop The New Method — Apply ERACS',
+          description: 'Record your ERACS improvement steps to the process.',
+          fields: [
+            {
+              id: 'capstone_eracs_eliminate',
+              type: 'textarea',
+              label: 'E — Eliminate the unnecessary',
+              placeholder: 'What steps can be removed entirely without affecting quality?'
+            },
+            {
+              id: 'capstone_eracs_rearrange',
+              type: 'textarea',
+              label: 'R — Rearrange process steps for a more efficient sequence',
+              placeholder: 'How can you reorder steps for better flow?'
+            },
+            {
+              id: 'capstone_eracs_add_subtract',
+              type: 'textarea',
+              label: 'A — Add/Subtract process elements that are missing or in excess',
+              placeholder: 'What needs to be added? What can be removed?'
+            },
+            {
+              id: 'capstone_eracs_combine',
+              type: 'textarea',
+              label: 'C — Combine process steps when practical',
+              placeholder: 'Which steps can be merged or done simultaneously?'
+            },
+            {
+              id: 'capstone_eracs_simplify',
+              type: 'textarea',
+              label: 'S — Simplify at each step to create repeatable, predictable, quality work',
+              placeholder: 'How can you make each step easier and more consistent?'
+            }
+          ]
+        },
+        {
+          id: 'capstone-test',
+          title: 'Step 4: Test & Compare',
+          description: 'Video yourself completing this task 1-2 times so you can capture the improved process with data.',
+          fields: [
+            {
+              id: 'capstone_process_steps_after',
+              type: 'table',
+              label: 'New Work Method — Improved Process Steps',
+              helpText: 'List the process steps for the new improved method.',
+              columns: [
+                { id: 'step', header: 'Process Step', type: 'text', width: '50%' },
+                { id: 'machine_hand', header: 'Machine, Hand, Both', type: 'select', options: ['Machine', 'Hand', 'Both'] },
+                { id: 'time_sec', header: 'How Long (Sec)', type: 'number' }
+              ],
+              minRows: 5,
+              maxRows: 15
+            },
+            {
+              id: 'capstone_after_total_time',
+              type: 'timing-scale',
+              label: 'Total Time for Improved Process',
+              helpText: 'Calculate and enter your new total process time',
+              scaleMin: 0,
+              scaleMax: 600,
+              scaleUnit: 'sec'
+            },
+            {
+              id: 'capstone_after_spaghetti_map',
+              type: 'upload',
+              label: 'Upload New Method Spaghetti Map',
+              helpText: 'Document the spaghetti map of the improved process.'
+            },
+            {
+              id: 'capstone_after_work_story',
+              type: 'textarea',
+              label: 'New Method Work Story',
+              placeholder: 'Create an updated work story for your new method...',
+              helpText: 'Describe what happens in the improved process step by step.'
+            }
+          ]
+        },
+        {
+          id: 'capstone-reflection',
+          title: 'Reflection & Results',
+          description: 'Evaluate your improvement and document what you learned.',
+          fields: [
+            {
+              id: 'capstone_quality_reflection',
+              type: 'textarea',
+              label: 'Quality Standards — has the new method kept standards in place or improved adherence?',
+              placeholder: 'Note your observations about quality in the improved process...'
+            },
+            {
+              id: 'capstone_target_achievement',
+              type: 'textarea',
+              label: 'Target — has the new method achieved the goal you set out to achieve?',
+              placeholder: 'Did you hit your target? What was the improvement percentage?'
+            },
+            {
+              id: 'capstone_time_improvement',
+              type: 'text',
+              label: 'Time Improvement (Before → After)',
+              placeholder: 'e.g., 180 sec → 120 sec = 33% improvement'
+            },
+            {
+              id: 'capstone_key_learnings',
+              type: 'textarea',
+              label: 'Key Learnings',
+              placeholder: 'What did you learn from this exercise? What surprised you?'
+            },
+            {
+              id: 'capstone_next_steps',
+              type: 'textarea',
+              label: 'Next Steps & CI Meeting Plan',
+              placeholder: 'When will you present this at a CI meeting? What other processes could you improve next?',
+              helpText: 'Schedule time on an upcoming CI meeting to share your worksheet and walk the team through your process improvement.'
+            }
+          ]
+        }
+      ],
+      discussionQuestions: [
+        {
+          id: 'dq-08-02-01',
+          question: 'What process did you choose and why? Walk us through your improvement story.',
+          order: 1
+        },
+        {
+          id: 'dq-08-02-02',
+          question: 'What was your before and after time? Which ERACS element had the biggest impact?',
+          order: 2
+        },
+        {
+          id: 'dq-08-02-03',
+          question: 'What would you do differently next time? What process will you tackle next?',
+          order: 3
+        }
+      ]
+    },
+    {
+      id: 'activity-08-03',
+      title: 'ERACS Reference Deck',
+      type: 'reading',
+      duration: '5',
+      description: 'Download the tEaRACS reference deck to follow along as you complete your ERACS @ Home exercise.',
+      externalUrl: '/pdfs/ERACS-Practice-Worksheet.html',
+      content: `
+        <div class="prose max-w-none">
+          <div class="bg-primary-50 border border-primary-200 p-6 rounded-lg">
+            <h3 class="text-xl font-bold text-surface-800 mb-2">📋 ERACS Reference Worksheet</h3>
+            <p class="text-surface-600 mb-4">Use this reference alongside the interactive worksheet above. Click below to open or download.</p>
+          </div>
+        </div>
+      `
+    }
+  ],
+
+  coachingPrep: {
+    discussionQuestions: [
+      'Walk us through your ERACS @ Home improvement story — what did you improve and what were your results?',
+      'Which part of the Point Kaizen methodology felt most natural to you? Which was most challenging?',
+      'How can you apply this same approach to a process at work?',
+      'Looking back on the entire course, what is the single most valuable insight you\'re taking away?'
+    ],
+    knowledgeCheckUrl: undefined,
+    glossaryNote: ''
+  },
+
+  deepDiveResources: [
+    {
+      id: 'ddr-08-01',
+      type: 'watch',
+      title: 'tEaRACS: ERACS at Home',
+      description: 'Example of applying ERACS methodology to improve a tea brewing process',
+      thumbnailUrl: '/images/eracs-process.png',
+      resourceUrl: 'https://www.youtube.com/watch?v=Im5MV50QXRM',
+      order: 1
+    },
+    {
+      id: 'ddr-08-02',
+      type: 'read',
+      title: 'ERACS Practice Worksheet',
+      description: 'Downloadable reference worksheet for your ERACS @ Home exercise',
+      thumbnailUrl: '/images/eracs-process.png',
+      resourceUrl: '/pdfs/ERACS-Practice-Worksheet.html',
+      order: 2
+    }
+  ]
+};
+
+// ============================================
 // EXPORT ALL MODULES
 // ============================================
 
@@ -2174,17 +2602,18 @@ export const courseModules: CourseModule[] = [
   module4,
   module5,
   module6,
-  module7
+  module7,
+  module8
 ];
 
 export const courseMetadata = {
   id: 'service-physics-problem-solving-101',
   title: 'Service Physics Problem Solving 101',
   description: 'Master the art of problem-solving with proven frameworks, practical tools, and real-world applications.',
-  totalModules: 7,
-  totalActivities: 30, // 24 activities + 6 module quizzes across 7 modules
+  totalModules: 8,
+  totalActivities: 33, // 24 activities + 6 module quizzes + 3 capstone activities across 8 modules
   instructor: 'Service Physics Academy',
-  estimatedDuration: '7-8 hours',
+  estimatedDuration: '8-9 hours',
   skillLevel: 'Beginner to Intermediate',
   learningOutcomes: [
     'Apply the Improvement Kata methodology to solve problems systematically',
@@ -2193,6 +2622,7 @@ export const courseMetadata = {
     'Utilize problem-solving tools like 5 Whys, A3, and Fishbone diagrams',
     'Define clear problem statements and target conditions',
     'Design and execute improvement experiments',
-    'Measure and evaluate results effectively'
+    'Measure and evaluate results effectively',
+    'Complete an end-to-end ERACS improvement story independently'
   ]
 };

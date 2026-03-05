@@ -67,15 +67,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-              <div className="text-3xl font-sans font-bold mb-1">7</div>
+              <div className="text-3xl font-sans font-bold mb-1">8</div>
               <div className="text-primary-300 text-sm font-sans">Comprehensive Modules</div>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-              <div className="text-3xl font-sans font-bold mb-1">31</div>
+              <div className="text-3xl font-sans font-bold mb-1">33</div>
               <div className="text-primary-300 text-sm font-sans">Learning Activities</div>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-              <div className="text-3xl font-sans font-bold mb-1">7-8</div>
+              <div className="text-3xl font-sans font-bold mb-1">8-9</div>
               <div className="text-primary-300 text-sm font-sans">Hours of Content</div>
             </div>
           </div>
