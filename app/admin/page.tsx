@@ -205,13 +205,16 @@ export default function AdminDashboard() {
     }
 
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .delete()
-        .eq('id', userId)
+      // Delete from all three tables so the user doesn't reappear
+      const [progressResult, notesResult, profileResult] = await Promise.all([
+        supabase.from('course_progress').delete().eq('user_id', userId),
+        supabase.from('user_notes').delete().eq('user_id', userId),
+        supabase.from('profiles').delete().eq('id', userId)
+      ])
 
-      if (error) {
-        alert(`Failed to remove user: ${error.message}`)
+      const firstError = progressResult.error || notesResult.error || profileResult.error
+      if (firstError) {
+        alert(`Failed to fully remove user: ${firstError.message}`)
         return
       }
 
