@@ -118,20 +118,17 @@ export default function AdminDashboard() {
         progressByUser.set(p.user_id, existing)
       })
 
-      // Build users list from progress data (primary source)
-      let usersWithProgress: UserProgress[] = uniqueUserIds.map(userId => {
+      // Helper to build a UserProgress object for a given userId
+      const buildUserProgress = (userId: string): UserProgress => {
         const userProgress = progressByUser.get(userId) || []
-        // Only count activities that still exist in the course
         const validProgress = userProgress.filter(p => activityLookup.has(p.activity_id))
         const completedCount = validProgress.length
         const completedActivities = validProgress.map(p => p.activity_id)
 
-        // Find earliest and latest completion dates (from valid activities only)
         const dates = validProgress.map(p => new Date(p.completed_at).getTime()).filter(d => !isNaN(d))
         const earliestDate = dates.length > 0 ? new Date(Math.min(...dates)).toISOString() : new Date().toISOString()
         const latestDate = dates.length > 0 ? new Date(Math.max(...dates)).toISOString() : new Date().toISOString()
 
-        // Extract quiz completions using pre-computed quiz IDs (only valid activities)
         const quizScores: QuizScore[] = validProgress
           .filter(p => quizActivityIds.has(p.activity_id))
           .map(p => {
@@ -144,13 +141,11 @@ export default function AdminDashboard() {
             }
           })
 
-        // Try to get profile info, fallback to deriving from user_id
         const profile = profileMap.get(userId)
         let email = profile?.email || ''
         let fullName = profile?.full_name || ''
 
         if (!email) {
-          // Convert user_id back to email format (user_tim_example_com -> tim@example.com)
           email = userId.replace(/^user_/, '').replace(/_/g, '.').replace(/\.([^.]+)$/, '@$1')
         }
         if (!fullName) {
@@ -168,7 +163,30 @@ export default function AdminDashboard() {
           completedActivities,
           quizScores
         }
-      })
+      }
+
+      // Build users from progress data
+      let usersWithProgress: UserProgress[] = uniqueUserIds.map(buildUserProgress)
+
+      // Also include any profiles that have NO progress yet (signed up but haven't completed anything)
+      const progressUserIdSet = new Set(uniqueUserIds)
+      if (profiles) {
+        for (const profile of profiles) {
+          if (!progressUserIdSet.has(profile.id)) {
+            usersWithProgress.push({
+              id: profile.id,
+              email: profile.email || '',
+              full_name: profile.full_name || profile.email?.split('@')[0] || 'Unknown',
+              created_at: profile.created_at || new Date().toISOString(),
+              updated_at: profile.updated_at || profile.created_at || new Date().toISOString(),
+              progressCount: 0,
+              progressPercentage: 0,
+              completedActivities: [],
+              quizScores: []
+            })
+          }
+        }
+      }
 
       // Sort by most recent activity
       usersWithProgress.sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
