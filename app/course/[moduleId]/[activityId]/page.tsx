@@ -107,6 +107,7 @@ export default function ActivityPage() {
               content={activity.content || ''}
               externalUrl={activity.externalUrl}
               audioUrl={activity.audioUrl}
+              videoUrl={activity.videoUrl}
               description={activity.description}
               onComplete={handleComplete}
               isCompleted={isCompleted}

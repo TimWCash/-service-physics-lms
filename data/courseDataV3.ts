@@ -859,6 +859,7 @@ const module3: CourseModule = {
       title: 'Spaghetti Mapping Practice',
       type: 'practice',
       duration: '15',
+      videoUrl: 'https://www.youtube.com/watch?v=owykxDsofcM',
       description: 'Practice creating a spaghetti diagram to visualize movement waste in a process. Watch the video, draw your spaghetti map, and analyze the motion.',
       content: `
         <div class="prose max-w-none">
@@ -1119,7 +1120,7 @@ const module4: CourseModule = {
       type: 'video',
       duration: '5',
       description: 'Watch this clip from Moneyball showing how redefining the problem led to a breakthrough solution.',
-      videoUrl: 'https://www.youtube.com/watch?v=WlTgg4s1sSg',
+      videoUrl: 'https://youtu.be/HiB9L3dG-Aw?si=04tVmPBjcvVQeuYx',
       thumbnailUrl: '/images/defining-problems-gap.png',
       discussionQuestions: [
         {

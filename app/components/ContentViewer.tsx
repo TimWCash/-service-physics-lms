@@ -8,6 +8,7 @@ interface ContentViewerProps {
   content: string;
   externalUrl?: string;
   audioUrl?: string;
+  videoUrl?: string;
   description?: string;
   onComplete: () => void;
   isCompleted: boolean;
@@ -15,7 +16,7 @@ interface ContentViewerProps {
   practiceSections?: PracticeSection[];
 }
 
-export default function ContentViewer({ content, externalUrl, audioUrl, description, onComplete, isCompleted, activityId, practiceSections }: ContentViewerProps) {
+export default function ContentViewer({ content, externalUrl, audioUrl, videoUrl, description, onComplete, isCompleted, activityId, practiceSections }: ContentViewerProps) {
   // If there's an audio URL, show the audio player
   if (audioUrl) {
     return (
@@ -96,6 +97,28 @@ export default function ContentViewer({ content, externalUrl, audioUrl, descript
     )
   }
 
+  // Helper to convert YouTube URL to embed URL
+  function getYouTubeEmbedUrl(url: string): string {
+    const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/)
+    if (youtubeMatch) {
+      return `https://www.youtube.com/embed/${youtubeMatch[1]}`
+    }
+    return url
+  }
+
+  const videoEmbed = videoUrl ? (
+    <div className="mb-8">
+      <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+        <iframe
+          src={getYouTubeEmbedUrl(videoUrl)}
+          className="absolute inset-0 w-full h-full rounded-lg"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  ) : null
+
   // Check if content contains HTML tags
   const isHtmlContent = content && (content.includes('<div') || content.includes('<p>') || content.includes('<h3>') || content.includes('<ul>'))
 
@@ -103,6 +126,7 @@ export default function ContentViewer({ content, externalUrl, audioUrl, descript
   if (isHtmlContent) {
     return (
       <div className="p-8">
+        {videoEmbed}
         <div
           className="prose prose-sm prose-surface max-w-none prose-headings:font-display prose-headings:text-surface-800 prose-p:text-surface-600 prose-a:text-primary-600 prose-img:rounded-lg prose-img:border prose-img:border-surface-200"
           dangerouslySetInnerHTML={{ __html: content }}
@@ -124,6 +148,7 @@ export default function ContentViewer({ content, externalUrl, audioUrl, descript
   // Otherwise, render markdown content
   return (
     <div className="p-8">
+      {videoEmbed}
       <div className="prose prose-sm prose-surface max-w-none prose-headings:font-display">
         <ReactMarkdown
           components={{
